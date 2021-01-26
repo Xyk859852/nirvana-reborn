@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: admin-web-application
+
+server:
+  port: 8096
+  servlet:
+    context-path: /admin-web
+  tomcat:
+    max-connections: 200
+    max-threads: 800
+    accept-count: 1000
+    min-spare-threads: 100
+# dubbo
+dubbo:
+  cloud:
+    subscribed-services: 'admin-web-service' # 设置订阅的应用列表，默认为 * 订阅所有应用
+  application:
+    id: admin-web-application
+  registry:
+    address: nacos://127.0.0.1:8848
+    metadata-report:
+      address: nacos://127.0.0.1:8848
+  consumer:
+    check: true # 服务启动时检查被调用服务是否可用
+    retries: 0  # 服务调用重试次数
+  provider:
+    retries: 0  # 服务调用重试次数，服务发布者不给重试，让服务调用者自己重试

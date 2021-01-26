@@ -40,3 +40,13 @@
 
 - [ ] 服务保障 Sentinel
 - [ ] 网关 Soul
+
+后端项目，目前的项目结构如下：
+
+```Java
+[-] xxx
+  ├──[-] xxx-application // 提供对外 HTTP API 。
+  ├──[-] xxx-service-api // 提供 Dubbo 服务 API 。
+  ├──[-] xxx-service-impl // 提供 Dubbo 服务 Service 实现。
+```
+

@@ -189,6 +189,7 @@
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
             </dependency>
+
             <!-- Transaction 相关 -->
             <dependency>
                 <groupId>io.seata</groupId>

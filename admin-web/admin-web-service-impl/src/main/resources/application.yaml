@@ -1,0 +1,53 @@
+server:
+  port: 8095
+spring:
+  application:
+    name: admin-web-service
+  # datasource
+  datasource:
+    url: jdbc:mysql://localhost:3306/fnboot?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+  main:
+    allow-bean-definition-overriding: true
+
+# mybatis-plus
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # 虽然默认为 true ，但是还是显示去指定下。
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.phoenix.nirvana.admin.web.dataobject
+
+# dubbo
+dubbo:
+  # Spring Cloud Alibaba Dubbo 专属配置
+  cloud:
+    subscribed-services: '' # 设置订阅的应用列表，默认为 * 订阅所有应用
+  registry:
+    address: nacos://127.0.0.1:8848
+  metadata-report:
+    address: nacos://127.0.0.1:8848
+  protocol:
+    port: -1
+    name: dubbo
+  scan:
+    base-packages: com.phoenix.nirvana.admin.web.service
+  provider:
+    retries: 0  # 服务调用重试次数，服务发布者不给重试，让服务调用者自己重试
+    timeout: 10000
+  application:
+    id: admin-web-service
+
+nacos:
+  config:
+    server-addr: nacos://127.0.0.1:8848
+
+# logging
+logging:
+  config: classpath:logback.xml
