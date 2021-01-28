@@ -164,14 +164,22 @@
    
          这些方法被用来执行定义在 SQL 映射 XML 文件中的 SELECT、INSERT、UPDATE 和 DELETE 语句。你可以通过名字快速了解它们的作用，每一方法都接受语句的 ID 以及参数对象，参数可以是原始类型（支持自动装箱或包装类）、JavaBean、POJO 或 Map。
    
-         ```Java
+         ```java
    <T> T selectOne(String statement, Object parameter)
+           
          <E> List<E> selectList(String statement, Object parameter)
+           
          <T> Cursor<T> selectCursor(String statement, Object parameter)
+           
          <K,V> Map<K,V> selectMap(String statement, Object parameter, String mapKey)
+           
          int insert(String statement, Object parameter)
+           
          int update(String statement, Object parameter)
+           
          int delete(String statement, Object parameter)
+           
+           
          ```
       
    6. 总结
@@ -184,7 +192,7 @@
 
       1. `SqlSessionFactoryBean`我们观察这个类实现了那些接口
 
-         ![image-20210127191445788](/Users/xuyongkang/Library/Application Support/typora-user-images/image-20210127191445788.png)
+         ![image-20210128151400752](mybatis原理详解.assets/image-20210128151400752.png)
 
          * 我们能看到当前类实现了 `Spring`的三个接口 `InitializingBean 初始化Bean` `FactoryBean<SqlSessionFactory> bean工厂提供 getObject()方法获取 SqlSessionFactory ` `ApplicationListener<ApplicationEvent> spring事件监听接口` 
          * 通过实现 `InitializingBean `接口保证当前类注册成为 `SpringBean`能够让 `Spring IOC` 容器进行管理，并且在 `bean`初始化完成之后立即去调用 `buildSqlSessionFactory`方法初始化 `SqlSessionFactory`，并且在调用该方法之前就去验证了 `DataSource`是否存在，确保数据库连接正确
@@ -238,7 +246,7 @@
 
             从 `org.springframework.beans.factory.support.AbstractBeanFactory#getObjectForBeanInstance`方法中我们能够看到
 
-            ![image-20210127194956608](/Users/xuyongkang/Library/Application Support/typora-user-images/image-20210127194956608.png)
+            ![image-20210127194956608](mybatis原理详解.assets/image-20210127194956608.png)
 
             如果当前的 `bean`是 `FactoryBean`那么就会去直接调用` getObjectFromFactoryBean()`方法，再到底层调用 `org.springframework.beans.factory.support.FactoryBeanRegistrySupport#doGetObjectFromFactoryBean`方法，
 
@@ -250,7 +258,7 @@
 
       1. `SqlSessionTemplate`对象相对比较简单一些主要用于 `SqlSession`模板调用，先观察一下实现了那些接口
 
-         ![image-20210127200635389](/Users/xuyongkang/Library/Application Support/typora-user-images/image-20210127200635389.png)
+         ![image-20210127200635389](mybatis原理详解.assets/image-20210127200635389.png)
 
          我们从图上能够看到 `SqlSessionTemplate`对象实现的主要的接口就是 `SqlSession`接口 ，`DisposableBean`是`Spring`的 `bean`销毁时提供的接口
 
@@ -317,7 +325,7 @@
 
       1. 我们在进行mybatis执行SQL语句是，都是自己手动去打开 `openSession`与构造 `sqlSessionTemplate`来进行执行sql语句，那么接下来我们要讲的 `SqlSessionDaoSupport`就是为了让我们不需要手动去操作 `SqlSession`，让我们的代码更多的去关注业务层面，而不用把时间一直浪费在这些耗时的操作上。我们也先看一下 `SqlSessionDaoSupport`的类继承关系
    
-         ![image-20210128084920154](/Users/xuyongkang/Library/Application Support/typora-user-images/image-20210128084920154.png)
+         ![image-20210128084920154](mybatis原理详解.assets/image-20210128084920154.png)
    
          我们能够看到 `SqlSessionDaoSupport`也是一个 `Bean`因为 `SqlSessionDaoSupport`继承了 `DaoSupport`而 `DaoSupport`实现了 `InitializingBean`接口，所以根据Java语言特性，我们的 `SqlSessionDaoSupport`也会有 `InitializingBean`的特性，但是我们看到 `SqlSessionDaoSupport`是一个抽象类，而我们也能发现 `MapperFactoryBean<T>`继承了当前的 `SqlSessionDaoSupport`，所以我们能知道我们最后的使用的类是哪一个。从 `MapperFactoryBean<T>`类的名称我们能知道，这是一个 `Mapper`的 `BeanFactory` ，那么我们可以进行联想到我们之前写的 `SQLMapper xml`文件，我们是不是可以进行整合使用呢？答案是 肯定的。
    
