@@ -65,6 +65,7 @@
         <guava.version>27.0.1-jre</guava.version>
         <org.projectlombok.version>1.16.14</org.projectlombok.version>
         <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
+        <jjwt.version>0.11.1</jjwt.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -272,6 +273,31 @@
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+
+            <!-- Java图形验证码 -->
+            <dependency>
+                <groupId>com.github.whvcse</groupId>
+                <artifactId>easy-captcha</artifactId>
+                <version>1.6.2</version>
+            </dependency>
+
+            <!-- jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
 
             <!--            <dependency>-->
             <!--                <groupId>com.fasterxml.jackson.core</groupId>-->

@@ -119,7 +119,7 @@ public class HttpUtil {
      * <p/>
      * <code>/my/url.jsp</code>.
      *
-     * 该方法，是从 Shiro 源码中，扣出来。add by 芋艿
+     * 该方法，是从 Shiro 源码中，扣出来。
      *
      * @param request current HTTP request
      * @return the path within the web application

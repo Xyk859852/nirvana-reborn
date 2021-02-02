@@ -29,5 +29,10 @@
     <modules>
         <module>common-framework</module>
         <module>nirvana-spring-boot-starter-mybatis</module>
+        <module>nirvana-spring-boot-starter-dubbo</module>
+        <module>nirvana-spring-boot-starter-error-code</module>
+        <module>nirvana-spring-boot-starter-web</module>
+        <module>nirvana-spring-boot-starter-admin-security</module>
+        <module>nirvana-spring-boot-starter-cache-redis</module>
     </modules>
 </project>
