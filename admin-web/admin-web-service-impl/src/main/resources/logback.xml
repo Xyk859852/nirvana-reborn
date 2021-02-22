@@ -172,7 +172,7 @@
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
 
-    <logger name="com.phoenix.nirvana.admin.web.mapper" level="debug"/>
+    <logger name="com.phoenix.nirvana.admin.web.impl.mapper" level="debug"/>
 
     <root level="info">
         <appender-ref ref="CONSOLE" />

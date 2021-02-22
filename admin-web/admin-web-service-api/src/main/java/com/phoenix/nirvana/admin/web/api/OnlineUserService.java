@@ -11,4 +11,11 @@ public interface OnlineUserService {
      * @return
      */
     OnlineUserBO getOnlineUserByToken(String token);
+
+    /**
+     * 根据token 获取当前用户
+     * @param userName
+     * @return
+     */
+    OnlineUserBO getOnlineUserByUserName(String userName);
 }

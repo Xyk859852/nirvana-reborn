@@ -19,10 +19,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @author Zheng Jie
- * @website https://el-admin.vip
- * @description
- * @date 2020-06-10
+ * @author Xuyk
+ * @date 2021-02-10
  **/
 @Getter
 @AllArgsConstructor

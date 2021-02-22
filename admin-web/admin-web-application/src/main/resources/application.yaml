@@ -1,7 +1,10 @@
 spring:
   application:
     name: admin-web-application
-
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
 server:
   port: 8096
   servlet:
@@ -27,9 +30,32 @@ dubbo:
   provider:
     retries: 0  # 服务调用重试次数，服务发布者不给重试，让服务调用者自己重试
 
+# 登录相关配置
+login:
+  # 登录缓存
+  cache-enable: true
+  #  是否限制单用户登录
+  single-login: false
+  #  验证码
+  login-code:
+    #  验证码类型配置 查看 LoginProperties 类
+    code-type: arithmetic
+    #  登录图形验证码有效时间/分钟
+    expiration: 2
+    #  验证码高度
+    width: 111
+    #  验证码宽度
+    heigth: 36
+    # 内容长度
+    length: 2
+    # 字体名称，为空则使用默认字体
+    font-name:
+    # 字体大小
+    font-size: 25
+
 #jwt
 jwt:
-  header: Authorization
+  header: Access-Token
   # 令牌前缀
   token-start-with: Bearer
   # 必须使用最少88位的Base64对该令牌进行编码
@@ -37,9 +63,9 @@ jwt:
   # 令牌过期时间 此处单位/毫秒 ，默认4小时，可在此网站生成 https://www.convertworld.com/zh-hans/time/milliseconds.html
   token-validity-in-seconds: 14400000
   # 在线用户key
-  online-key: online-token-
+  online-key: online-token
   # 验证码
-  code-key: code-key-
+  code-key: code-key
   # token 续期检查时间范围（默认30分钟，单位毫秒），在token即将过期的一段时间内用户操作了，则给用户的token续期
   detect: 1800000
   # 续期时间范围，默认1小时，单位毫秒

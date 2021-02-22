@@ -1,8 +1,8 @@
 package com.phoenix.nirvana.web.core.util;
 
 
+import com.phoenix.nirvana.common.constant.CommonNirvanaConstants;
 import com.phoenix.nirvana.common.vo.CommonResult;
-import com.phoenix.nirvana.web.core.constant.CommonNirvanaConstants;
 
 import javax.servlet.ServletRequest;
 import java.util.Date;

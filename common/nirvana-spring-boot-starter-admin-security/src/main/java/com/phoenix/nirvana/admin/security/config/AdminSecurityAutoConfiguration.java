@@ -21,6 +21,8 @@ import com.phoenix.nirvana.admin.security.core.JwtAccessDeniedHandler;
 import com.phoenix.nirvana.admin.security.core.JwtAuthenticationEntryPoint;
 import com.phoenix.nirvana.admin.security.core.TokenConfigurer;
 import com.phoenix.nirvana.admin.security.core.TokenProvider;
+import com.phoenix.nirvana.admin.security.service.UserDetailsServiceImpl;
+import com.phoenix.nirvana.admin.security.utils.SpringContextHolder;
 import com.phoenix.nirvana.admin.web.api.OnlineUserService;
 import com.phoenix.nirvana.common.enums.RequestMethodEnum;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -29,6 +31,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,6 +40,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,6 +73,9 @@ public class AdminSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
     @Autowired
     TokenProvider tokenProvider;
 
+    @Autowired
+    UserDetailsServiceImpl userDetailsService;
+
     @DubboReference
     private OnlineUserService onlineUserService;
 
@@ -77,16 +85,29 @@ public class AdminSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
         return new GrantedAuthorityDefaults("");
     }
 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(new MessageDigestPasswordEncoder("MD5"));
+    }
+
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        // 密码加密方式
+//        return new BCryptPasswordEncoder();
+//    }
+
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        // 密码加密方式
-        return new BCryptPasswordEncoder();
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // 搜寻匿名标记 url： @AnonymousAccess
         RequestMappingHandlerMapping requestMappingHandlerMapping = (RequestMappingHandlerMapping) applicationContext.getBean("requestMappingHandlerMapping");
+        SpringContextHolder springContextHolder = new SpringContextHolder();
+        springContextHolder.setApplicationContext(applicationContext);
         Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = requestMappingHandlerMapping.getHandlerMethods();
         // 获取匿名标记
         Map<String, Set<String>> anonymousUrls = getAnonymousUrl(handlerMethodMap);

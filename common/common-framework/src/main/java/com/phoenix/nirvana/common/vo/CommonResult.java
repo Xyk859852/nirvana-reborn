@@ -63,6 +63,14 @@ public final class CommonResult<T> implements Serializable {
         return result;
     }
 
+    public static <T> CommonResult<T> success() {
+        CommonResult<T> result = new CommonResult<>();
+        result.code = GlobalErrorCodeConstants.SUCCESS.getCode();
+        result.data = null;
+        result.message = "";
+        return result;
+    }
+
     public static <T> CommonResult<T> success(T data) {
         CommonResult<T> result = new CommonResult<>();
         result.code = GlobalErrorCodeConstants.SUCCESS.getCode();

@@ -66,7 +66,7 @@ public class TokenFilter extends GenericFilterBean {
         if (!StringUtils.isEmpty(token)) {
             OnlineUserBO onlineUserBO = null;
             try {
-                onlineUserBO = onlineUserService.getOnlineUserByToken(properties.getOnlineKey() + token);
+                onlineUserBO = onlineUserService.getOnlineUserByToken(properties.getOnlineKey() + ":" + token);
             } catch (ExpiredJwtException e) {
                 log.error(e.getMessage());
             }

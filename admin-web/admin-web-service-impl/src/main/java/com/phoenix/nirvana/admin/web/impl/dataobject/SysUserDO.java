@@ -1,10 +1,6 @@
 package com.phoenix.nirvana.admin.web.impl.dataobject;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-
-import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -51,10 +47,27 @@ public class SysUserDO implements Serializable {
     private String passWord;
 
     /**
-     * 层级id
+     * 用户性别
      */
-    @TableField("depId")
-    private Long depId;
+    private String sex;
+
+    /**
+     * 用户邮箱
+     */
+    private String email;
+
+    /**
+     * 用户头像地址
+     */
+    @TableField("avatar")
+    private String avatar;
+
+
+    /**
+     * 部门id
+     */
+    @TableField("departmentId")
+    private Long departmentId;
 
     /**
      * 岗位id
@@ -75,13 +88,14 @@ public class SysUserDO implements Serializable {
     private Date createTime;
 
     /**
-     * 是否删除:0删除，1:正常
+     * 是否删除:0:正常，1:删除
      */
+    @TableLogic
     @TableField("isDeleted")
     private Boolean isDeleted;
 
     /**
-     * 0、禁用 1、正常
+     * 0、正常 1、禁用
      */
     @TableField("isEnable")
     private Boolean isEnable;

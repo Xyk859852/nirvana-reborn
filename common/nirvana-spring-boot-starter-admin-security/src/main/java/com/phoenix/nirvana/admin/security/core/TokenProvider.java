@@ -50,7 +50,7 @@ public class TokenProvider implements InitializingBean {
     @Autowired
     RedisUtils redisUtils;
 
-    public String AUTHORITIES_KEY = "user";
+    public String AUTHORITIES_KEY = "admin";
     private JwtParser jwtParser;
     private JwtBuilder jwtBuilder;
 

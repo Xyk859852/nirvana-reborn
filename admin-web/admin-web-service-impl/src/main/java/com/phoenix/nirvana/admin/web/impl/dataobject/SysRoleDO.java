@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -55,16 +55,22 @@ public class SysRoleDO implements Serializable {
     private Integer loginJurisdiction;
 
     /**
+     * 创建人id
+     */
+    @TableField("createId")
+    private Long createId;
+
+    /**
      * 创建时间
      */
     @TableField("createTime")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 修改时间
      */
     @TableField("modifyTime")
-    private LocalDateTime modifyTime;
+    private Date modifyTime;
 
     /**
      * 是否使用

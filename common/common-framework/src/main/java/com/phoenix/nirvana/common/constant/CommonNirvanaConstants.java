@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.web.core.constant;
+package com.phoenix.nirvana.common.constant;
 
 public interface CommonNirvanaConstants {
 
@@ -39,6 +39,16 @@ public interface CommonNirvanaConstants {
      * HTTP Request Attr - 访问开始时间
      */
     String REQUEST_ATTR_ACCESS_START_TIME = "nirvana_access_start_time";
+
+    /**
+     * 按钮资源
+     */
+    Integer PERMISSION_MENU = 0;
+
+    /**
+     * 按钮资源
+     */
+    Integer PERMISSION_BUTTON = 1;
 
 
 }
