@@ -2,6 +2,7 @@ package com.phoenix.nirvana.admin.web.impl.convert;
 
 import com.phoenix.nirvana.admin.web.api.bo.OnlineUserBO;
 import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserCreateDTO;
+import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserUpdateDTO;
 import com.phoenix.nirvana.admin.web.api.vo.user.UserPageItemVO;
 import com.phoenix.nirvana.admin.web.impl.dataobject.SysUserDO;
 import org.mapstruct.Mapper;
@@ -26,4 +27,7 @@ public interface SysUserConvert {
 
     @Mappings({})
     SysUserDO convert(AdminUserCreateDTO adminUserCreateDTO);
+
+    @Mappings({})
+    SysUserDO convert(AdminUserUpdateDTO adminUserUpdateDTO);
 }

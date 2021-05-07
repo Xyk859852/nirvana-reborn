@@ -58,7 +58,7 @@ public class NirvanaWebConfiguration implements WebMvcConfigurer {
         fastJsonConfig.setCharset(Charset.defaultCharset()); // 设置字符集
         fastJsonConfig.setSerializeConfig(serializeConfig);
         fastJsonConfig.setSerializerFeatures(SerializerFeature.DisableCircularReferenceDetect, // 剔除循环引用
-                SerializerFeature.WriteNonStringKeyAsString); // 解决 Integer 作为 Key 时，转换为 String 类型，避免浏览器报错
+                SerializerFeature.WriteNonStringKeyAsString, SerializerFeature.WriteMapNullValue); // 解决 Integer 作为 Key 时，转换为 String 类型，避免浏览器报错
         fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
         // 设置支持的 MediaType
         fastJsonHttpMessageConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));

@@ -25,12 +25,15 @@ public interface SysUserMapper extends BaseMapper<SysUserDO> {
 
     }
 
-    default SysUserDO selectOneByPhone(String phone) {
-        return selectOne(new QueryWrapper<SysUserDO>().eq("phone", phone));
+    default SysUserDO selectOneByPhone(String phone, Long userId) {
+        QueryWrapperX<SysUserDO> doQueryWrapperX = new QueryWrapperX<>();
+        doQueryWrapperX.eq("phone", phone);
+        doQueryWrapperX.neIfPresent("id", userId);
+        return selectOne(doQueryWrapperX);
 
     }
 
-    default Page<SysUserDO> selectPage(AdminUserPageDTO pageListDTO) {
+    default Page<SysUserDO> selectPageList(AdminUserPageDTO pageListDTO) {
         QueryWrapperX<SysUserDO> doQueryWrapperX = new QueryWrapperX<>();
         if (StringUtils.hasText(pageListDTO.getKeyboard())) {
             doQueryWrapperX.and(sysUserDOQueryWrapper ->

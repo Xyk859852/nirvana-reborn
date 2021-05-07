@@ -1,8 +1,9 @@
 package com.phoenix.nirvana.admin.web.impl.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.phoenix.nirvana.admin.web.impl.dataobject.SysRolePermissionDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.phoenix.nirvana.admin.web.impl.dataobject.SysRolePermissionDO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +19,11 @@ import java.util.List;
 @Repository
 public interface SysRolePermissionMapper extends BaseMapper<SysRolePermissionDO> {
 
-    default List<SysRolePermissionDO> selectListByRoleId(Long rid){
-        return selectList(new QueryWrapper<SysRolePermissionDO>().lambda().eq(SysRolePermissionDO::getRid, rid));
+    default List<SysRolePermissionDO> selectListByRoleId(Long rid) {
+        return selectList(Wrappers.lambdaQuery(SysRolePermissionDO.class).eq(SysRolePermissionDO::getRid, rid));
+    }
+
+    default Boolean deleteByRoleId(Long rid) {
+        return delete(new QueryWrapper<SysRolePermissionDO>().eq("rid", rid)) > 0;
     }
 }

@@ -32,11 +32,9 @@ public class AdminUserCreateDTO implements Serializable {
 
     @ApiModelProperty("部门id")
     @NotNull(message = "部门不能为空")
-    @NotBlank(message = "部门不能为空")
-    private String departmentId;
+    private Long departmentId;
 
     @ApiModelProperty("角色id")
     @NotNull(message = "部门不能为空")
-    @NotBlank(message = "部门不能为空")
-    private String roleId;
+    private Long roleId;
 }

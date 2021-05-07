@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.phoenix.nirvana.admin.web.api.AdminUserService;
 import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserCreateDTO;
 import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserPageDTO;
+import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserUpdateDTO;
 import com.phoenix.nirvana.admin.web.api.vo.user.UserPageItemVO;
 import com.phoenix.nirvana.admin.web.impl.convert.SysUserConvert;
 import com.phoenix.nirvana.admin.web.impl.dataobject.SysDepartmentDO;
@@ -43,7 +44,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public PageResult<UserPageItemVO> getUserPageList(AdminUserPageDTO adminUserPageDTO) {
-        Page<SysUserDO> sysUserPage = sysUserMapper.selectPage(adminUserPageDTO);
+        Page<SysUserDO> sysUserPage = sysUserMapper.selectPageList(adminUserPageDTO);
         if (CollectionUtils.isEmpty(sysUserPage.getRecords())) {
             return PageResult.empty();
         } else {
@@ -59,22 +60,18 @@ public class AdminUserServiceImpl implements AdminUserService {
                 pageItemVO.setDepartment(new UserPageItemVO.Department().setId(departmentDO.getId()).setName(departmentDO.getName()));
                 pageItemVO.setRole(new UserPageItemVO.Role().setId(sysRoleDO.getId()).setName(sysRoleDO.getName()));
                 userPageItemVOS.add(pageItemVO);
-
             });
             return new PageResult<UserPageItemVO>()
                     .setPageNo(adminUserPageDTO.getCurrent())
                     .setPageSize(adminUserPageDTO.getSize())
-                    .setTotalCount(sysUserPage.getTotal())
+                    .setTotalCount(Math.toIntExact(sysUserPage.getTotal()))
                     .setList(userPageItemVOS);
         }
     }
 
     @Override
     public void addAdminUser(AdminUserCreateDTO adminUserCreateDTO) {
-        SysUserDO sysUserPhoneDO = sysUserMapper.selectOneByPhone(adminUserCreateDTO.getPhone());
-        if (sysUserPhoneDO != null) {
-            throw ServiceExceptionUtil.exception(USER_PHONE_EXIST);
-        }
+        checkPhoneExist(adminUserCreateDTO.getPhone(), null);
         SysUserDO userDO = SysUserConvert.INTERFACE.convert(adminUserCreateDTO);
         userDO.setPassWord(MD5Util.encryption(adminUserCreateDTO.getPhone().substring(6)));
         userDO.setCreateTime(new Date());
@@ -82,7 +79,26 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
-    public void deleteAdminUser(List<String> ids) {
+    public void updateAdminUser(AdminUserUpdateDTO adminUserUpdateDTO) {
+        checkPhoneExist(adminUserUpdateDTO.getPhone(), adminUserUpdateDTO.getId());
+        SysUserDO userDO = SysUserConvert.INTERFACE.convert(adminUserUpdateDTO);
+        sysUserMapper.updateById(userDO);
+    }
+
+    @Override
+    public void deleteAdminUser(List<Long> ids) {
         sysUserMapper.deleteBatchIds(ids);
+    }
+
+    /**
+     * 判断当前手机号是已经否在,排除当前用户
+     *
+     * @param phone
+     */
+    private void checkPhoneExist(String phone, Long userId) {
+        SysUserDO sysUserPhoneDO = sysUserMapper.selectOneByPhone(phone, userId);
+        if (sysUserPhoneDO != null) {
+            throw ServiceExceptionUtil.exception(USER_PHONE_EXIST);
+        }
     }
 }

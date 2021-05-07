@@ -49,12 +49,6 @@ public class SysRoleDO implements Serializable {
     private String description;
 
     /**
-     * 登录权限
-     */
-    @TableField("loginJurisdiction")
-    private Integer loginJurisdiction;
-
-    /**
      * 创建人id
      */
     @TableField("createId")
@@ -77,12 +71,5 @@ public class SysRoleDO implements Serializable {
      */
     @TableField("isEnable")
     private Boolean isEnable;
-
-    /**
-     * 是否删除
-     */
-    @TableField("isDeleted")
-    private Boolean isDeleted;
-
 
 }

@@ -1,5 +1,6 @@
 package com.phoenix.nirvana.admin.web.api.vo.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
@@ -8,8 +9,10 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
+@ApiModel("用户列表查询对象")
 @Accessors(chain = true)
 public class UserPageItemVO implements Serializable {
 
@@ -33,6 +36,10 @@ public class UserPageItemVO implements Serializable {
 
     @ApiModelProperty("用户角色信息")
     private Role role;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @ApiModelProperty("创建时间")
+    private Date createTime;
 
     @ApiModel("部门")
     @Data

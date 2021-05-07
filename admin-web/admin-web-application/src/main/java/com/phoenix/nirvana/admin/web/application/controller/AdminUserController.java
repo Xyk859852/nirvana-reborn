@@ -3,6 +3,7 @@ package com.phoenix.nirvana.admin.web.application.controller;
 import com.phoenix.nirvana.admin.web.api.AdminUserService;
 import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserCreateDTO;
 import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserPageDTO;
+import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserUpdateDTO;
 import com.phoenix.nirvana.admin.web.api.vo.user.UserPageItemVO;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.common.vo.PageResult;
@@ -36,9 +37,16 @@ public class AdminUserController {
         return CommonResult.success();
     }
 
+    @ApiOperation("管理员用户更新")
+    @PostMapping("updateAdminUser")
+    public CommonResult updateAdminUser(@Validated AdminUserUpdateDTO adminUserUpdateDTO) {
+        adminUserService.updateAdminUser(adminUserUpdateDTO);
+        return CommonResult.success();
+    }
+
     @ApiOperation("管理员用户删除")
     @DeleteMapping("deleteAdminUser")
-    public CommonResult deleteAdminUser(@RequestBody List<String> ids) {
+    public CommonResult deleteAdminUser(@RequestBody List<Long> ids) {
         adminUserService.deleteAdminUser(ids);
         return CommonResult.success(true);
     }

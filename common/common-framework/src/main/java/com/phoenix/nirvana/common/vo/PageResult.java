@@ -24,7 +24,7 @@ public class PageResult<T> implements Serializable {
     private Long totalPage;
 
     @ApiModelProperty("数据总数")
-    private Long totalCount;
+    private Integer totalCount;
 
     @ApiModelProperty("分页数据")
     private List<T> list;
@@ -38,6 +38,6 @@ public class PageResult<T> implements Serializable {
                 .setList(Collections.EMPTY_LIST)
                 .setTotalPage(0L)
                 .setPageNo(0)
-                .setTotalCount(0L);
+                .setTotalCount(0);
     }
 }

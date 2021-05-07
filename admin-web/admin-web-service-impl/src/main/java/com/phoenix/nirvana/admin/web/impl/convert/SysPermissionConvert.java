@@ -2,14 +2,13 @@ package com.phoenix.nirvana.admin.web.impl.convert;
 
 import com.phoenix.nirvana.admin.web.api.vo.login.AuthenticationPermissionButtonVO;
 import com.phoenix.nirvana.admin.web.api.vo.login.AuthenticationRolePermissionMenuVO;
-import com.phoenix.nirvana.admin.web.impl.dataobject.SysPermissionDO;
+import com.phoenix.nirvana.admin.web.impl.dataobject.SysMenuDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
-import java.util.Set;
 
 @Mapper
 public interface SysPermissionConvert {
@@ -17,17 +16,17 @@ public interface SysPermissionConvert {
     SysPermissionConvert INTERFACE = Mappers.getMapper(SysPermissionConvert.class);
 
     @Mappings({})
-    List<AuthenticationPermissionButtonVO> convertButton(List<SysPermissionDO> sysPermission);
+    List<AuthenticationPermissionButtonVO> convertButton(List<SysMenuDO> sysPermission);
 
     @Mappings({@Mapping(target = "action", source = "permCode"),
             @Mapping(target = "describe", source = "title")})
-    AuthenticationPermissionButtonVO convertButton(SysPermissionDO sysPermission);
+    AuthenticationPermissionButtonVO convertButton(SysMenuDO sysPermission);
 
     @Mappings({@Mapping(target = "permissionId", source = "permCode"),
             @Mapping(target = "permissionName", source = "title")})
-    AuthenticationRolePermissionMenuVO convertMenu(SysPermissionDO sysPermission);
+    AuthenticationRolePermissionMenuVO convertMenu(SysMenuDO sysPermission);
 
     @Mappings({})
-    List<AuthenticationRolePermissionMenuVO> convertMenus(List<SysPermissionDO> sysPermission);
+    List<AuthenticationRolePermissionMenuVO> convertMenus(List<SysMenuDO> sysPermission);
 
 }

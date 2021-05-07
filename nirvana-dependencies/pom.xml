@@ -31,7 +31,7 @@
         <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
         <spring.cloud.alibaba.version>2.2.1.RELEASE</spring.cloud.alibaba.version>
         <!-- Web 相关 -->
-        <servlet.version>2.5</servlet.version>
+        <servlet.version>3.1.0</servlet.version>
         <knife4j.version>2.0.2</knife4j.version>
         <swagger.version>1.5.21</swagger.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
@@ -142,13 +142,6 @@
             </dependency>
 
             <!-- Web 相关 -->
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <scope>provided</scope>
-                <version>${servlet.version}</version>
-                <optional>true</optional>
-            </dependency>
 
             <dependency>
                 <groupId>io.swagger</groupId>
