@@ -23,5 +23,6 @@ public interface AdminWebCodeConstants {
     ErrorCode MENU_ID_EQUALS_PID = new ErrorCode(100020, "菜单父级不能是自己");
 
     ErrorCode MENU_IFRAME_URL_TOP_ERROR = new ErrorCode(100021, "外链必须以http://或者https://开头");
+    ErrorCode MENU_IS_NULL = new ErrorCode(100022, "菜单不存在");
 
 }

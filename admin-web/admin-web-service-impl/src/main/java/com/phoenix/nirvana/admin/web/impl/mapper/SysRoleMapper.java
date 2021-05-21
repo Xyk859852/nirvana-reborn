@@ -3,7 +3,7 @@ package com.phoenix.nirvana.admin.web.impl.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.phoenix.nirvana.admin.web.api.dto.role.RolePageDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.role.RolePageDTO;
 import com.phoenix.nirvana.admin.web.impl.dataobject.SysRoleDO;
 import com.phoenix.nirvana.mybatis.core.query.QueryWrapperX;
 import org.springframework.stereotype.Repository;

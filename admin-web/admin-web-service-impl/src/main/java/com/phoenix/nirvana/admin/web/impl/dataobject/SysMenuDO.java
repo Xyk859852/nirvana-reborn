@@ -1,6 +1,7 @@
 package com.phoenix.nirvana.admin.web.impl.dataobject;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.phoenix.nirvana.admin.web.impl.service.auth.menu.MenuOperation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -101,5 +102,9 @@ public class SysMenuDO implements Serializable {
      */
     @TableField("isEnable")
     private Boolean isEnable;
+
+    public <T> T execute(MenuOperation<T> menuOperation){
+        return menuOperation.doExecute(this);
+    }
 
 }

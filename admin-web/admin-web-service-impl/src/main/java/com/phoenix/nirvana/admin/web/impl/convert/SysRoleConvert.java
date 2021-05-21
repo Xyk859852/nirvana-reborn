@@ -1,10 +1,10 @@
 package com.phoenix.nirvana.admin.web.impl.convert;
 
-import com.phoenix.nirvana.admin.web.api.dto.role.AddRoleDTO;
-import com.phoenix.nirvana.admin.web.api.dto.role.UpdateRoleDTO;
-import com.phoenix.nirvana.admin.web.api.vo.login.AuthenticationUserRoleVO;
-import com.phoenix.nirvana.admin.web.api.vo.role.RoleCascade;
-import com.phoenix.nirvana.admin.web.api.vo.role.RolePageItemVO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.role.AddRoleDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.role.UpdateRoleDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.vo.role.RoleCascade;
+import com.phoenix.nirvana.admin.web.api.admin.domain.vo.role.RolePageItemVO;
+import com.phoenix.nirvana.admin.web.api.auth.login.domain.vo.AuthenticationUserRoleVO;
 import com.phoenix.nirvana.admin.web.impl.dataobject.SysRoleDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;

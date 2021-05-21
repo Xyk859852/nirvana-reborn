@@ -3,7 +3,7 @@ package com.phoenix.nirvana.admin.web.impl.mapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserPageDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.user.AdminUserPageDTO;
 import com.phoenix.nirvana.admin.web.impl.dataobject.SysUserDO;
 import com.phoenix.nirvana.common.util.StringUtils;
 import com.phoenix.nirvana.mybatis.core.query.QueryWrapperX;

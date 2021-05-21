@@ -16,7 +16,7 @@
 package com.phoenix.nirvana.admin.security.core;
 
 import com.phoenix.nirvana.admin.security.bean.SecurityProperties;
-import com.phoenix.nirvana.admin.web.api.OnlineUserService;
+import com.phoenix.nirvana.admin.web.api.admin.OnlineUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

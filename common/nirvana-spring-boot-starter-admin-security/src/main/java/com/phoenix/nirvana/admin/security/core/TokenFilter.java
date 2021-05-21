@@ -16,8 +16,8 @@
 package com.phoenix.nirvana.admin.security.core;
 
 import com.phoenix.nirvana.admin.security.bean.SecurityProperties;
-import com.phoenix.nirvana.admin.web.api.OnlineUserService;
-import com.phoenix.nirvana.admin.web.api.bo.OnlineUserBO;
+import com.phoenix.nirvana.admin.web.api.admin.OnlineUserService;
+import com.phoenix.nirvana.admin.web.api.admin.domain.bo.OnlineUserBO;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,14 +1,13 @@
 package com.phoenix.nirvana.error.code.loading;
 
-import com.phoenix.nirvana.admin.web.api.SysErrorCodeService;
-import com.phoenix.nirvana.admin.web.api.vo.SysErrorCodeVO;
+import com.phoenix.nirvana.admin.web.api.admin.SysErrorCodeService;
+import com.phoenix.nirvana.admin.web.api.admin.domain.vo.errorcode.SysErrorCodeVO;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.util.CollectionUtils;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;

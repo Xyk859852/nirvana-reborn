@@ -1,10 +1,10 @@
 package com.phoenix.nirvana.admin.web.application.controller;
 
-import com.phoenix.nirvana.admin.web.api.AdminUserService;
-import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserCreateDTO;
-import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserPageDTO;
-import com.phoenix.nirvana.admin.web.api.dto.user.AdminUserUpdateDTO;
-import com.phoenix.nirvana.admin.web.api.vo.user.UserPageItemVO;
+import com.phoenix.nirvana.admin.web.api.admin.AdminUserService;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.user.AdminUserCreateDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.user.AdminUserPageDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.user.AdminUserUpdateDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.vo.user.UserPageItemVO;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.common.vo.PageResult;
 import io.swagger.annotations.Api;

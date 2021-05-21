@@ -1,12 +1,12 @@
 package com.phoenix.nirvana.admin.web.application.controller;
 
 import com.phoenix.nirvana.admin.security.utils.SecurityUtils;
-import com.phoenix.nirvana.admin.web.api.RoleService;
-import com.phoenix.nirvana.admin.web.api.dto.role.AddRoleDTO;
-import com.phoenix.nirvana.admin.web.api.dto.role.RolePageDTO;
-import com.phoenix.nirvana.admin.web.api.dto.role.UpdateRoleDTO;
-import com.phoenix.nirvana.admin.web.api.vo.role.RoleCascade;
-import com.phoenix.nirvana.admin.web.api.vo.role.RolePageItemVO;
+import com.phoenix.nirvana.admin.web.api.admin.RoleService;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.role.AddRoleDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.role.RolePageDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.dto.role.UpdateRoleDTO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.vo.role.RoleCascade;
+import com.phoenix.nirvana.admin.web.api.admin.domain.vo.role.RolePageItemVO;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.common.vo.PageResult;
 import io.swagger.annotations.Api;

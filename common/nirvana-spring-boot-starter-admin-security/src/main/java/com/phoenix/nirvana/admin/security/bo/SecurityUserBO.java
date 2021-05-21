@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.admin.security.bo;
 
-import com.phoenix.nirvana.admin.web.api.bo.OnlineUserBO;
+import com.phoenix.nirvana.admin.web.api.admin.domain.bo.OnlineUserBO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;

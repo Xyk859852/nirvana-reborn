@@ -17,8 +17,8 @@ package com.phoenix.nirvana.admin.security.service;
 
 import com.phoenix.nirvana.admin.security.bean.LoginProperties;
 import com.phoenix.nirvana.admin.security.bo.SecurityUserBO;
-import com.phoenix.nirvana.admin.web.api.OnlineUserService;
-import com.phoenix.nirvana.admin.web.api.bo.OnlineUserBO;
+import com.phoenix.nirvana.admin.web.api.admin.OnlineUserService;
+import com.phoenix.nirvana.admin.web.api.admin.domain.bo.OnlineUserBO;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.dubbo.config.annotation.DubboReference;

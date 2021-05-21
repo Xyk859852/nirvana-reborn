@@ -1,12 +1,12 @@
 package com.phoenix.nirvana.admin.web.application.controller;
 
 import com.phoenix.nirvana.admin.security.annotaion.AnonymousAccess;
-import com.phoenix.nirvana.admin.web.api.MenuService;
-import com.phoenix.nirvana.admin.web.api.dto.menu.AddMenuDTO;
-import com.phoenix.nirvana.admin.web.api.dto.menu.MenuListDTO;
-import com.phoenix.nirvana.admin.web.api.dto.menu.UpdateMenuDTO;
-import com.phoenix.nirvana.admin.web.api.vo.menu.MenuListItemVO;
-import com.phoenix.nirvana.admin.web.api.vo.menu.MenuTreeItemVO;
+import com.phoenix.nirvana.admin.web.api.auth.menu.MenuService;
+import com.phoenix.nirvana.admin.web.api.auth.menu.domain.dto.AddMenuDTO;
+import com.phoenix.nirvana.admin.web.api.auth.menu.domain.dto.MenuListDTO;
+import com.phoenix.nirvana.admin.web.api.auth.menu.domain.dto.UpdateMenuDTO;
+import com.phoenix.nirvana.admin.web.api.auth.menu.domain.vo.MenuListItemVO;
+import com.phoenix.nirvana.admin.web.api.auth.menu.domain.vo.MenuTreeItemVO;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

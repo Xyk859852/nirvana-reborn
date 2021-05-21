@@ -1,7 +1,7 @@
 package com.phoenix.nirvana.admin.web.impl.convert;
 
-import com.phoenix.nirvana.admin.web.api.vo.login.AuthenticationPermissionButtonVO;
-import com.phoenix.nirvana.admin.web.api.vo.login.AuthenticationRolePermissionMenuVO;
+import com.phoenix.nirvana.admin.web.api.auth.login.domain.vo.AuthenticationPermissionButtonVO;
+import com.phoenix.nirvana.admin.web.api.auth.login.domain.vo.AuthenticationRolePermissionMenuVO;
 import com.phoenix.nirvana.admin.web.impl.dataobject.SysMenuDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

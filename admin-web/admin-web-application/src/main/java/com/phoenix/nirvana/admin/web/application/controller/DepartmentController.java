@@ -1,8 +1,8 @@
 package com.phoenix.nirvana.admin.web.application.controller;
 
 import com.phoenix.nirvana.admin.security.utils.SecurityUtils;
-import com.phoenix.nirvana.admin.web.api.DepartmentService;
-import com.phoenix.nirvana.admin.web.api.vo.department.DepartmentCascade;
+import com.phoenix.nirvana.admin.web.api.admin.DepartmentService;
+import com.phoenix.nirvana.admin.web.api.admin.domain.vo.department.DepartmentCascade;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

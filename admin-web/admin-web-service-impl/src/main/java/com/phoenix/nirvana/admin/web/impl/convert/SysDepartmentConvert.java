@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.admin.web.impl.convert;
 
-import com.phoenix.nirvana.admin.web.api.vo.department.DepartmentCascade;
+import com.phoenix.nirvana.admin.web.api.admin.domain.vo.department.DepartmentCascade;
 import com.phoenix.nirvana.admin.web.impl.dataobject.SysDepartmentDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
