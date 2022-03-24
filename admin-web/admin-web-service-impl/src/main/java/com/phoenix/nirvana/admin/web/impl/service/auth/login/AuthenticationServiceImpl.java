@@ -89,11 +89,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         //把按钮数据放入到父菜单
         List<AuthenticationRolePermissionMenuVO> authenticationRolePermissionMenuVOS = SysPermissionConvert.INTERFACE.convertMenus(permissions);
         permissions.parallelStream().filter(menu -> collect.containsKey(menu.getId()))
-                .forEach(sysPermission -> {
-                            authenticationRolePermissionMenuVOS.stream()
-                                    .filter(menuFilter -> menuFilter.getPermissionId().equals(sysPermission.getPermCode()))
-                                    .forEach(menusVO -> menusVO.setActions(SysPermissionConvert.INTERFACE.convertButton(collect.get(sysPermission.getId()))));
-                        }
+                .forEach(sysPermission -> authenticationRolePermissionMenuVOS.stream()
+                        .filter(menuFilter -> menuFilter.getPermissionId().equals(sysPermission.getPermCode()))
+                        .forEach(menusVO -> menusVO.setActions(SysPermissionConvert.INTERFACE.convertButton(collect.get(sysPermission.getId()))))
                 );
         return new AuthenticationUserInfoVO()
                 .setId(sysUser.getId())

@@ -17,7 +17,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>common</module>
+        <module>nirvana-common</module>
         <module>nirvana-dependencies</module>
         <module>admin-web</module>
 

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.phoenix.nirvana.web.config.NirvanaWebConfiguration,\
+  com.phoenix.nirvana.web.config.swagger.SwaggerAutoConfiguration

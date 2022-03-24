@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
-@Api(tags = "获取验证码/用户登录/用户登出，模块")
+@Api(tags = "获取验证码-用户登录-用户登出-模块")
 @RestController
 @RequestMapping("auth")
 public class AuthenticationController {

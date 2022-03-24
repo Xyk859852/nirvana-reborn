@@ -31,7 +31,7 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Web 相关 -->
+        <!-- swagger2 相关 -->
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
