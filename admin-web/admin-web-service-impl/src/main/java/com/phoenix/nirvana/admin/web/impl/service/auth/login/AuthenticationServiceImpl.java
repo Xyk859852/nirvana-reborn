@@ -95,6 +95,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                                     .forEach(menusVO -> menusVO.setActions(SysPermissionConvert.INTERFACE.convertButton(collect.get(sysPermission.getId()))));
                         }
                 );
-        return new AuthenticationUserInfoVO().setId(sysUser.getId()).setName(sysUser.getUserName()).setPhone(sysUser.getPhone()).setRole(new AuthenticationUserRoleVO().setId(sysRole.getId()).setName(sysRole.getName()).setPermissions(authenticationRolePermissionMenuVOS));
+        return new AuthenticationUserInfoVO()
+                .setId(sysUser.getId())
+                .setName(sysUser.getUserName())
+                .setPhone(sysUser.getPhone())
+                .setRole(new AuthenticationUserRoleVO()
+                        .setId(sysRole.getId())
+                        .setName(sysRole.getName())
+                        .setPermissions(authenticationRolePermissionMenuVOS)
+                );
     }
 }

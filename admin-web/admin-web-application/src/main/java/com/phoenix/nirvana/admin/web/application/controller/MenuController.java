@@ -58,7 +58,7 @@ public class MenuController {
         return CommonResult.success(menuService.updateMenu(updateMenuDTO));
     }
 
-    @ApiOperation("修改菜单")
+    @ApiOperation("删除菜单")
     @AnonymousAccess
     @PostMapping("deleteMenu")
     public CommonResult<Boolean> deleteMenu(@RequestBody List<Long> ids){

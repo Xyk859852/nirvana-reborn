@@ -5,13 +5,14 @@ import com.phoenix.nirvana.admin.web.impl.convert.SysMenuConvert;
 import com.phoenix.nirvana.admin.web.impl.dataobject.SysMenuDO;
 import com.phoenix.nirvana.admin.web.impl.mapper.SysMenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
-
 @Component
+@Scope("prototype")
 public class ReverseQueryAuthorizedMenuOperation implements MenuOperation<List<MenuTreeItemVO>> {
 
     @Autowired
@@ -49,3 +50,4 @@ public class ReverseQueryAuthorizedMenuOperation implements MenuOperation<List<M
 
 
 }
+

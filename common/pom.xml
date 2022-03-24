@@ -34,5 +34,6 @@
         <module>nirvana-spring-boot-starter-web</module>
         <module>nirvana-spring-boot-starter-admin-security</module>
         <module>nirvana-spring-boot-starter-cache-redis</module>
+        <module>nirvana-spring-boot-starter-sentinel</module>
     </modules>
 </project>

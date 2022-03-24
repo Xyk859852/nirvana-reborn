@@ -1,5 +1,6 @@
 package com.phoenix.nirvana.admin.web.impl.service.admin;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.phoenix.nirvana.admin.web.api.admin.AdminUserService;
 import com.phoenix.nirvana.admin.web.api.admin.domain.dto.user.AdminUserCreateDTO;
@@ -42,6 +43,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Autowired
     SysRoleMapper roleMapper;
 
+    @SentinelResource(value = "AdminUserService:getUserPageList")
     @Override
     public PageResult<UserPageItemVO> getUserPageList(AdminUserPageDTO adminUserPageDTO) {
         Page<SysUserDO> sysUserPage = sysUserMapper.selectPageList(adminUserPageDTO);
