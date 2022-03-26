@@ -17,9 +17,10 @@ package com.phoenix.nirvana.admin.security.service;
 
 import com.phoenix.nirvana.admin.security.bean.LoginProperties;
 import com.phoenix.nirvana.admin.security.bo.SecurityUserBO;
-import com.phoenix.nirvana.admin.web.api.admin.OnlineUserService;
-import com.phoenix.nirvana.admin.web.api.admin.domain.bo.OnlineUserBO;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
+import com.phoenix.nirvana.common.vo.CommonResult;
+import com.phoenix.nirvana.service.system.rpc.admin.OnlineUserRpc;
+import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
 import lombok.RequiredArgsConstructor;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     LoginProperties loginProperties;
 
     @DubboReference
-    OnlineUserService onlineUserService;
+    OnlineUserRpc onlineUserRpc;
 
     public void setEnableCache(boolean enableCache) {
         this.loginProperties.setCacheEnable(enableCache);
@@ -60,7 +61,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //            searchDb = false;
 //        }
         if (searchDb) {
-            OnlineUserBO user = onlineUserService.getOnlineUserByUserName(username);
+            CommonResult<OnlineUserBO> onlineUserByUserName =
+                    onlineUserRpc.getOnlineUserByUserName(username);
+            onlineUserByUserName.checkError();
+            OnlineUserBO user = onlineUserByUserName.getData();
             if (user == null) {
                 throw new UsernameNotFoundException("");
             } else {

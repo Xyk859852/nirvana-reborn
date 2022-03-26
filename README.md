@@ -40,9 +40,16 @@
 后端项目，目前的项目结构如下：
 
 ```Java
+// 微服务中台用于暴露rpc接口
 [-] xxx
-  ├──[-] xxx-application // 提供对外 HTTP API 。
   ├──[-] xxx-service-api // 提供 Dubbo 服务 API 。
   ├──[-] xxx-service-impl // 提供 Dubbo 服务 Service 实现。
+ 
+/**
+*针对不同的服务用于不同的web接口暴露出来，整体流程调用逻辑为
+*  http请求->controller->rpc服务调用->cache->db
+*
+*
+**/
 ```
 

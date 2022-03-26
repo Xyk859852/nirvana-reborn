@@ -16,8 +16,9 @@
 package com.phoenix.nirvana.admin.security.core;
 
 import com.phoenix.nirvana.admin.security.bean.SecurityProperties;
-import com.phoenix.nirvana.admin.web.api.admin.OnlineUserService;
-import com.phoenix.nirvana.admin.web.api.admin.domain.bo.OnlineUserBO;
+import com.phoenix.nirvana.common.vo.CommonResult;
+import com.phoenix.nirvana.service.system.rpc.admin.OnlineUserRpc;
+import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,16 +45,16 @@ public class TokenFilter extends GenericFilterBean {
 
     private final SecurityProperties properties;
 
-    private final OnlineUserService onlineUserService;
+    private final OnlineUserRpc onlineUserRpc;
 
     /**
-     * @param tokenProvider     Token
-     * @param properties        JWT
-     * @param onlineUserService 用户在线
+     * @param tokenProvider Token
+     * @param properties    JWT
+     * @param onlineUserRpc 用户在线
      */
-    public TokenFilter(TokenProvider tokenProvider, SecurityProperties properties, OnlineUserService onlineUserService) {
+    public TokenFilter(TokenProvider tokenProvider, SecurityProperties properties, OnlineUserRpc onlineUserRpc) {
         this.properties = properties;
-        this.onlineUserService = onlineUserService;
+        this.onlineUserRpc = onlineUserRpc;
         this.tokenProvider = tokenProvider;
     }
 
@@ -66,7 +67,10 @@ public class TokenFilter extends GenericFilterBean {
         if (!StringUtils.isEmpty(token)) {
             OnlineUserBO onlineUserBO = null;
             try {
-                onlineUserBO = onlineUserService.getOnlineUserByToken(properties.getOnlineKey() + ":" + token);
+                CommonResult<OnlineUserBO> userByToken =
+                        onlineUserRpc.getOnlineUserByToken(properties.getOnlineKey() + ":" + token);
+                userByToken.checkError();
+                onlineUserBO = userByToken.getData();
             } catch (ExpiredJwtException e) {
                 log.error(e.getMessage());
             }

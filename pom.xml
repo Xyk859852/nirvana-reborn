@@ -20,6 +20,8 @@
         <module>nirvana-common</module>
         <module>nirvana-dependencies</module>
         <module>admin-web</module>
+        <module>system-service-project</module>
+        <module>system-web-app</module>
 
     </modules>
 

@@ -16,7 +16,7 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>admin-web-service-api</artifactId>
+            <artifactId>system-service-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

@@ -23,8 +23,8 @@ import com.phoenix.nirvana.admin.security.core.TokenConfigurer;
 import com.phoenix.nirvana.admin.security.core.TokenProvider;
 import com.phoenix.nirvana.admin.security.service.UserDetailsServiceImpl;
 import com.phoenix.nirvana.admin.security.utils.SpringContextHolder;
-import com.phoenix.nirvana.admin.web.api.admin.OnlineUserService;
 import com.phoenix.nirvana.common.enums.RequestMethodEnum;
+import com.phoenix.nirvana.service.system.rpc.admin.OnlineUserRpc;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -75,7 +75,7 @@ public class AdminSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
     UserDetailsServiceImpl userDetailsService;
 
     @DubboReference
-    private OnlineUserService onlineUserService;
+    private OnlineUserRpc onlineUserRpc;
 
     @Bean
     GrantedAuthorityDefaults grantedAuthorityDefaults() {
@@ -168,7 +168,7 @@ public class AdminSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
     }
 
     private TokenConfigurer securityConfigurerAdapter() {
-        return new TokenConfigurer(tokenProvider, properties, onlineUserService);
+        return new TokenConfigurer(tokenProvider, properties, onlineUserRpc);
     }
 
     private Map<String, Set<String>> getAnonymousUrl(Map<RequestMappingInfo, HandlerMethod> handlerMethodMap) {

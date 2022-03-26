@@ -18,8 +18,7 @@ package com.phoenix.nirvana.admin.security.bean;
 /**
  * 验证码配置枚举
  *
- * @author: liaojinlong
- * @date: 2020/6/10 17:40
+ * @author: xuyongkang
  */
 
 public enum LoginCodeEnum {

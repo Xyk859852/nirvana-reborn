@@ -16,7 +16,7 @@
 package com.phoenix.nirvana.admin.security.core;
 
 import com.phoenix.nirvana.admin.security.bean.SecurityProperties;
-import com.phoenix.nirvana.admin.web.api.admin.OnlineUserService;
+import com.phoenix.nirvana.service.system.rpc.admin.OnlineUserRpc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,11 +31,11 @@ public class TokenConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFi
 
     private final TokenProvider tokenProvider;
     private final SecurityProperties properties;
-    private final OnlineUserService onlineUserService;
+    private final OnlineUserRpc onlineUserRpc;
 
     @Override
     public void configure(HttpSecurity http) {
-        TokenFilter customFilter = new TokenFilter(tokenProvider, properties, onlineUserService);
+        TokenFilter customFilter = new TokenFilter(tokenProvider, properties, onlineUserRpc);
         http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

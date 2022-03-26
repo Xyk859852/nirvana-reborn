@@ -29,8 +29,7 @@ import java.util.Objects;
 /**
  * 配置文件读取
  *
- * @author liaojinlong
- * @date loginCode.length0loginCode.length0/6/10 17:loginCode.length6
+ * @author xuyongkang
  */
 @Data
 @Configuration
@@ -108,7 +107,7 @@ public class LoginProperties {
                     throw new IllegalArgumentException("验证码配置信息错误！正确配置查看 LoginCodeEnum ");
             }
         }
-        if(StringUtils.hasText(loginCode.getFontName())){
+        if (StringUtils.hasText(loginCode.getFontName())) {
             captcha.setFont(new Font(loginCode.getFontName(), Font.PLAIN, loginCode.getFontSize()));
         }
         return captcha;
