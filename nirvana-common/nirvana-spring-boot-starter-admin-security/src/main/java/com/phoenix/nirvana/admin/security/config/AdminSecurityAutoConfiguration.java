@@ -142,6 +142,7 @@ public class AdminSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/*/api-docs").permitAll()
+                .antMatchers("/v2/**").permitAll()
                 // 文件
                 .antMatchers("/avatar/**").permitAll()
                 .antMatchers("/file/**").permitAll()
