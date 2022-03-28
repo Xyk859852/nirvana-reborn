@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.service.system.convert;
 
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysMenuDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysPermissionDO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationPermissionButtonVO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationRolePermissionMenuVO;
 import org.mapstruct.Mapper;
@@ -16,17 +16,17 @@ public interface SysPermissionConvert {
     SysPermissionConvert INTERFACE = Mappers.getMapper(SysPermissionConvert.class);
 
     @Mappings({})
-    List<AuthenticationPermissionButtonVO> convertButton(List<SysMenuDO> sysPermission);
+    List<AuthenticationPermissionButtonVO> convertButton(List<SysPermissionDO> sysPermission);
 
     @Mappings({@Mapping(target = "action", source = "permCode"),
             @Mapping(target = "describe", source = "title")})
-    AuthenticationPermissionButtonVO convertButton(SysMenuDO sysPermission);
+    AuthenticationPermissionButtonVO convertButton(SysPermissionDO sysPermission);
 
     @Mappings({@Mapping(target = "permissionId", source = "permCode"),
             @Mapping(target = "permissionName", source = "title")})
-    AuthenticationRolePermissionMenuVO convertMenu(SysMenuDO sysPermission);
+    AuthenticationRolePermissionMenuVO convertMenu(SysPermissionDO sysPermission);
 
     @Mappings({})
-    List<AuthenticationRolePermissionMenuVO> convertMenus(List<SysMenuDO> sysPermission);
+    List<AuthenticationRolePermissionMenuVO> convertMenus(List<SysPermissionDO> sysPermission);
 
 }

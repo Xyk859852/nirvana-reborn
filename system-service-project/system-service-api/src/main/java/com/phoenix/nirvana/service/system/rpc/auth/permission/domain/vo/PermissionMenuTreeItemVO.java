@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.service.system.rpc.auth.menu.domain.vo;
+package com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @ApiModel("菜单树列表对象")
 @Accessors(chain = true)
-public class MenuTreeItemVO implements Serializable {
+public class PermissionMenuTreeItemVO implements Serializable {
 
     @ApiModelProperty("主键id")
     private Long id;
@@ -29,7 +29,7 @@ public class MenuTreeItemVO implements Serializable {
     private Boolean isEnable;
 
     @ApiModelProperty("子集列表")
-    private List<MenuTreeItemVO> children;
+    private List<PermissionMenuTreeItemVO> children;
 
     public Boolean getHasChildren() {
         return subCount > 0;

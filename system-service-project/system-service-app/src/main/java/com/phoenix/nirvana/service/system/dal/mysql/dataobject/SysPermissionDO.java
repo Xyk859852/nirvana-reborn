@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.phoenix.nirvana.service.system.rpc.auth.menu.tree.MenuOperation;
+import com.phoenix.nirvana.service.system.rpc.auth.permission.tree.PermissionOperation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,8 +23,8 @@ import java.util.Date;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_menu")
-public class SysMenuDO implements Serializable {
+@TableName("sys_permission")
+public class SysPermissionDO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -106,8 +106,8 @@ public class SysMenuDO implements Serializable {
     @TableField("isEnable")
     private Boolean isEnable;
 
-    public <T> T execute(MenuOperation<T> menuOperation){
-        return menuOperation.doExecute(this);
+    public <T> T execute(PermissionOperation<T> permissionOperation){
+        return permissionOperation.doExecute(this);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.service.system.rpc.auth.menu.domain.vo;
+package com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @ApiModel("菜单列表查询对象")
 @Accessors(chain = true)
-public class MenuListItemVO implements Serializable {
+public class PermissionMenuListItemVO implements Serializable {
 
     @ApiModelProperty("主键id")
     private Long id;

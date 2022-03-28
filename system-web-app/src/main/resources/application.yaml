@@ -75,4 +75,4 @@ swagger:
   title: 小凤凰
   description: 凤凰浴火重生
   version: v1.0
-  basePackage: com.phoenix.nirvana.admin.web.application.controller
+  basePackage: com.phoenix.nirvana.web.system.controller

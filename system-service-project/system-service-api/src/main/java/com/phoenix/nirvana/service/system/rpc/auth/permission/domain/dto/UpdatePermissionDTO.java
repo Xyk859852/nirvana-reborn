@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.service.system.rpc.auth.menu.domain.dto;
+package com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @ApiModel("修改菜单对象")
 @Accessors(chain = true)
-public class UpdateMenuDTO implements Serializable {
+public class UpdatePermissionDTO implements Serializable {
 
     @ApiModelProperty("父级id")
     private Long id;

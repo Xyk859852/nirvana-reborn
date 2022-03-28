@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.web.system.client.admin;
+package com.phoenix.nirvana.web.system.client.auth;
 
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.service.system.rpc.auth.login.AuthenticationRpc;

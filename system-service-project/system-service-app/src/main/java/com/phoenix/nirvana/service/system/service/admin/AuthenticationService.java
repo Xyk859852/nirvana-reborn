@@ -6,7 +6,7 @@ import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.util.MD5Util;
 import com.phoenix.nirvana.service.system.convert.SysPermissionConvert;
 import com.phoenix.nirvana.service.system.convert.SysRoleConvert;
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysMenuDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysPermissionDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysRoleDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysRolePermissionDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysUserDO;
@@ -39,7 +39,7 @@ public class AuthenticationService {
     SysRolePermissionMapper sysRolePermissionMapper;
 
     @Autowired
-    SysMenuMapper sysMenuMapper;
+    SysPermissionMapper sysPermissionMapper;
 
     @Autowired
     RedisUtils redisUtils;
@@ -71,11 +71,11 @@ public class AuthenticationService {
         if (sysRolePermissions == null || sysRolePermissions.isEmpty()) {
             return new AuthenticationUserInfoVO().setPhone(sysUser.getUserName()).setName(sysUser.getUserName()).setRole(SysRoleConvert.INTERFACE.convert(sysRole));
         }
-        List<SysMenuDO> permissions = sysMenuMapper.selectListByIds(sysRolePermissions.stream().map(SysRolePermissionDO::getPid).collect(Collectors.toSet()));
-        List<SysMenuDO> buttons = permissions.stream().filter(permission -> permission.getType().equals(CommonNirvanaConstants.PERMISSION_BUTTON)).collect(Collectors.toList());
+        List<SysPermissionDO> permissions = sysPermissionMapper.selectListByIds(sysRolePermissions.stream().map(SysRolePermissionDO::getPid).collect(Collectors.toSet()));
+        List<SysPermissionDO> buttons = permissions.stream().filter(permission -> permission.getType().equals(CommonNirvanaConstants.PERMISSION_BUTTON)).collect(Collectors.toList());
         permissions.removeAll(buttons);
         //根据上级id把按钮数据归类
-        Map<Long, List<SysMenuDO>> collect = buttons.stream().collect(Collectors.groupingBy(SysMenuDO::getPid));
+        Map<Long, List<SysPermissionDO>> collect = buttons.stream().collect(Collectors.groupingBy(SysPermissionDO::getPid));
         //把按钮数据放入到父菜单
         List<AuthenticationRolePermissionMenuVO> authenticationRolePermissionMenuVOS = SysPermissionConvert.INTERFACE.convertMenus(permissions);
         permissions.parallelStream().filter(menu -> collect.containsKey(menu.getId()))

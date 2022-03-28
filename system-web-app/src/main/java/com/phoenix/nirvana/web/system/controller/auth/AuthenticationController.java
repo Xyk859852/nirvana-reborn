@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.web.system.controller;
+package com.phoenix.nirvana.web.system.controller.auth;
 
 import cn.hutool.core.util.IdUtil;
 import com.phoenix.nirvana.admin.security.annotaion.AnonymousAccess;
@@ -8,18 +8,16 @@ import com.phoenix.nirvana.admin.security.bean.SecurityProperties;
 import com.phoenix.nirvana.admin.security.bo.SecurityUserBO;
 import com.phoenix.nirvana.admin.security.core.TokenProvider;
 import com.phoenix.nirvana.admin.security.utils.SecurityUtils;
-import com.phoenix.nirvana.admin.web.api.auth.login.AuthenticationService;
 import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.dto.AdminAuthenticationDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationLoginCodeVO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationUserInfoVO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationUserVO;
-import com.phoenix.nirvana.web.system.client.admin.AuthenticationRpcClient;
+import com.phoenix.nirvana.web.system.client.auth.AuthenticationRpcClient;
 import com.wf.captcha.base.Captcha;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
