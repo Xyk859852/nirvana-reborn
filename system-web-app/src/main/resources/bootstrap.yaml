@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: system-web-app
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        prefix: system-web-app
