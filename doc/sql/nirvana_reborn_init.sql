@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 13/04/2022 17:03:58
+ Date: 13/04/2022 17:17:17
 */
 
 SET NAMES utf8mb4;
@@ -258,6 +258,59 @@ INSERT INTO `sys_role_permission` (`id`, `rid`, `pid`) VALUES (3, 1, 3);
 COMMIT;
 
 -- ----------------------------
+-- Table structure for sys_tenant
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_tenant`;
+CREATE TABLE `sys_tenant` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '租户编号',
+  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '租户名',
+  `contact_user_id` bigint DEFAULT NULL COMMENT '联系人的用户编号',
+  `contact_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '联系人',
+  `contact_mobile` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系手机',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '租户状态（0正常 1停用）',
+  `domain` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '绑定域名',
+  `package_id` bigint NOT NULL COMMENT '租户套餐编号',
+  `expire_time` datetime NOT NULL COMMENT '过期时间',
+  `account_count` int NOT NULL COMMENT '账号数量',
+  `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='租户表';
+
+-- ----------------------------
+-- Records of sys_tenant
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sys_tenant_package
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_tenant_package`;
+CREATE TABLE `sys_tenant_package` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '套餐编号',
+  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '套餐名',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '租户状态（0正常 1停用）',
+  `remark` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+  `menu_ids` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '关联的菜单编号',
+  `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='租户套餐表';
+
+-- ----------------------------
+-- Records of sys_tenant_package
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
@@ -292,59 +345,6 @@ INSERT INTO `sys_user` (`id`, `user_name`, `phone`, `sex`, `email`, `avatar`, `p
 INSERT INTO `sys_user` (`id`, `user_name`, `phone`, `sex`, `email`, `avatar`, `password`, `dept_id`, `post_id`, `role_id`, `enable`, `creator`, `updater`, `create_time`, `update_time`, `deleted`, `tenant_id`) VALUES (1364869292549488642, 'asdfdas', '12345678901', '', 'asdf', NULL, 'e48b8e626e77b7c218788eb92341f773', 2, NULL, 1, b'0', 0, NULL, '2021-02-25 03:26:12', NULL, b'1', 0);
 INSERT INTO `sys_user` (`id`, `user_name`, `phone`, `sex`, `email`, `avatar`, `password`, `dept_id`, `post_id`, `role_id`, `enable`, `creator`, `updater`, `create_time`, `update_time`, `deleted`, `tenant_id`) VALUES (1364875678759010306, '阿士大夫', '1825211322', '男', '阿斯顿发的是范德萨', NULL, 'dc960c46c38bd16e953d97cdeefdbc68', 1, NULL, 1, b'0', 0, NULL, '2021-02-25 03:51:35', NULL, b'1', 0);
 INSERT INTO `sys_user` (`id`, `user_name`, `phone`, `sex`, `email`, `avatar`, `password`, `dept_id`, `post_id`, `role_id`, `enable`, `creator`, `updater`, `create_time`, `update_time`, `deleted`, `tenant_id`) VALUES (1364882862733643778, '你好啊', '18267171821', '男', 'asdfaffasdf', NULL, 'e9c225055678356fb83992415f92ba7b', 1, NULL, 1, b'0', 0, NULL, '2021-02-25 04:20:07', NULL, b'0', 0);
-COMMIT;
-
--- ----------------------------
--- Table structure for system_tenant
--- ----------------------------
-DROP TABLE IF EXISTS `system_tenant`;
-CREATE TABLE `system_tenant` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '租户编号',
-  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '租户名',
-  `contact_user_id` bigint DEFAULT NULL COMMENT '联系人的用户编号',
-  `contact_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '联系人',
-  `contact_mobile` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系手机',
-  `status` tinyint NOT NULL DEFAULT '0' COMMENT '租户状态（0正常 1停用）',
-  `domain` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '绑定域名',
-  `package_id` bigint NOT NULL COMMENT '租户套餐编号',
-  `expire_time` datetime NOT NULL COMMENT '过期时间',
-  `account_count` int NOT NULL COMMENT '账号数量',
-  `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='租户表';
-
--- ----------------------------
--- Records of system_tenant
--- ----------------------------
-BEGIN;
-COMMIT;
-
--- ----------------------------
--- Table structure for system_tenant_package
--- ----------------------------
-DROP TABLE IF EXISTS `system_tenant_package`;
-CREATE TABLE `system_tenant_package` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '套餐编号',
-  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '套餐名',
-  `status` tinyint NOT NULL DEFAULT '0' COMMENT '租户状态（0正常 1停用）',
-  `remark` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
-  `menu_ids` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '关联的菜单编号',
-  `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='租户套餐表';
-
--- ----------------------------
--- Records of system_tenant_package
--- ----------------------------
-BEGIN;
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
