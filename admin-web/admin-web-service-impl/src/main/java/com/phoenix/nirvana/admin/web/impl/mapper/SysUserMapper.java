@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 public interface SysUserMapper extends BaseMapper<SysUserDO> {
 
     default SysUserDO selectOneByUserName(String userName) {
-        return selectOne(new QueryWrapper<SysUserDO>().eq("userName", userName));
+        return selectOne(new QueryWrapper<SysUserDO>().eq("user_name", userName));
 
     }
 
@@ -37,7 +37,7 @@ public interface SysUserMapper extends BaseMapper<SysUserDO> {
         QueryWrapperX<SysUserDO> doQueryWrapperX = new QueryWrapperX<>();
         if (StringUtils.hasText(pageListDTO.getKeyboard())) {
             doQueryWrapperX.and(sysUserDOQueryWrapper ->
-                    sysUserDOQueryWrapper.like("userName", pageListDTO.getKeyboard())
+                    sysUserDOQueryWrapper.like("user_name", pageListDTO.getKeyboard())
                             .or()
                             .like("phone", pageListDTO.getKeyboard())
             );

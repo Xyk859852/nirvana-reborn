@@ -1,8 +1,8 @@
 package com.phoenix.nirvana.service.system.service.online;
 
 import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
-import com.phoenix.nirvana.service.system.convert.SysUserConvert;
-import com.phoenix.nirvana.service.system.dal.mysql.mapper.SysUserMapper;
+import com.phoenix.nirvana.service.system.convert.user.SysUserConvert;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
 import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

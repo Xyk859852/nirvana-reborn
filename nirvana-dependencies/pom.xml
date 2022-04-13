@@ -5,7 +5,7 @@
     <parent>
         <artifactId>nirvana-reborn</artifactId>
         <groupId>com.phoenix</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -36,12 +36,13 @@
         <swagger.version>1.5.21</swagger.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <swagger-bootstrap-ui.version>1.9.3</swagger-bootstrap-ui.version>
+        <redisson>3.10.6</redisson>
         <!-- DB 相关 -->
         <mysql-connector-java.version>5.1.46</mysql-connector-java.version>
         <druid.version>1.1.16</druid.version>
         <mybatis-spring-boot-starter.version>2.0.0</mybatis-spring-boot-starter.version>
         <mybatis.version>3.5.4</mybatis.version>
-        <mybatis-plus.version>3.3.2</mybatis-plus.version>
+        <mybatis-plus.version>3.5.0</mybatis-plus.version>
         <spring-boot-starter-data-jest.version>3.2.5.RELEASE</spring-boot-starter-data-jest.version>
         <!-- RPC 相关 -->
         <dubbo.version>2.7.7</dubbo.version>
@@ -67,6 +68,7 @@
         <org.projectlombok.version>1.16.14</org.projectlombok.version>
         <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
         <jjwt.version>0.11.1</jjwt.version>
+        <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -109,30 +111,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis-spring-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-core</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-jdbc</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <dependency>
@@ -164,7 +145,6 @@
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
-                <!--                <version>2.7.8</version>-->
             </dependency>
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -172,6 +152,12 @@
                 <version>${dubbo.version}</version>
             </dependency>
 
+            <!--    cache相关        -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson}</version>
+            </dependency>
             <!-- MQ 相关 -->
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
@@ -268,6 +254,11 @@
                 <version>${fastjson.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId> <!-- 解决 ThreadLocal 父子线程的传值问题 -->
+                <version>${transmittable-thread-local.version}</version>
+            </dependency>
             <!-- Java图形验证码 -->
             <dependency>
                 <groupId>com.github.whvcse</groupId>
@@ -292,18 +283,6 @@
                 <version>${jjwt.version}</version>
             </dependency>
 
-
-            <!--            <dependency>-->
-            <!--                <groupId>com.fasterxml.jackson.core</groupId>-->
-            <!--                <artifactId>jackson-annotations</artifactId>-->
-            <!--                <version>${jackson.version}</version>-->
-            <!--            </dependency>-->
-            <!--            <dependency>-->
-            <!--                <groupId>com.fasterxml.jackson.core</groupId>-->
-            <!--                <artifactId>jackson-databind</artifactId>-->
-            <!--                <version>${jackson.version}</version>-->
-            <!--            </dependency>-->
-
             <dependency>
                 <!-- hutool 工具类-->
                 <groupId>cn.hutool</groupId>
@@ -315,6 +294,60 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
+            </dependency>
+
+            <!--  nirvana 相关配置组件  -->
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>common-framework</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-tenant</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-sentinel</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-mybatis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-security</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-dubbo</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-cache-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-error-code</artifactId>
+                <version>${revision}</version>
             </dependency>
 
         </dependencies>

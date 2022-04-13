@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.service.system.rpc.auth.permission.tree;
 
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysPermissionDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
 
 public interface PermissionOperation<T> {
 

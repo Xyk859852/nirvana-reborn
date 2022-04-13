@@ -1,8 +1,8 @@
 package com.phoenix.nirvana.service.system.rpc.auth.permission.tree;
 
-import com.phoenix.nirvana.service.system.convert.PermissionMenuTreeConvert;
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysPermissionDO;
-import com.phoenix.nirvana.service.system.dal.mysql.mapper.SysPermissionMapper;
+import com.phoenix.nirvana.service.system.convert.permission.PermissionMenuTreeConvert;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysPermissionMapper;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.PermissionMenuTreeItemVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

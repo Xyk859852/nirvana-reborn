@@ -4,13 +4,17 @@ import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
 import com.phoenix.nirvana.common.constant.CommonNirvanaConstants;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.util.MD5Util;
-import com.phoenix.nirvana.service.system.convert.SysPermissionConvert;
-import com.phoenix.nirvana.service.system.convert.SysRoleConvert;
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysPermissionDO;
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysRoleDO;
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysRolePermissionDO;
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysUserDO;
-import com.phoenix.nirvana.service.system.dal.mysql.mapper.*;
+import com.phoenix.nirvana.service.system.convert.permission.SysPermissionConvert;
+import com.phoenix.nirvana.service.system.convert.permission.SysRoleConvert;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysRoleDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysRolePermissionDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.user.SysUserDO;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.dept.SysDepartmentMapper;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysPermissionMapper;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysRoleMapper;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysRolePermissionMapper;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.dto.AdminAuthenticationDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,17 +53,17 @@ public class AuthenticationService {
         if (!adminAuthenticationDTO.getCode().equals(cacheCode)) {
             throw ServiceExceptionUtil.exception(CACHE_CODE_ERROR);
         }
-        redisUtils.del(adminAuthenticationDTO.getCodeId());
         SysUserDO user = userMapper.selectOneByUserName(adminAuthenticationDTO.getUsername());
         if (user == null) {
             throw ServiceExceptionUtil.exception(USER_IS_NULL);
         }
-        if (user.getIsEnable()) {
+        if (user.getEnable()) {
             throw ServiceExceptionUtil.exception(USER_IS_ENABLE);
         }
-        if (!user.getPassWord().equals(MD5Util.encryption(adminAuthenticationDTO.getPassword()))) {
+        if (!user.getPassword().equals(MD5Util.encryption(adminAuthenticationDTO.getPassword()))) {
             throw ServiceExceptionUtil.exception(USER_PASSWORD_ERROR);
         }
+        redisUtils.del(adminAuthenticationDTO.getCodeId());
         return new AuthenticationUserVO().setId(user.getId());
     }
 

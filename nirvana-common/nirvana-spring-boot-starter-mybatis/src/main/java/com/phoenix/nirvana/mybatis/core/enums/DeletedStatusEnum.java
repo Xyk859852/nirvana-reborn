@@ -1,8 +1,6 @@
 package com.phoenix.nirvana.mybatis.core.enums;
 
 
-import com.phoenix.nirvana.mybatis.core.dataobject.DeletableDO;
-
 /**
  * {@link DeletableDO#getDeleted()} delete 状态
  *

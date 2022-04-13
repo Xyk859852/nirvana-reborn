@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,11 +25,28 @@ public class PageResult<T> implements Serializable {
     private Long totalPage;
 
     @ApiModelProperty("数据总数")
-    private Integer totalCount;
+    private Long totalCount;
 
     @ApiModelProperty("分页数据")
     private List<T> list;
 
+    public PageResult() {
+    }
+
+    public PageResult(List<T> list, Long total) {
+        this.list = list;
+        this.totalCount = total;
+    }
+
+    public PageResult(Long total) {
+        this.list = new ArrayList<>();
+        this.totalCount = total;
+    }
+
+
+    public static <T> PageResult<T> empty(Long total) {
+        return new PageResult<>(total);
+    }
     /**
      * 空集合
      * @return
@@ -38,6 +56,6 @@ public class PageResult<T> implements Serializable {
                 .setList(Collections.EMPTY_LIST)
                 .setTotalPage(0L)
                 .setPageNo(0)
-                .setTotalCount(0);
+                .setTotalCount(0L);
     }
 }

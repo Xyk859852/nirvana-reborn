@@ -66,7 +66,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (user.getIsEnable()) {
             throw ServiceExceptionUtil.exception(USER_IS_ENABLE);
         }
-        if (!user.getPassWord().equals(MD5Util.encryption(adminAuthenticationDTO.getPassword()))) {
+        if (!user.getPassword().equals(MD5Util.encryption(adminAuthenticationDTO.getPassword()))) {
             throw ServiceExceptionUtil.exception(USER_PASSWORD_ERROR);
         }
         return new AuthenticationUserVO().setId(user.getId());

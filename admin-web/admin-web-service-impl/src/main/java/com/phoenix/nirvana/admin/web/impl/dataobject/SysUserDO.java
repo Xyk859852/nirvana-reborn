@@ -32,7 +32,6 @@ public class SysUserDO implements Serializable {
     /**
      * 用户名
      */
-    @TableField("userName")
     private String userName;
 
     /**
@@ -43,8 +42,7 @@ public class SysUserDO implements Serializable {
     /**
      * 密码
      */
-    @TableField("passWord")
-    private String passWord;
+    private String password;
 
     /**
      * 用户性别
@@ -66,45 +64,35 @@ public class SysUserDO implements Serializable {
     /**
      * 部门id
      */
-    @TableField("departmentId")
-    private Long departmentId;
+    private Long deptId;
 
     /**
      * 岗位id
      */
-    @TableField("postId")
     private Long postId;
 
     /**
      * 角色id
      */
-    @TableField("roleId")
     private Long roleId;
 
     /**
      * 创建时间
      */
-    @TableField("createTime")
     private Date createTime;
 
     /**
      * 是否删除:0:正常，1:删除
      */
     @TableLogic
-    @TableField("isDeleted")
     private Boolean isDeleted;
 
     /**
      * 0、正常 1、禁用
      */
-    @TableField("isEnable")
     private Boolean isEnable;
 
-    /**
-     * 最后修改日期的时间
-     */
-    @TableField("lastPasswordResetTime")
-    private Date lastPasswordResetTime;
+    private Long tenantId;
 
 
 }

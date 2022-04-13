@@ -2,9 +2,9 @@ package com.phoenix.nirvana.service.system.service.permission;
 
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.util.CollectionUtils;
-import com.phoenix.nirvana.service.system.convert.PermissionMenuTreeConvert;
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.SysPermissionDO;
-import com.phoenix.nirvana.service.system.dal.mysql.mapper.SysPermissionMapper;
+import com.phoenix.nirvana.service.system.convert.permission.PermissionMenuTreeConvert;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysPermissionMapper;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.UpdatePermissionDTO;
@@ -81,7 +81,7 @@ public class SysPermissionService {
         Long newPid = updatePermissionDTO.getPid();
         Long oldPid = sysPermissionDO.getPid();
         sysPermissionDO = PermissionMenuTreeConvert.INTERFACE.convert(updatePermissionDTO);
-        sysPermissionDO.setModifyTime(new Date());
+        sysPermissionDO.setUpdateTime(new Date());
         menuMapper.updateById(sysPermissionDO);
         if (!newPid.equals(oldPid)) {
             updateMenuSubCont(newPid, 1);

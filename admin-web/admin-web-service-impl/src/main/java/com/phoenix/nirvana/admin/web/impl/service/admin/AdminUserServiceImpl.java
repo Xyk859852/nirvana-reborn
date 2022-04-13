@@ -51,13 +51,13 @@ public class AdminUserServiceImpl implements AdminUserService {
             return PageResult.empty();
         } else {
             List<UserPageItemVO> userPageItemVOS = new ArrayList<>();
-            List<SysDepartmentDO> departments = departmentMapper.selectBatchIds(sysUserPage.getRecords().stream().map(SysUserDO::getDepartmentId).collect(Collectors.toSet()));
+            List<SysDepartmentDO> departments = departmentMapper.selectBatchIds(sysUserPage.getRecords().stream().map(SysUserDO::getDeptId).collect(Collectors.toSet()));
             List<SysRoleDO> roles = roleMapper.selectBatchIds(sysUserPage.getRecords().stream().map(SysUserDO::getRoleId).collect(Collectors.toSet()));
             Map<Long, SysDepartmentDO> departmentMap = CollectionUtils.convertMap(departments, SysDepartmentDO::getId);
             Map<Long, SysRoleDO> roleMap = CollectionUtils.convertMap(roles, SysRoleDO::getId);
             sysUserPage.getRecords().forEach(user -> {
                 UserPageItemVO pageItemVO = SysUserConvert.INTERFACE.convertPageItem(user);
-                SysDepartmentDO departmentDO = departmentMap.get(user.getDepartmentId());
+                SysDepartmentDO departmentDO = departmentMap.get(user.getDeptId());
                 SysRoleDO sysRoleDO = roleMap.get(user.getRoleId());
                 pageItemVO.setDepartment(new UserPageItemVO.Department().setId(departmentDO.getId()).setName(departmentDO.getName()));
                 pageItemVO.setRole(new UserPageItemVO.Role().setId(sysRoleDO.getId()).setName(sysRoleDO.getName()));
@@ -66,7 +66,7 @@ public class AdminUserServiceImpl implements AdminUserService {
             return new PageResult<UserPageItemVO>()
                     .setPageNo(adminUserPageDTO.getCurrent())
                     .setPageSize(adminUserPageDTO.getSize())
-                    .setTotalCount(Math.toIntExact(sysUserPage.getTotal()))
+                    .setTotalCount(sysUserPage.getTotal())
                     .setList(userPageItemVOS);
         }
     }
@@ -75,7 +75,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     public void addAdminUser(AdminUserCreateDTO adminUserCreateDTO) {
         checkPhoneExist(adminUserCreateDTO.getPhone(), null);
         SysUserDO userDO = SysUserConvert.INTERFACE.convert(adminUserCreateDTO);
-        userDO.setPassWord(MD5Util.encryption(adminUserCreateDTO.getPhone().substring(6)));
+        userDO.setPassword(MD5Util.encryption(adminUserCreateDTO.getPhone().substring(6)));
         userDO.setCreateTime(new Date());
         sysUserMapper.insert(userDO);
     }

@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.mybatis.core.type;
 
-import com.alibaba.fastjson.JSON;
+import com.phoenix.nirvana.common.util.json.JsonUtils;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
@@ -48,7 +48,7 @@ public class JSONTypeHandler<T extends Object> extends BaseTypeHandler<T> {
 
     private String toJson(T object) {
         try {
-            return JSON.toJSONString(object);
+            return JsonUtils.toJsonString(object);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -57,7 +57,7 @@ public class JSONTypeHandler<T extends Object> extends BaseTypeHandler<T> {
     private T toObject(String content, Class<?> clazz) {
         if (content != null && !content.isEmpty()) {
             try {
-                return (T) JSON.parseObject(content, clazz);
+                return (T) JsonUtils.parseObject(content, clazz);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

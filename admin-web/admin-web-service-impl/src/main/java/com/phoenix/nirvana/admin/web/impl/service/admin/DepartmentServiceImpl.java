@@ -26,7 +26,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<DepartmentCascade> getDepartmentsCascade(Long userId) {
         SysUserDO user = userMapper.selectById(userId);
-        SysDepartmentDO department = departmentMapper.selectById(user.getDepartmentId());
+        SysDepartmentDO department = departmentMapper.selectById(user.getDeptId());
         return SysDepartmentConvert.INTERFACE.convert(departmentMapper.selectListByLikeRightCode(department.getCode()));
     }
 }

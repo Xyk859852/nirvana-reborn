@@ -9,6 +9,17 @@ import java.io.Serializable;
  */
 public class SortingField implements Serializable {
 
+
+    /**
+     * 顺序 - 升序
+     */
+    public static final String ORDER_ASC = "asc";
+    /**
+     * 顺序 - 降序
+     */
+    public static final String ORDER_DESC = "desc";
+
+
     /**
      * 字段
      */

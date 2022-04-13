@@ -11,7 +11,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDubbo
 @EnableDiscoveryClient
-@MapperScan(value = "com.phoenix.nirvana.service.system.dal.mysql.mapper")// 扫描对应的 Mapper 接口
 @SpringBootApplication(scanBasePackages = "com.phoenix.nirvana")
 public class SystemServiceApplication {
 

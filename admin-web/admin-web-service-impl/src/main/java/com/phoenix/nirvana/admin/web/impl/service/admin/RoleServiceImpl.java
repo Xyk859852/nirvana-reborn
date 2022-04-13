@@ -57,7 +57,7 @@ public class RoleServiceImpl implements RoleService {
         return new PageResult<RolePageItemVO>()
                 .setPageNo(rolePageDTO.getCurrent())
                 .setPageSize(rolePageDTO.getSize())
-                .setTotalCount(Math.toIntExact(sysRolePage.getTotal()))
+                .setTotalCount(sysRolePage.getTotal())
                 .setList(pageItemVOS);
     }
 

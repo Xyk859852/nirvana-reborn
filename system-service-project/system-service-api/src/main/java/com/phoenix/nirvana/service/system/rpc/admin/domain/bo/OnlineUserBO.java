@@ -20,10 +20,10 @@ public class OnlineUserBO implements Serializable {
     /**
      * 用户密码
      */
-    private String passWord;
+    private String password;
 
     /**
      * 当前用户是否可用
      */
-    private Boolean isEnable;
+    private Boolean enable;
 }

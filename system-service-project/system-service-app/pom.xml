@@ -5,7 +5,7 @@
     <parent>
         <artifactId>system-service-project</artifactId>
         <groupId>com.phoenix</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,19 +22,16 @@
         <dependency>
             <groupId>com.phoenix</groupId>
             <artifactId>common-framework</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.phoenix</groupId>
             <artifactId>nirvana-spring-boot-starter-mybatis</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.phoenix</groupId>
             <artifactId>nirvana-spring-boot-starter-dubbo</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- Registry 和 Config 相关 -->
@@ -57,13 +54,22 @@
         <dependency>
             <groupId>com.phoenix</groupId>
             <artifactId>system-service-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>com.phoenix</groupId>
             <artifactId>nirvana-spring-boot-starter-cache-redis</artifactId>
-            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-tenant</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
     </dependencies>
