@@ -24,7 +24,7 @@ public interface BaseMapperX<T> extends BaseMapper<T> {
         IPage<T> mpPage = MyBatisUtils.buildPage(pageParam);
         selectPage(mpPage, queryWrapper);
         // 转换返回
-        return new PageResult<>(mpPage.getRecords(), mpPage.getTotal());
+        return new PageResult<>(mpPage.getRecords(), mpPage.getTotal(), pageParam.getPageNo(), pageParam.getPageSize(),mpPage.getPages());
     }
 
     default T selectOne(String field, Object value) {

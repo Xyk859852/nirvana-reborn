@@ -1,10 +1,12 @@
 package com.phoenix.nirvana.service.system.convert.user;
 
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.dept.SysDepartmentDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysRoleDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.user.SysUserDO;
 import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.user.AdminUserCreateDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.user.AdminUserUpdateDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.vo.user.UserPageItemVO;
+import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserCreateDTO;
+import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserUpdateDTO;
+import com.phoenix.nirvana.service.system.rpc.user.domain.vo.AdminUserPageItemVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
@@ -20,10 +22,14 @@ public interface SysUserConvert {
     OnlineUserBO convert(SysUserDO userDO);
 
     @Mappings({})
-    UserPageItemVO convertPageItem(SysUserDO userDO);
+    AdminUserPageItemVO convertPageItem(SysUserDO userDO);
+
+    AdminUserPageItemVO.Department convertPageDeptItem(SysDepartmentDO bean);
+
+    AdminUserPageItemVO.Role convertPageRoleItem(SysRoleDO bean);
 
     @Mappings({})
-    List<UserPageItemVO> convertPageItem(List<SysUserDO> userDO);
+    List<AdminUserPageItemVO> convertPageItem(List<SysUserDO> userDO);
 
     @Mappings({})
     SysUserDO convert(AdminUserCreateDTO adminUserCreateDTO);

@@ -104,7 +104,7 @@ public class SysPermissionService {
 
     private void recursionDeleteMenu(Long id) {
         List<SysPermissionDO> sysPermissionDOS = menuMapper.selectListByPid(id);
-        if (CollectionUtils.isEmpty(sysPermissionDOS)) {
+        if (CollectionUtils.isAnyEmpty(sysPermissionDOS)) {
             return;
         }
         sysPermissionDOS.forEach(sysMenuDO -> recursionDeleteMenu(sysMenuDO.getId()));

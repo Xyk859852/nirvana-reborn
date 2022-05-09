@@ -1,9 +1,8 @@
-package com.phoenix.nirvana.service.system.service.admin;
+package com.phoenix.nirvana.service.system.service.auth;
 
 import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
 import com.phoenix.nirvana.common.constant.CommonNirvanaConstants;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
-import com.phoenix.nirvana.common.util.MD5Util;
 import com.phoenix.nirvana.service.system.convert.permission.SysPermissionConvert;
 import com.phoenix.nirvana.service.system.convert.permission.SysRoleConvert;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
@@ -25,7 +24,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants.*;
-import static com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants.USER_PASSWORD_ERROR;
 
 @Service
 public class AuthenticationService {

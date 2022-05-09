@@ -42,14 +42,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public PageResult<RolePageItemVO> getRolePageList(RolePageDTO rolePageDTO) {
         Page<SysRoleDO> sysRolePage = roleMapper.selectPageList(rolePageDTO);
-        if (CollectionUtils.isEmpty(sysRolePage.getRecords())) {
+        if (CollectionUtils.isAnyEmpty(sysRolePage.getRecords())) {
             return PageResult.empty();
         }
         List<RolePageItemVO> pageItemVOS = new ArrayList<>();
         sysRolePage.getRecords().forEach(sysRoleDO -> {
             RolePageItemVO pageItemVO = SysRoleConvert.INTERFACE.convertPageItem(sysRoleDO);
             List<SysRolePermissionDO> rolePermissionDOS = rolePermissionMapper.selectListByRoleId(pageItemVO.getId());
-            if (!CollectionUtils.isEmpty(rolePermissionDOS)) {
+            if (!CollectionUtils.isAnyEmpty(rolePermissionDOS)) {
                 pageItemVO.setMenuIds(rolePermissionDOS.stream().map(SysRolePermissionDO::getPid).collect(Collectors.toList()));
             }
             pageItemVOS.add(pageItemVO);
@@ -68,7 +68,7 @@ public class RoleServiceImpl implements RoleService {
         sysRoleDO.setCreateId(userId);
         sysRoleDO.setCreateTime(new Date());
         roleMapper.insert(sysRoleDO);
-        if (!CollectionUtils.isEmpty(addRoleDTO.getMenus())) {
+        if (!CollectionUtils.isAnyEmpty(addRoleDTO.getMenus())) {
             addRoleDTO.getMenus().forEach(menu -> rolePermissionMapper.insert(new SysRolePermissionDO().setRid(sysRoleDO.getId()).setPid(menu)));
         }
         return true;
@@ -80,7 +80,7 @@ public class RoleServiceImpl implements RoleService {
         sysRoleDO.setModifyTime(new Date());
         roleMapper.updateById(sysRoleDO);
         rolePermissionMapper.deleteByRoleId(sysRoleDO.getId());
-        if (!CollectionUtils.isEmpty(updateRoleDTO.getMenus())) {
+        if (!CollectionUtils.isAnyEmpty(updateRoleDTO.getMenus())) {
             updateRoleDTO.getMenus().forEach(menu -> rolePermissionMapper.insert(new SysRolePermissionDO().setRid(sysRoleDO.getId()).setPid(menu)));
         }
         return true;

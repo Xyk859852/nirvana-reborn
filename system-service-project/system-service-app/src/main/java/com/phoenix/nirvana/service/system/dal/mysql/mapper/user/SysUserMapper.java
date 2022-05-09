@@ -5,7 +5,7 @@ import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.mybatis.core.mapper.BaseMapperX;
 import com.phoenix.nirvana.mybatis.core.query.LambdaQueryWrapperX;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.user.SysUserDO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.user.AdminUserPageDTO;
+import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserPageDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -25,7 +25,7 @@ public interface SysUserMapper extends BaseMapperX<SysUserDO> {
     }
 
     default SysUserDO selectOneByPhone(String phone, Long userId) {
-        return selectOne(new LambdaQueryWrapperX<SysUserDO>().eq(SysUserDO::getPhone, phone));
+        return selectOne(new LambdaQueryWrapperX<SysUserDO>().eq(SysUserDO::getPhone, phone).neIfPresent(SysUserDO::getId, userId));
 
     }
 

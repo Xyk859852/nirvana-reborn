@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * 通用参数填充实现类
- *
+ * <p>
  * 如果没有显式的对通用参数进行赋值，这里会对通用参数进行填充、赋值
  *
  * @author hexiaowu
@@ -36,9 +36,14 @@ public class DefaultDBFieldHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         // 更新时间为空，则以当前时间为更新时间
-        Object modifyTime = getFieldValByName("updateTime", metaObject);
-        if (Objects.isNull(modifyTime)) {
-            setFieldValByName("updateTime", new Date(), metaObject);
+        if (Objects.nonNull(metaObject) && metaObject.getOriginalObject() instanceof BaseDO) {
+            BaseDO baseDO = (BaseDO) metaObject.getOriginalObject();
+
+            Date current = new Date();
+            // 更新时间为空，则以当前时间为更新时间
+            if (Objects.isNull(baseDO.getUpdateTime())) {
+                baseDO.setUpdateTime(current);
+            }
         }
     }
 }

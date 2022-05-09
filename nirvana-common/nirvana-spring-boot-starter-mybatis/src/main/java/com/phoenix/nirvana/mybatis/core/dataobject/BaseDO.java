@@ -28,18 +28,16 @@ public abstract class BaseDO implements Serializable {
     private Date updateTime;
     /**
      * 创建者，目前使用 SysUser 的 id 编号
-     *
+     * <p>
      * 使用 String 类型的原因是，未来可能会存在非数值的情况，留好拓展性。
      */
-    @TableField(fill = FieldFill.INSERT)
-    private String creator;
+    private Long creator;
     /**
      * 更新者，目前使用 SysUser 的 id 编号
-     *
+     * <p>
      * 使用 String 类型的原因是，未来可能会存在非数值的情况，留好拓展性。
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private String updater;
+    private Long updater;
     /**
      * 是否删除 0未删除，1删除
      */

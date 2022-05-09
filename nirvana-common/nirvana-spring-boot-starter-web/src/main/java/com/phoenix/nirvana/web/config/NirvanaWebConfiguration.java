@@ -2,6 +2,7 @@ package com.phoenix.nirvana.web.config;
 
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
 import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Configuration
@@ -53,6 +55,7 @@ public class NirvanaWebConfiguration implements WebMvcConfigurer {
         serializeConfig.put(BigInteger.class, ToStringSerializer.instance);
         serializeConfig.put(Long.class, ToStringSerializer.instance);
         serializeConfig.put(Long.TYPE, ToStringSerializer.instance);
+        serializeConfig.put(Date.class,new SimpleDateFormatSerializer("yyyy-MM-dd HH:mm:ss"));
         // 自定义 FastJson 配置
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setCharset(Charset.defaultCharset()); // 设置字符集

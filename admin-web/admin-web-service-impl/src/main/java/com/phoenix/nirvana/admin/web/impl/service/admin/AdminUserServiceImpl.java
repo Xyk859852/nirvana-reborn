@@ -47,7 +47,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     public PageResult<UserPageItemVO> getUserPageList(AdminUserPageDTO adminUserPageDTO) {
         Page<SysUserDO> sysUserPage = sysUserMapper.selectPageList(adminUserPageDTO);
-        if (CollectionUtils.isEmpty(sysUserPage.getRecords())) {
+        if (CollectionUtils.isAnyEmpty(sysUserPage.getRecords())) {
             return PageResult.empty();
         } else {
             List<UserPageItemVO> userPageItemVOS = new ArrayList<>();

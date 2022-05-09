@@ -46,7 +46,7 @@ public class ExceptionErrorCodeRemoteLoader {
     public void refreshErrorCodes() {
         CommonResult<List<SysErrorCodeVO>> commonResult = errorCodeService.listErrorCodes(group, minUpdateTime);
         commonResult.checkError();
-        if (CollectionUtils.isEmpty(commonResult.getData())) {
+        if (CollectionUtils.isAnyEmpty(commonResult.getData())) {
             return;
         }
         logger.info("[refreshErrorCodes][从 group({}) 增量加载到 {} 个 ErrorCode 错误码]", group, commonResult.getData().size());

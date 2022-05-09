@@ -79,6 +79,9 @@ public class AdminSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
     @DubboReference
     private OnlineUserRpc onlineUserRpc;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Bean
     GrantedAuthorityDefaults grantedAuthorityDefaults() {
         // 去除 ROLE_ 前缀
@@ -87,13 +90,7 @@ public class AdminSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        // 密码加密方式
-        return new BCryptPasswordEncoder();
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
     @Bean

@@ -1,6 +1,7 @@
-package com.phoenix.nirvana.service.system.rpc.admin.domain.vo.user;
+package com.phoenix.nirvana.service.system.rpc.user.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.phoenix.nirvana.service.system.rpc.user.domain.base.AdminUserBase;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -12,22 +13,10 @@ import java.util.Date;
 @Data
 @ApiModel("用户列表查询对象")
 @Accessors(chain = true)
-public class UserPageItemVO implements Serializable {
+public class AdminUserPageItemVO extends AdminUserBase implements Serializable {
 
     @ApiModelProperty("用户id")
     private Long id;
-
-    @ApiModelProperty("用户名称")
-    private String userName;
-
-    @ApiModelProperty("用户手机号")
-    private String phone;
-
-    @ApiModelProperty("用户性别")
-    private String sex;
-
-    @ApiModelProperty("用户邮箱")
-    private String email;
 
     @ApiModelProperty("用户部门信息")
     private Department department;
@@ -35,7 +24,6 @@ public class UserPageItemVO implements Serializable {
     @ApiModelProperty("用户角色信息")
     private Role role;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @ApiModelProperty("创建时间")
     private Date createTime;
 

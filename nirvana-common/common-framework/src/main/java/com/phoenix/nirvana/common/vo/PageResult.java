@@ -38,6 +38,14 @@ public class PageResult<T> implements Serializable {
         this.totalCount = total;
     }
 
+    public PageResult(List<T> list, Long total, Integer pageNo, Integer pageSize,Long totalPage) {
+        this.list = list;
+        this.totalCount = total;
+        this.pageNo = pageNo;
+        this.pageSize = pageSize;
+        this.totalPage = totalPage;
+    }
+
     public PageResult(Long total) {
         this.list = new ArrayList<>();
         this.totalCount = total;
@@ -47,11 +55,13 @@ public class PageResult<T> implements Serializable {
     public static <T> PageResult<T> empty(Long total) {
         return new PageResult<>(total);
     }
+
     /**
      * 空集合
+     *
      * @return
      */
-    public static PageResult empty(){
+    public static PageResult empty() {
         return new PageResult()
                 .setList(Collections.EMPTY_LIST)
                 .setTotalPage(0L)

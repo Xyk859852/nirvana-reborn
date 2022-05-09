@@ -1,22 +1,13 @@
-package com.phoenix.nirvana.service.system.rpc.admin.domain.dto.user;
+package com.phoenix.nirvana.service.system.rpc.user.domain.base;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 @Data
-@ApiModel("用户管理员修改对象")
-@Accessors(chain = true)
-public class AdminUserUpdateDTO implements Serializable {
-
-    @ApiModelProperty("用户id")
-    @NotNull(message = "用户id不能为空")
-    private Long id;
+public class AdminUserBase {
 
     @ApiModelProperty("用户名")
     @NotNull(message = "用户名不能为空")
@@ -36,7 +27,11 @@ public class AdminUserUpdateDTO implements Serializable {
 
     @ApiModelProperty("部门id")
     @NotNull(message = "部门不能为空")
-    private Long departmentId;
+    private Long deptId;
+
+    @ApiModelProperty("岗位id")
+    @NotNull(message = "岗位不能为空")
+    private Long postId;
 
     @ApiModelProperty("角色id")
     @NotNull(message = "部门不能为空")

@@ -1,11 +1,11 @@
-package com.phoenix.nirvana.service.system.rpc.admin;
+package com.phoenix.nirvana.service.system.rpc.user;
 
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.common.vo.PageResult;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.user.AdminUserCreateDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.user.AdminUserPageDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.user.AdminUserUpdateDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.vo.user.UserPageItemVO;
+import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserCreateDTO;
+import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserPageDTO;
+import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserUpdateDTO;
+import com.phoenix.nirvana.service.system.rpc.user.domain.vo.AdminUserPageItemVO;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface AdminUserRpc {
      * @param adminUserPageDTO
      * @return
      */
-    CommonResult<PageResult<UserPageItemVO>> getUserPageList(AdminUserPageDTO adminUserPageDTO);
+    CommonResult<PageResult<AdminUserPageItemVO>> getUserPageList(AdminUserPageDTO adminUserPageDTO);
 
 
     /**
@@ -26,7 +26,7 @@ public interface AdminUserRpc {
      *
      * @param adminUserCreateDTO
      */
-    CommonResult<Boolean> addAdminUser(AdminUserCreateDTO adminUserCreateDTO);
+    CommonResult<Boolean> createAdminUser(AdminUserCreateDTO adminUserCreateDTO);
 
     /**
      * 修改管理员用户信息

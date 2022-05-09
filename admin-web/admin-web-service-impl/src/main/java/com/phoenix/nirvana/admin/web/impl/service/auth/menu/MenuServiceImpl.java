@@ -116,7 +116,7 @@ public class MenuServiceImpl implements MenuService {
 
     private void recursionDeleteMenu(Long id) {
         List<SysMenuDO> sysMenuDOS = menuMapper.selectListByPid(id);
-        if (CollectionUtils.isEmpty(sysMenuDOS)) {
+        if (CollectionUtils.isAnyEmpty(sysMenuDOS)) {
             return;
         }
         sysMenuDOS.forEach(sysMenuDO -> recursionDeleteMenu(sysMenuDO.getId()));
