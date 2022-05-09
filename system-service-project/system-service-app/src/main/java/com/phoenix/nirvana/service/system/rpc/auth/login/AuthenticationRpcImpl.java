@@ -24,16 +24,6 @@ public class AuthenticationRpcImpl implements AuthenticationRpc {
 
 
     @Override
-    public CommonResult<AuthenticationLoginCodeVO> getLoginCode() {
-        return authenticationManager.getLoginCode();
-    }
-
-    @Override
-    public CommonResult<AuthenticationUserVO> login(AdminAuthenticationDTO adminAuthenticationDTO) {
-        return authenticationManager.login(adminAuthenticationDTO);
-    }
-
-    @Override
     public CommonResult<AuthenticationUserInfoVO> getUserInfo(Long userId) {
         return authenticationManager.getUserInfo(userId);
     }

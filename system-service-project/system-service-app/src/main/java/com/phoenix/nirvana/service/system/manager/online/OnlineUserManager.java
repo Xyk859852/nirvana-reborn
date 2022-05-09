@@ -13,12 +13,10 @@ public class OnlineUserManager {
     @Autowired
     OnlineUserService onlineUserService;
 
-    @Tenant
     public CommonResult<OnlineUserBO> getOnlineUserByToken(String token) {
         return CommonResult.success(onlineUserService.getOnlineUserByToken(token));
     }
 
-    @Tenant
     public CommonResult<OnlineUserBO> getOnlineUserByUserName(String userName) {
         return CommonResult.success(onlineUserService.getOnlineUserByUserName(userName));
     }

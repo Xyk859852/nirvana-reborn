@@ -14,13 +14,6 @@ public class AuthenticationRpcClient {
     @DubboReference
     private AuthenticationRpc authenticationRpc;
 
-
-    public AuthenticationUserVO login(AdminAuthenticationDTO adminAuthenticationDTO) {
-        CommonResult<AuthenticationUserVO> result = authenticationRpc.login(adminAuthenticationDTO);
-        result.checkError();
-        return result.getData();
-    }
-
     public AuthenticationUserInfoVO getUserInfo(Long userId) {
         CommonResult<AuthenticationUserInfoVO> result = authenticationRpc.getUserInfo(userId);
         result.checkError();

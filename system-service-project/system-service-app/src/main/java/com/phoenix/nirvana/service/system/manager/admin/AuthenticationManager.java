@@ -15,14 +15,6 @@ public class AuthenticationManager {
     private AuthenticationService authenticationService;
 
 
-    public CommonResult<AuthenticationLoginCodeVO> getLoginCode() {
-        return null;
-    }
-
-    public CommonResult<AuthenticationUserVO> login(AdminAuthenticationDTO adminAuthenticationDTO) {
-        return CommonResult.success(authenticationService.login(adminAuthenticationDTO));
-    }
-
     public CommonResult<AuthenticationUserInfoVO> getUserInfo(Long userId) {
         return CommonResult.success(authenticationService.getUserInfo(userId));
     }

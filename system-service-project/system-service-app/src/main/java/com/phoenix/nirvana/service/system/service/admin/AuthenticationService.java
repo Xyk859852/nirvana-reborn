@@ -60,9 +60,6 @@ public class AuthenticationService {
         if (user.getEnable()) {
             throw ServiceExceptionUtil.exception(USER_IS_ENABLE);
         }
-        if (!user.getPassword().equals(MD5Util.encryption(adminAuthenticationDTO.getPassword()))) {
-            throw ServiceExceptionUtil.exception(USER_PASSWORD_ERROR);
-        }
         redisUtils.del(adminAuthenticationDTO.getCodeId());
         return new AuthenticationUserVO().setId(user.getId());
     }

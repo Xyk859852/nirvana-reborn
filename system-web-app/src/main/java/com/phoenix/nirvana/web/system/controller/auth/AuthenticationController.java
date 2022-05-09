@@ -9,6 +9,7 @@ import com.phoenix.nirvana.admin.security.bo.SecurityUserBO;
 import com.phoenix.nirvana.admin.security.core.TokenProvider;
 import com.phoenix.nirvana.admin.security.utils.SecurityUtils;
 import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
+import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.dto.AdminAuthenticationDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationLoginCodeVO;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
+import static com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants.CACHE_CODE_ERROR;
+
 @Api(tags = "获取验证码-用户登录-用户登出-模块")
 @RestController
 @RequestMapping("auth")
@@ -46,6 +49,7 @@ public class AuthenticationController {
     @Autowired
     AuthenticationManagerBuilder authenticationManagerBuilder;
 
+
     @Autowired
     TokenProvider tokenProvider;
 
@@ -56,7 +60,10 @@ public class AuthenticationController {
     @AnonymousAccess
     @PostMapping("login")
     public CommonResult<AuthenticationUserVO> login(@Validated @RequestBody AdminAuthenticationDTO adminAuthenticationDTO) {
-        AuthenticationUserVO authenticationUserVO = authenticationRpcClient.login(adminAuthenticationDTO);
+        String cacheCode = (String) redisUtils.get(adminAuthenticationDTO.getCodeId());
+        if (!adminAuthenticationDTO.getCode().equals(cacheCode)) {
+            throw ServiceExceptionUtil.exception(CACHE_CODE_ERROR);
+        }
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(adminAuthenticationDTO.getUsername(), adminAuthenticationDTO.getPassword());
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
@@ -65,7 +72,8 @@ public class AuthenticationController {
         String token = tokenProvider.createToken(authentication);
         SecurityUserBO userBO = (SecurityUserBO) authentication.getPrincipal();
         redisUtils.set(properties.getOnlineKey() + ":" + token, userBO.getOnlineUserBO(), properties.getTokenValidityInSeconds(), TimeUnit.MILLISECONDS);
-        return CommonResult.success(authenticationUserVO.setToken(token));
+        redisUtils.del(adminAuthenticationDTO.getCodeId());
+        return CommonResult.success(new AuthenticationUserVO().setId(userBO.getOnlineUserBO().getId()).setToken(token));
     }
 
     @ApiOperation("根据token查询用户信息")

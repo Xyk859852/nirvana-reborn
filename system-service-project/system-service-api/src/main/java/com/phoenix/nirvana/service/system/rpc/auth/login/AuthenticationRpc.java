@@ -9,22 +9,6 @@ import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.Authenticatio
 
 public interface AuthenticationRpc {
 
-
-    /**
-     * 获取登录验证码
-     *
-     * @return
-     */
-    CommonResult<AuthenticationLoginCodeVO> getLoginCode();
-
-    /**
-     * 平台用户登录接口
-     *
-     * @param adminAuthenticationDTO
-     * @return
-     */
-    CommonResult<AuthenticationUserVO> login(AdminAuthenticationDTO adminAuthenticationDTO);
-
     /**
      * 根据token获取当前登录用户
      *

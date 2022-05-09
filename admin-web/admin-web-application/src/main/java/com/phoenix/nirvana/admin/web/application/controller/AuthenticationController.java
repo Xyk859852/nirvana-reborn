@@ -66,7 +66,7 @@ public class AuthenticationController {
         //旧版
 //        AuthenticationUserVO authenticationUserVO = authenticationService.login(adminAuthenticationDTO);
         //新版
-        AuthenticationUserVO authenticationUserVO = authenticationRpcClient.login(adminAuthenticationDTO);
+//        AuthenticationUserVO authenticationUserVO = authenticationRpcClient.login(adminAuthenticationDTO);
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(adminAuthenticationDTO.getUsername(), adminAuthenticationDTO.getPassword());
@@ -76,7 +76,7 @@ public class AuthenticationController {
         String token = tokenProvider.createToken(authentication);
         SecurityUserBO userBO = (SecurityUserBO) authentication.getPrincipal();
         redisUtils.set(properties.getOnlineKey() + ":" + token, userBO.getOnlineUserBO(), properties.getTokenValidityInSeconds(), TimeUnit.MILLISECONDS);
-        return CommonResult.success(authenticationUserVO.setToken(token));
+        return CommonResult.success();
     }
 
     @ApiOperation("根据token查询用户信息")
