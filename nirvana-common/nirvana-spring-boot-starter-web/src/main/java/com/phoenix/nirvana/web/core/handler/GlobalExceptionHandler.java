@@ -8,6 +8,7 @@ import com.phoenix.nirvana.common.vo.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -62,7 +63,19 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 处理 SpringMVC 请求参数类型错误
+     * 处理 SpringMVC 请求参数缺失
+     * <p>
+     * 例如说，接口上设置了 @RequestParam("xx") 参数，结果并未传递 xx 参数
+     */
+    @ExceptionHandler(value = BadCredentialsException.class)
+    public CommonResult BadCredentialsException(BadCredentialsException ex) {
+        logger.warn("[BadCredentialsException]", ex);
+        return CommonResult.error(BAD_REQUEST.getCode(), "用户不存在")
+                .setDetailMessage(ExceptionUtil.getRootCauseMessage(ex));
+    }
+
+    /**
+     * Spring Secret 用户鉴权不存在
      * <p>
      * 例如说，接口上设置了 @RequestParam("xx") 参数为 Integer，结果传递 xx 参数类型为 String
      */

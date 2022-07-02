@@ -1,7 +1,7 @@
 package com.phoenix.nirvana.service.system.convert.dept;
 
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.dept.SysDepartmentDO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.vo.department.DepartmentCascade;
+import com.phoenix.nirvana.service.system.rpc.dept.domain.vo.DepartmentCascade;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;

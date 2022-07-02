@@ -67,7 +67,7 @@ public class AdminUserServiceImpl implements AdminUserService {
                     .setPageNo(adminUserPageDTO.getCurrent())
                     .setPageSize(adminUserPageDTO.getSize())
                     .setTotalCount(sysUserPage.getTotal())
-                    .setList(userPageItemVOS);
+                    .setData(userPageItemVOS);
         }
     }
 

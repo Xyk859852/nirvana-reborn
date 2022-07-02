@@ -30,7 +30,7 @@ public class AdminUserBase {
     private Long deptId;
 
     @ApiModelProperty("岗位id")
-    @NotNull(message = "岗位不能为空")
+//    @NotNull(message = "岗位不能为空")
     private Long postId;
 
     @ApiModelProperty("角色id")

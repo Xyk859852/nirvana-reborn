@@ -1,6 +1,8 @@
 package com.phoenix.nirvana.web.system.controller.permission;
 
+import com.phoenix.nirvana.admin.security.utils.SecurityUtils;
 import com.phoenix.nirvana.common.vo.CommonResult;
+import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.UpdatePermissionDTO;
@@ -26,7 +28,7 @@ public class SysPermissionController {
 
     @ApiOperation("菜单列表查询")
     @GetMapping("getPermissionList")
-    public CommonResult<List<PermissionMenuListItemVO>> getPermissionList(PermissionListDTO permissionListDTO) {
+    public CommonResult<PageResult<PermissionMenuListItemVO>> getPermissionList(PermissionListDTO permissionListDTO) {
         return success(permissionRpcClient.getPermissionList(permissionListDTO));
     }
 
@@ -43,19 +45,24 @@ public class SysPermissionController {
     }
 
     @ApiOperation("新增菜单")
-    @PostMapping("addPermission")
-    public CommonResult<Boolean> addPermission(AddPermissionDTO addPermissionDTO) {
-        return success(permissionRpcClient.addPermission(addPermissionDTO));
+    @PostMapping("createPermission")
+    public CommonResult<Boolean> createPermission(AddPermissionDTO addPermissionDTO) {
+        Long currentUserId = SecurityUtils.getCurrentUserId();
+        addPermissionDTO.setCreator(currentUserId);
+        addPermissionDTO.setUpdater(currentUserId);
+        return success(permissionRpcClient.createPermission(addPermissionDTO));
     }
 
     @ApiOperation("修改菜单")
     @PostMapping("updatePermission")
     public CommonResult<Boolean> updatePermission(UpdatePermissionDTO updatePermissionDTO) {
+        Long currentUserId = SecurityUtils.getCurrentUserId();
+        updatePermissionDTO.setUpdater(currentUserId);
         return success(permissionRpcClient.updatePermission(updatePermissionDTO));
     }
 
     @ApiOperation("删除菜单")
-    @PostMapping("deletePermission")
+    @DeleteMapping("deletePermission")
     public CommonResult<Boolean> deletePermission(@RequestBody List<Long> ids) {
         return success(permissionRpcClient.deletePermission(ids));
     }

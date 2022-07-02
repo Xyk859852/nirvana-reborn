@@ -1,9 +1,12 @@
 package com.phoenix.nirvana.service.system.dal.mysql.mapper.permission;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.phoenix.nirvana.common.enums.CommonStatusEnum;
 import com.phoenix.nirvana.mybatis.core.mapper.BaseMapperX;
-import com.phoenix.nirvana.mybatis.core.query.QueryWrapperX;
+import com.phoenix.nirvana.mybatis.core.query.LambdaQueryWrapperX;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
+import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collection;
@@ -21,7 +24,8 @@ import java.util.List;
 public interface SysPermissionMapper extends BaseMapperX<SysPermissionDO> {
 
     default List<SysPermissionDO> selectListByIds(Collection<Long> ids) {
-        return selectList(new QueryWrapper<SysPermissionDO>().lambda()
+        return selectList(new LambdaQueryWrapperX<SysPermissionDO>()
+                .eq(SysPermissionDO::getEnable, CommonStatusEnum.ENABLE.getStatus())
                 .in(SysPermissionDO::getId, ids));
     }
 
@@ -31,17 +35,18 @@ public interface SysPermissionMapper extends BaseMapperX<SysPermissionDO> {
 
 
     default List<SysPermissionDO> selectListByPid(Long pid) {
-        return selectList(new QueryWrapper<SysPermissionDO>().lambda()
+        return selectList(new LambdaQueryWrapperX<SysPermissionDO>()
                 .eq(SysPermissionDO::getPid, pid));
     }
 
-    default List<SysPermissionDO> selectListByPidOrLikeTitle(String title, Long pid) {
-        QueryWrapperX queryWrapperX = new QueryWrapperX<SysPermissionDO>();
-        queryWrapperX.likeIfPresent("title", title).eqIfPresent("pid", pid).orderByAsc("sort");
-        return selectList(queryWrapperX);
+    default Page<SysPermissionDO> selectListByPidOrLikeTitle(PermissionListDTO permissionListDTO) {
+        return selectPage(new Page(permissionListDTO.getCurrent(), permissionListDTO.getSize()), new LambdaQueryWrapperX<SysPermissionDO>()
+                .likeIfPresent(SysPermissionDO::getTitle, permissionListDTO.getKeyboard())
+                .eqIfPresent(SysPermissionDO::getPid, permissionListDTO.getPid())
+                .orderByDesc(SysPermissionDO::getSort));
     }
 
     default Boolean deleteByPid(Long pid) {
-        return delete(new QueryWrapper<SysPermissionDO>().eq("pid", pid)) > 0;
+        return delete(new LambdaQueryWrapperX<SysPermissionDO>().eq(SysPermissionDO::getPid, pid)) > 0;
     }
 }

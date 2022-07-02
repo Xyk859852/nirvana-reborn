@@ -1,10 +1,10 @@
 package com.phoenix.nirvana.service.system.convert.permission;
 
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysRoleDO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.role.AddRoleDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.role.UpdateRoleDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.vo.role.RoleCascade;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.vo.role.RolePageItemVO;
+import com.phoenix.nirvana.service.system.rpc.role.domain.dto.AddRoleDTO;
+import com.phoenix.nirvana.service.system.rpc.role.domain.dto.UpdateRoleDTO;
+import com.phoenix.nirvana.service.system.rpc.role.domain.vo.RoleCascade;
+import com.phoenix.nirvana.service.system.rpc.role.domain.vo.RolePageItemVO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationUserRoleVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;

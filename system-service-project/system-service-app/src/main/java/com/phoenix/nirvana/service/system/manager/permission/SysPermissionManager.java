@@ -1,6 +1,7 @@
 package com.phoenix.nirvana.service.system.manager.permission;
 
 import com.phoenix.nirvana.common.vo.CommonResult;
+import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.UpdatePermissionDTO;
@@ -21,7 +22,7 @@ public class SysPermissionManager {
     @Autowired
     SysPermissionService permissionService;
 
-    public CommonResult<List<PermissionMenuListItemVO>> getPermissionList(PermissionListDTO permissionListDTO) {
+    public CommonResult<PageResult<PermissionMenuListItemVO>> getPermissionList(PermissionListDTO permissionListDTO) {
         return success(permissionService.getPermissionList(permissionListDTO));
     }
 
@@ -34,8 +35,8 @@ public class SysPermissionManager {
     }
 
     @Transactional
-    public CommonResult<Boolean> addPermission(AddPermissionDTO addPermissionDTO) {
-        return success(permissionService.addPermission(addPermissionDTO));
+    public CommonResult<Boolean> createPermission(AddPermissionDTO addPermissionDTO) {
+        return success(permissionService.createPermission(addPermissionDTO));
     }
 
     @Transactional

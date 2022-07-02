@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.service.system.rpc.admin.domain.vo.department;
+package com.phoenix.nirvana.service.system.rpc.dept.domain.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

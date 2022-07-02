@@ -1,6 +1,7 @@
 package com.phoenix.nirvana.service.system.rpc.auth.permission;
 
 import com.phoenix.nirvana.common.vo.CommonResult;
+import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.manager.permission.SysPermissionManager;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
@@ -22,7 +23,7 @@ public class SysPermissionRpcImpl implements SysPermissionRpc {
     SysPermissionManager permissionManager;
 
     @Override
-    public CommonResult<List<PermissionMenuListItemVO>> getPermissionList(PermissionListDTO permissionListDTO) {
+    public CommonResult<PageResult<PermissionMenuListItemVO>> getPermissionList(PermissionListDTO permissionListDTO) {
         return permissionManager.getPermissionList(permissionListDTO);
     }
 
@@ -37,8 +38,8 @@ public class SysPermissionRpcImpl implements SysPermissionRpc {
     }
 
     @Override
-    public CommonResult<Boolean> addPermission(AddPermissionDTO addPermissionDTO) {
-        return permissionManager.addPermission(addPermissionDTO);
+    public CommonResult<Boolean> createPermission(AddPermissionDTO addPermissionDTO) {
+        return permissionManager.createPermission(addPermissionDTO);
     }
 
     @Override

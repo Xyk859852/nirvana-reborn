@@ -1,0 +1,29 @@
+#规划GateWay的服务端口
+server:
+  port: 18888
+##规划gateWay注册到到nacos上的服务应用名称
+spring:
+  application:
+    name: nirvana-gateway
+  cloud:
+    nacos:
+      discovery:
+        #gateway工程注册到nacos上的地址
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          #开启gateway从nacos上获取服务列表
+          enabled: true
+#开启acutor端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      #打开端点详情
+      show-details: always
+
+

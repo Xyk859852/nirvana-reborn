@@ -1,13 +1,13 @@
-package com.phoenix.nirvana.service.system.rpc.admin;
+package com.phoenix.nirvana.service.system.rpc.role;
 
 
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.common.vo.PageResult;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.role.AddRoleDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.role.RolePageDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.dto.role.UpdateRoleDTO;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.vo.role.RoleCascade;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.vo.role.RolePageItemVO;
+import com.phoenix.nirvana.service.system.rpc.role.domain.dto.AddRoleDTO;
+import com.phoenix.nirvana.service.system.rpc.role.domain.dto.RolePageDTO;
+import com.phoenix.nirvana.service.system.rpc.role.domain.dto.UpdateRoleDTO;
+import com.phoenix.nirvana.service.system.rpc.role.domain.vo.RoleCascade;
+import com.phoenix.nirvana.service.system.rpc.role.domain.vo.RolePageItemVO;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public interface RoleRpc {
      * @param userId
      * @return
      */
-    CommonResult<Boolean> addRole(AddRoleDTO addRoleDTO, Long userId);
+    CommonResult<Boolean> createRole(AddRoleDTO addRoleDTO, Long userId);
 
     /**
      * 修改角色

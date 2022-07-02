@@ -1,6 +1,7 @@
 package com.phoenix.nirvana.web.system.client.permission;
 
 import com.phoenix.nirvana.common.vo.CommonResult;
+import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.SysPermissionRpc;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
@@ -18,8 +19,8 @@ public class SysPermissionRpcClient {
     @DubboReference
     SysPermissionRpc permissionRpc;
 
-    public List<PermissionMenuListItemVO> getPermissionList(PermissionListDTO permissionListDTO) {
-        CommonResult<List<PermissionMenuListItemVO>> result = permissionRpc.getPermissionList(permissionListDTO);
+    public PageResult<PermissionMenuListItemVO> getPermissionList(PermissionListDTO permissionListDTO) {
+        CommonResult<PageResult<PermissionMenuListItemVO>> result = permissionRpc.getPermissionList(permissionListDTO);
         result.checkError();
         return result.getData();
     }
@@ -36,8 +37,8 @@ public class SysPermissionRpcClient {
         return result.getData();
     }
 
-    public Boolean addPermission(AddPermissionDTO addPermissionDTO) {
-        CommonResult<Boolean> result = permissionRpc.addPermission(addPermissionDTO);
+    public Boolean createPermission(AddPermissionDTO addPermissionDTO) {
+        CommonResult<Boolean> result = permissionRpc.createPermission(addPermissionDTO);
         result.checkError();
         return result.getData();
     }

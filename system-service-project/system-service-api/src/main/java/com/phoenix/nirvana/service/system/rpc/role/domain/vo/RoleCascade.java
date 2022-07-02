@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.service.system.rpc.admin.domain.vo.role;
+package com.phoenix.nirvana.service.system.rpc.role.domain.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

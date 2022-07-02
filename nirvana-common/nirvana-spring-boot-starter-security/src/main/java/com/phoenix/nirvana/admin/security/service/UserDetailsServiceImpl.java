@@ -66,7 +66,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             onlineUserByUserName.checkError();
             OnlineUserBO user = onlineUserByUserName.getData();
             if (user == null) {
-                throw new UsernameNotFoundException("");
+                throw new UsernameNotFoundException("用户不存在");
             } else {
                 if (user.getEnable()) {
                     throw ServiceExceptionUtil.exception(100011);

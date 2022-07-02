@@ -1,7 +1,9 @@
 package com.phoenix.nirvana.service.system.service.permission;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.util.CollectionUtils;
+import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.convert.permission.PermissionMenuTreeConvert;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysPermissionMapper;
@@ -11,6 +13,7 @@ import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.UpdateP
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.PermissionMenuListItemVO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.PermissionMenuTreeItemVO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.tree.PermissionOperation;
+import com.phoenix.nirvana.service.system.rpc.role.domain.vo.RolePageItemVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +29,7 @@ import static com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants.*;
 public class SysPermissionService {
 
     @Autowired
-    SysPermissionMapper menuMapper;
+    SysPermissionMapper permissionMapper;
 
     @Resource(name = "queryAuthorizedPermissionOperation")
     PermissionOperation<PermissionMenuTreeItemVO> queryAuthorizedPermissionOperation;
@@ -34,12 +37,20 @@ public class SysPermissionService {
     @Resource(name = "reverseQueryAuthorizedPermissionOperation")
     PermissionOperation<List<PermissionMenuTreeItemVO>> reverseQueryAuthorizedPermissionOperation;
 
-    public List<PermissionMenuListItemVO> getPermissionList(PermissionListDTO permissionListDTO) {
-        return PermissionMenuTreeConvert.INTERFACE.convert(menuMapper.selectListByPidOrLikeTitle(permissionListDTO.getKeyword(), permissionListDTO.getPid()));
+    public PageResult<PermissionMenuListItemVO> getPermissionList(PermissionListDTO permissionListDTO) {
+        Page<SysPermissionDO> sysPermissionDOPage = permissionMapper.selectListByPidOrLikeTitle(permissionListDTO);
+        if (CollectionUtils.isAnyEmpty(sysPermissionDOPage.getRecords())) {
+            return PageResult.empty();
+        }
+        return new PageResult<PermissionMenuListItemVO>()
+                .setPageNo(permissionListDTO.getCurrent())
+                .setPageSize(permissionListDTO.getSize())
+                .setTotalCount(sysPermissionDOPage.getTotal())
+                .setData(PermissionMenuTreeConvert.INTERFACE.convert(sysPermissionDOPage.getRecords()));
     }
 
     public List<PermissionMenuTreeItemVO> getPermissionMenuTreeSuperior(Long id) {
-        SysPermissionDO sysPermissionDO = menuMapper.selectById(id);
+        SysPermissionDO sysPermissionDO = permissionMapper.selectById(id);
         if (sysPermissionDO == null) {
             throw ServiceExceptionUtil.exception(MENU_IS_NULL);
         }
@@ -48,21 +59,22 @@ public class SysPermissionService {
 
     public List<PermissionMenuTreeItemVO> getPermissionMenuAllTree() {
         List<PermissionMenuTreeItemVO> permissionMenuTreeItemVOS = new ArrayList<>();
-        List<SysPermissionDO> sysPermissionDOS = menuMapper.selectListByPid(0l);
+        List<SysPermissionDO> sysPermissionDOS = permissionMapper.selectListByPid(0l);
         for (SysPermissionDO sysPermissionDO : sysPermissionDOS) {
             permissionMenuTreeItemVOS.add(sysPermissionDO.execute(queryAuthorizedPermissionOperation));
         }
         return permissionMenuTreeItemVOS;
     }
 
-    public Boolean addPermission(AddPermissionDTO addPermissionDTO) {
+    public Boolean createPermission(AddPermissionDTO addPermissionDTO) {
         SysPermissionDO sysPermissionDO = PermissionMenuTreeConvert.INTERFACE.convert(addPermissionDTO);
         sysPermissionDO.setCreateTime(new Date());
-        menuMapper.insert(sysPermissionDO);
+        checkIFrame(addPermissionDTO.getIFrame(), addPermissionDTO.getUrl());
+        permissionMapper.insert(sysPermissionDO);
         if (addPermissionDTO.getPid() != 0) {
-            SysPermissionDO parentMenu = menuMapper.selectById(addPermissionDTO.getPid());
+            SysPermissionDO parentMenu = permissionMapper.selectById(addPermissionDTO.getPid());
             parentMenu.setSubCount(parentMenu.getSubCount() + 1);
-            menuMapper.updateById(parentMenu);
+            permissionMapper.updateById(parentMenu);
         }
         return true;
     }
@@ -71,18 +83,13 @@ public class SysPermissionService {
         if (updatePermissionDTO.getId().equals(updatePermissionDTO.getPid())) {
             throw ServiceExceptionUtil.exception(MENU_ID_EQUALS_PID);
         }
-        if (updatePermissionDTO.getIFrame()) {
-            String http = "http://", https = "https://";
-            if (!(updatePermissionDTO.getUrl().toLowerCase().startsWith(http) || updatePermissionDTO.getUrl().toLowerCase().startsWith(https))) {
-                throw ServiceExceptionUtil.exception(MENU_IFRAME_URL_TOP_ERROR);
-            }
-        }
-        SysPermissionDO sysPermissionDO = menuMapper.selectById(updatePermissionDTO.getId());
+        checkIFrame(updatePermissionDTO.getIFrame(), updatePermissionDTO.getUrl());
+        SysPermissionDO sysPermissionDO = permissionMapper.selectById(updatePermissionDTO.getId());
         Long newPid = updatePermissionDTO.getPid();
         Long oldPid = sysPermissionDO.getPid();
         sysPermissionDO = PermissionMenuTreeConvert.INTERFACE.convert(updatePermissionDTO);
         sysPermissionDO.setUpdateTime(new Date());
-        menuMapper.updateById(sysPermissionDO);
+        permissionMapper.updateById(sysPermissionDO);
         if (!newPid.equals(oldPid)) {
             updateMenuSubCont(newPid, 1);
             updateMenuSubCont(oldPid, -1);
@@ -91,31 +98,40 @@ public class SysPermissionService {
     }
 
     public Boolean deletePermission(List<Long> ids) {
-        List<SysPermissionDO> sysPermissionDOS = menuMapper.selectListByIds(ids);
+        List<SysPermissionDO> sysPermissionDOS = permissionMapper.selectListByIds(ids);
         sysPermissionDOS.forEach(sysMenu -> {
             if (sysMenu.getPid() != 0) {
                 updateMenuSubCont(sysMenu.getPid(), -1);
             }
             recursionDeleteMenu(sysMenu.getId());
-            menuMapper.deleteById(sysMenu.getId());
+            permissionMapper.deleteById(sysMenu.getId());
         });
         return true;
     }
 
     private void recursionDeleteMenu(Long id) {
-        List<SysPermissionDO> sysPermissionDOS = menuMapper.selectListByPid(id);
+        List<SysPermissionDO> sysPermissionDOS = permissionMapper.selectListByPid(id);
         if (CollectionUtils.isAnyEmpty(sysPermissionDOS)) {
             return;
         }
         sysPermissionDOS.forEach(sysMenuDO -> recursionDeleteMenu(sysMenuDO.getId()));
-        menuMapper.deleteBatchIds(sysPermissionDOS.stream().map(SysPermissionDO::getId).collect(Collectors.toSet()));
+        permissionMapper.deleteBatchIds(sysPermissionDOS.stream().map(SysPermissionDO::getId).collect(Collectors.toSet()));
     }
 
     private void updateMenuSubCont(Long menuId, Integer size) {
-        SysPermissionDO sysPermissionDO = menuMapper.selectById(menuId);
+        SysPermissionDO sysPermissionDO = permissionMapper.selectById(menuId);
         if (sysPermissionDO != null) {
             sysPermissionDO.setSubCount(sysPermissionDO.getSubCount() + size);
-            menuMapper.updateById(sysPermissionDO);
+            permissionMapper.updateById(sysPermissionDO);
+        }
+    }
+
+    private void checkIFrame(boolean iframe, String url) {
+        if (iframe) {
+            String http = "http://", https = "https://";
+            if (!(url.toLowerCase().startsWith(http) || url.toLowerCase().startsWith(https))) {
+                throw ServiceExceptionUtil.exception(MENU_IFRAME_URL_TOP_ERROR);
+            }
         }
     }
 }

@@ -23,6 +23,7 @@
         <module>admin-web</module>
         <module>system-service-project</module>
         <module>system-web-app</module>
+        <module>nirvana-gateway</module>
 
     </modules>
 

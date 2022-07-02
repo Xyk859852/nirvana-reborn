@@ -1,8 +1,7 @@
 package com.phoenix.nirvana.service.system.dal.mysql.mapper.permission;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.phoenix.nirvana.mybatis.core.mapper.BaseMapperX;
+import com.phoenix.nirvana.mybatis.core.query.LambdaQueryWrapperX;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysRolePermissionDO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,10 +19,10 @@ import java.util.List;
 public interface SysRolePermissionMapper extends BaseMapperX<SysRolePermissionDO> {
 
     default List<SysRolePermissionDO> selectListByRoleId(Long rid) {
-        return selectList(Wrappers.lambdaQuery(SysRolePermissionDO.class).eq(SysRolePermissionDO::getRid, rid));
+        return selectList(new LambdaQueryWrapperX<SysRolePermissionDO>().eq(SysRolePermissionDO::getRid, rid));
     }
 
     default Boolean deleteByRoleId(Long rid) {
-        return delete(new QueryWrapper<SysRolePermissionDO>().eq("rid", rid)) > 0;
+        return delete(new LambdaQueryWrapperX<SysRolePermissionDO>().eq(SysRolePermissionDO::getRid, rid)) > 0;
     }
 }

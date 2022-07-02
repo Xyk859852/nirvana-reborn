@@ -25,10 +25,10 @@ public class AdminAuthenticationDTO implements Serializable {
     @Length(min = 4, max = 16, message = "密码长度为 4-16 位")
     private String password;
 
-    @ApiModelProperty(value = "登录验证码", required = true, example = "1234")
-    private String code;
-
-    @ApiModelProperty(value = "登录验证码codeId", required = true, example = "1234")
-    @NotEmpty(message = "登录验证码codeId不能为空")
-    private String codeId;
+//    @ApiModelProperty(value = "登录验证码", required = true, example = "1234")
+//    private String code;
+//
+//    @ApiModelProperty(value = "登录验证码codeId", required = true, example = "1234")
+//    @NotEmpty(message = "登录验证码codeId不能为空")
+//    private String codeId;
 }

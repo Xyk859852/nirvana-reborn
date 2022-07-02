@@ -39,7 +39,7 @@ public class PermissionMenuListItemVO implements Serializable {
     private String permCode;
 
     @ApiModelProperty("0、管理平台1、App")
-    private Integer platform;
+    private Integer platForm;
 
     @ApiModelProperty("图标")
     private String icon;
@@ -54,8 +54,12 @@ public class PermissionMenuListItemVO implements Serializable {
     @ApiModelProperty("创建时间")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @ApiModelProperty("创建时间")
+    private Date updateTime;
+
     @ApiModelProperty("是否使用")
-    private Boolean isEnable;
+    private Boolean enable;
 
     public Boolean getHasChildren() {
         return subCount > 0;

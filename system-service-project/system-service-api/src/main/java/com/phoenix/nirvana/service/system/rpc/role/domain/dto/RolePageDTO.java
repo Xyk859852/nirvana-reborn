@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.service.system.rpc.admin.domain.dto.role;
+package com.phoenix.nirvana.service.system.rpc.role.domain.dto;
 
 import com.phoenix.nirvana.common.dto.CommonPage;
 import io.swagger.annotations.ApiModel;

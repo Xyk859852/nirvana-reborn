@@ -1,8 +1,8 @@
-package com.phoenix.nirvana.service.system.rpc.admin;
+package com.phoenix.nirvana.service.system.rpc.dept;
 
 
 import com.phoenix.nirvana.common.vo.CommonResult;
-import com.phoenix.nirvana.service.system.rpc.admin.domain.vo.department.DepartmentCascade;
+import com.phoenix.nirvana.service.system.rpc.dept.domain.vo.DepartmentCascade;
 
 import java.util.List;
 

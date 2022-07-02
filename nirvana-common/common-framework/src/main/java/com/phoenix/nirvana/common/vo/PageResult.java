@@ -28,18 +28,18 @@ public class PageResult<T> implements Serializable {
     private Long totalCount;
 
     @ApiModelProperty("分页数据")
-    private List<T> list;
+    private List<T> data;
 
     public PageResult() {
     }
 
-    public PageResult(List<T> list, Long total) {
-        this.list = list;
+    public PageResult(List<T> data, Long total) {
+        this.data = data;
         this.totalCount = total;
     }
 
-    public PageResult(List<T> list, Long total, Integer pageNo, Integer pageSize,Long totalPage) {
-        this.list = list;
+    public PageResult(List<T> data, Long total, Integer pageNo, Integer pageSize, Long totalPage) {
+        this.data = data;
         this.totalCount = total;
         this.pageNo = pageNo;
         this.pageSize = pageSize;
@@ -47,7 +47,7 @@ public class PageResult<T> implements Serializable {
     }
 
     public PageResult(Long total) {
-        this.list = new ArrayList<>();
+        this.data = new ArrayList<>();
         this.totalCount = total;
     }
 
@@ -63,7 +63,7 @@ public class PageResult<T> implements Serializable {
      */
     public static PageResult empty() {
         return new PageResult()
-                .setList(Collections.EMPTY_LIST)
+                .setData(Collections.EMPTY_LIST)
                 .setTotalPage(0L)
                 .setPageNo(0)
                 .setTotalCount(0L);

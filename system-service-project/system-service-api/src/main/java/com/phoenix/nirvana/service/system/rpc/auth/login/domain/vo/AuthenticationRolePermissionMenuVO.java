@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,5 +23,5 @@ public class AuthenticationRolePermissionMenuVO implements Serializable {
     private String permissionName;
 
     @ApiModelProperty("菜单功能标示")
-    private List<AuthenticationPermissionButtonVO> actions;
+    private List<AuthenticationPermissionButtonVO> actions = new ArrayList<>();
 }

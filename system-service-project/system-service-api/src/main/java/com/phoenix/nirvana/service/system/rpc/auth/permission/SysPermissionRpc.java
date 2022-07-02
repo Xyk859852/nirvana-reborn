@@ -2,6 +2,7 @@ package com.phoenix.nirvana.service.system.rpc.auth.permission;
 
 
 import com.phoenix.nirvana.common.vo.CommonResult;
+import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.UpdatePermissionDTO;
@@ -18,7 +19,7 @@ public interface SysPermissionRpc {
      * @param permissionListDTO
      * @return
      */
-    CommonResult<List<PermissionMenuListItemVO>> getPermissionList(PermissionListDTO permissionListDTO);
+    CommonResult<PageResult<PermissionMenuListItemVO>> getPermissionList(PermissionListDTO permissionListDTO);
 
     /**
      * 根据 id 获取上级菜单列表 tree 树结构格式返回
@@ -40,7 +41,7 @@ public interface SysPermissionRpc {
      * @param addPermissionDTO
      * @return
      */
-    CommonResult<Boolean> addPermission(AddPermissionDTO addPermissionDTO);
+    CommonResult<Boolean> createPermission(AddPermissionDTO addPermissionDTO);
 
     /**
      * 修改菜单资源

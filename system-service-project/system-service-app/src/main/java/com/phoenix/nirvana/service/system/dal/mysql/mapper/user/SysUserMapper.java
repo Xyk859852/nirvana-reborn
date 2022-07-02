@@ -38,6 +38,7 @@ public interface SysUserMapper extends BaseMapperX<SysUserDO> {
                             .like(SysUserDO::getPhone, pageListDTO.getKeyboard())
             );
         }
+        doQueryWrapperX.orderByDesc(SysUserDO::getCreateTime);
         return selectPage(pageListDTO, doQueryWrapperX);
     }
 }

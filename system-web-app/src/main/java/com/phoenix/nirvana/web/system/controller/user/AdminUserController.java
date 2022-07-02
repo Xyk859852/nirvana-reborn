@@ -18,7 +18,7 @@ import java.util.List;
 
 @Api(tags = "管理员用户模块")
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping("/user")
 public class AdminUserController {
 
     @Autowired

@@ -1,6 +1,5 @@
-package com.phoenix.nirvana.service.system.rpc.admin.domain.dto.role;
+package com.phoenix.nirvana.service.system.rpc.role.domain.base;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -9,12 +8,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@ApiModel("修改角色对象")
 @Accessors(chain = true)
-public class UpdateRoleDTO implements Serializable {
-
-    @ApiModelProperty("主键id")
-    private Long id;
+public class RoleBase implements Serializable {
 
     @ApiModelProperty("角色名称")
     private String name;
@@ -23,11 +18,11 @@ public class UpdateRoleDTO implements Serializable {
     private Integer sort;
 
     @ApiModelProperty("是否禁用，0使用，1禁用")
-    private Boolean isEnable;
+    private Boolean enable;
 
     @ApiModelProperty("描述")
     private String description;
 
     @ApiModelProperty("对应菜单集合")
-    private List<Long> menus;
+    private List<Long> permissions;
 }

@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -45,17 +44,17 @@ public class AdminUserService {
 
     public PageResult<AdminUserPageItemVO> getUserPageList(AdminUserPageDTO adminUserPageDTO) {
         PageResult<SysUserDO> pageResult = sysUserMapper.selectPageList(adminUserPageDTO);
-        if (CollectionUtils.isAnyEmpty(pageResult.getList())) {
+        if (CollectionUtils.isAnyEmpty(pageResult.getData())) {
             return new PageResult(pageResult.getTotalCount());
         }
         List<AdminUserPageItemVO> userPageItemVOS = new ArrayList<>();
-        Collection<Long> deptIds = convertList(pageResult.getList(), SysUserDO::getDeptId);
+        Collection<Long> deptIds = convertList(pageResult.getData(), SysUserDO::getDeptId);
         List<SysDepartmentDO> departments = departmentMapper.selectBatchIds(deptIds);
-        Collection<Long> roleIds = convertList(pageResult.getList(), SysUserDO::getRoleId);
+        Collection<Long> roleIds = convertList(pageResult.getData(), SysUserDO::getRoleId);
         List<SysRoleDO> roles = roleMapper.selectBatchIds(roleIds);
         Map<Long, SysDepartmentDO> departmentMap = convertMap(departments, SysDepartmentDO::getId);
         Map<Long, SysRoleDO> roleMap = convertMap(roles, SysRoleDO::getId);
-        pageResult.getList().forEach(user -> {
+        pageResult.getData().forEach(user -> {
             AdminUserPageItemVO pageItemVO = SysUserConvert.INTERFACE.convertPageItem(user);
             pageItemVO.setDepartment(SysUserConvert.INTERFACE.convertPageDeptItem(departmentMap.get(user.getDeptId())));
             pageItemVO.setRole((SysUserConvert.INTERFACE.convertPageRoleItem(roleMap.get(user.getRoleId()))));

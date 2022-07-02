@@ -47,10 +47,10 @@ public class AuthenticationService {
     RedisUtils redisUtils;
 
     public AuthenticationUserVO login(AdminAuthenticationDTO adminAuthenticationDTO) {
-        String cacheCode = (String) redisUtils.get(adminAuthenticationDTO.getCodeId());
-        if (!adminAuthenticationDTO.getCode().equals(cacheCode)) {
-            throw ServiceExceptionUtil.exception(CACHE_CODE_ERROR);
-        }
+//        String cacheCode = (String) redisUtils.get(adminAuthenticationDTO.getCodeId());
+//        if (!adminAuthenticationDTO.getCode().equals(cacheCode)) {
+//            throw ServiceExceptionUtil.exception(CACHE_CODE_ERROR);
+//        }
         SysUserDO user = userMapper.selectOneByUserName(adminAuthenticationDTO.getUsername());
         if (user == null) {
             throw ServiceExceptionUtil.exception(USER_IS_NULL);
@@ -58,7 +58,7 @@ public class AuthenticationService {
         if (user.getEnable()) {
             throw ServiceExceptionUtil.exception(USER_IS_ENABLE);
         }
-        redisUtils.del(adminAuthenticationDTO.getCodeId());
+//        redisUtils.del(adminAuthenticationDTO.getCodeId());
         return new AuthenticationUserVO().setId(user.getId());
     }
 
