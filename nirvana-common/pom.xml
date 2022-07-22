@@ -36,5 +36,6 @@
         <module>nirvana-spring-boot-starter-cache-redis</module>
         <module>nirvana-spring-boot-starter-sentinel</module>
         <module>nirvana-spring-boot-starter-tenant</module>
+        <module>nirvana-spring-boot-starter-mq</module>
     </modules>
 </project>

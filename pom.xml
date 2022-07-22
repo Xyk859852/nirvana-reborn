@@ -4,13 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
     <groupId>com.phoenix</groupId>
     <artifactId>nirvana-reborn</artifactId>
     <packaging>pom</packaging>
@@ -32,32 +25,44 @@
     <properties>
         <revision>1.0.0</revision>
         <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <!-- 工具类相关 -->
-        <org.projectlombok.version>1.16.14</org.projectlombok.version>
-        <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
+<!--        <org.projectlombok.version>1.16.14</org.projectlombok.version>-->
+<!--        <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>-->
+        <!-- 看看咋放到 bom 里 -->
+        <lombok.version>1.18.20</lombok.version>
+        <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
     </properties>
 
     <build>
         <pluginManagement>
             <plugins>
-                <!-- 提供给 mapstruct 使用 -->
+                <!-- maven-surefire-plugin 插件，用于运行单元测试。 -->
+                <!-- 注意，需要使用 3.0.X+，因为要支持 Junit 5 版本 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <!-- maven-compiler-plugin 插件，解决 Lombok + MapStruct 组合 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source> <!-- or higher, depending on your project -->
-                        <target>${java.version}</target> <!-- or higher, depending on your project -->
                         <annotationProcessorPaths>
-                            <path>
-                                <groupId>org.mapstruct</groupId>
-                                <artifactId>mapstruct-processor</artifactId>
-                                <version>${org.mapstruct.version}</version>
-                            </path>
                             <path>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
-                                <version>${org.projectlombok.version}</version>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version>
                             </path>
                         </annotationProcessorPaths>
                     </configuration>
@@ -67,9 +72,17 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>2.6.7</version> <!-- 如果 spring.boot.version 版本修改，则这里也要跟着修改 -->
                     <configuration>
                         <fork>true</fork>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal> <!-- 将引入的 jar 打入其中 -->
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

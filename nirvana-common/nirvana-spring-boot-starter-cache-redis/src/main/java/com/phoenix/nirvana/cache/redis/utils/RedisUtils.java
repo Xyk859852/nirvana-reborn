@@ -19,7 +19,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.Cursor;
@@ -32,7 +31,9 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author /
+ * redis 公共工具类
+ *
+ * @author xuyongkang
  */
 @Component
 @SuppressWarnings({"unchecked", "all"})

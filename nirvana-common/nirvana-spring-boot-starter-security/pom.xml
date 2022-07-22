@@ -31,8 +31,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-dubbo</artifactId>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-dubbo</artifactId>
         </dependency>
 
         <!--  web 相关  -->
@@ -51,16 +51,24 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.jsonwebtoken</groupId>-->
+        <!--            <artifactId>jjwt-impl</artifactId>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.2</version>
         </dependency>
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.2</version>
         </dependency>
 
         <dependency>

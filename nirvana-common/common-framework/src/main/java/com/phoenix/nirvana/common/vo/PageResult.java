@@ -16,19 +16,19 @@ import java.util.List;
 public class PageResult<T> implements Serializable {
 
     @ApiModelProperty("分页大小")
-    private Integer pageSize;
+    private Integer pageSize = 0;
 
     @ApiModelProperty("分页页码")
-    private Integer pageNo;
+    private Integer pageNo = 0;
 
     @ApiModelProperty("总页码")
-    private Long totalPage;
+    private Long totalPage = 0l;
 
     @ApiModelProperty("数据总数")
-    private Long totalCount;
+    private Long totalCount = 0l;
 
     @ApiModelProperty("分页数据")
-    private List<T> data;
+    private List<T> data = Collections.EMPTY_LIST;
 
     public PageResult() {
     }
@@ -62,10 +62,6 @@ public class PageResult<T> implements Serializable {
      * @return
      */
     public static PageResult empty() {
-        return new PageResult()
-                .setData(Collections.EMPTY_LIST)
-                .setTotalPage(0L)
-                .setPageNo(0)
-                .setTotalCount(0L);
+        return new PageResult();
     }
 }

@@ -6,6 +6,7 @@ import com.phoenix.nirvana.service.system.rpc.auth.login.domain.dto.AdminAuthent
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationUserInfoVO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationUserVO;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -29,6 +29,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,6 +64,9 @@ public class AuthenticationController {
     @Autowired
     AuthenticationRpcClient authenticationRpcClient;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @ApiOperation("用户登录")
     @AnonymousAccess
     @PostMapping("login")
@@ -71,6 +75,7 @@ public class AuthenticationController {
 //        if (!adminAuthenticationDTO.getCode().equals(cacheCode)) {
 //            throw ServiceExceptionUtil.exception(CACHE_CODE_ERROR);
 //        }
+        log.info("login password:{}", passwordEncoder.encode(adminAuthenticationDTO.getPassword()));
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(adminAuthenticationDTO.getUsername(), adminAuthenticationDTO.getPassword());
         Authentication authentication;

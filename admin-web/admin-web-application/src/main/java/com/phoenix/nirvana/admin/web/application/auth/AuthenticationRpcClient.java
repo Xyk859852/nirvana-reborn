@@ -8,10 +8,10 @@ import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.Authenticatio
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class AuthenticationRpcClient {
 
-    @DubboReference
+//    @DubboReference
     private AuthenticationRpc authenticationRpc;
 
     public AuthenticationUserInfoVO getUserInfo(Long userId) {

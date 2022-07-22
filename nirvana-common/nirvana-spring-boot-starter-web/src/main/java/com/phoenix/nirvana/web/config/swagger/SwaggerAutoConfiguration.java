@@ -1,6 +1,7 @@
 package com.phoenix.nirvana.web.config.swagger;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+import com.phoenix.nirvana.web.config.swagger.core.SpringFoxHandlerProviderBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -26,7 +27,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 @EnableKnife4j
-@Import(BeanValidatorPluginsConfiguration.class)
 @ConditionalOnClass({Docket.class, ApiInfoBuilder.class})
 @ConditionalOnProperty(prefix = "swagger", value = "enable", matchIfMissing = true)
 // 允许使用 swagger.enable=false 禁用 Swagger
@@ -35,6 +35,11 @@ public class SwaggerAutoConfiguration {
 
     @Autowired
     SwaggerProperties swaggerProperties;
+
+    @Bean
+    public SpringFoxHandlerProviderBeanPostProcessor springFoxHandlerProviderBeanPostProcessor() {
+        return new SpringFoxHandlerProviderBeanPostProcessor();
+    }
 
     @Bean
     public Docket createRestApi() {

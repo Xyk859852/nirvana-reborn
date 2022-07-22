@@ -18,7 +18,6 @@
             <artifactId>common-framework</artifactId>
         </dependency>
 
-
         <!--  web 相关  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -26,8 +25,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
         </dependency>
 
         <!-- swagger2 knife4j相关 -->
