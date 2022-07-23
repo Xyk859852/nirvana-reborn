@@ -15,14 +15,14 @@
 | [Spring Boot](https://spring.io/projects/spring-boot)        | 应用开发框架    | 2.6.8          |
 | [Spring Cloud](https://spring.io/projects/spring-cloud)      | 微服务开发框架   | 2021.0.1       |
 | [Spring Cloud Alibaba](https://spring.io/projects/spring-cloud-alibaba#learn) | 微服务开发框架   | 2021.0.1.0     |
-| [Spring Cloud Gateway](https://spring.io/projects/spring-cloud) | 微服务网关 | 2021.0.1 |
-| [Nacos](https://nacos.io/zh-cn/docs/quick-start.html)        | 注册中心&配置中心 | 2.2.1.RELEASE  |
+| [Spring Cloud Gateway](https://spring.io/projects/spring-cloud) | 微服务网关 | 2021.0.1       |
+| [Nacos](https://nacos.io/zh-cn/docs/quick-start.html)        | 注册中心&配置中心 | 2.0            |
 | [MySQL](https://www.mysql.com/cn/)                           | 数据库服务器    | 5.6            |
 | [Druid](https://github.com/alibaba/druid)                    | JDBC 连接池、监控组件 | 1.1.16         |
 | [MyBatis](http://www.mybatis.org/mybatis-3/zh/index.html)    | 数据持久层框架   | 3.5.9          |
 | [MyBatis-Plus](https://mp.baomidou.com/)                     | Mybatis 增强工具包 | 3.5.0          |
-| [Redis](https://redis.io/)                                   | key-value 数据库 | 5.0 |
-| [Redisson](https://github.com/redisson/redisson)             | Redis 客户端 | 3.17.3 |
+| [Redis](https://redis.io/)                                   | key-value 数据库 | 5.0            |
+| [Redisson](https://github.com/redisson/redisson)             | Redis 客户端 | 3.17.3         |
 | [Elasticsearch](https://www.elastic.co/cn/)                  | 分布式搜索引擎   | 暂未引入，等压测后，部分模块 |
 | [Dubbo](http://dubbo.apache.org/)                            | 分布式 RPC 服务框架 | 3.0.7          |
 | [RocketMQ](http://dubbo.apache.org/)                         | 消息中间件     | 4.9.2          |
