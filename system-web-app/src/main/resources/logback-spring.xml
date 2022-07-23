@@ -13,7 +13,7 @@
     <!--<property name="LOG_PATH" value="/www/wwwroot/zdj_log/" />-->
 <!--    <property name="LOG_PATH" value="/opt/dubbo-kitchen/kitchen-service/logs" />-->
 <!--    <property name="LOG_PATH" value="/Users/xuyongkang/idea-project/nirvana-reborn/system-web-app" />-->
-    <springProperty scope="context" name="LOG_PATH" source="logging.defaultValue" defaultValue="./logs" />
+    <springProperty scope="context" name="LOG_PATH" source="logging.defaultValue" defaultValue="./system-web-app/logs" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->

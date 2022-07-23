@@ -101,11 +101,10 @@
                     <mainClass>com.phoenix.nirvana.web.system.SystemWebApplication</mainClass>
                 </configuration>
             </plugin>
-
         </plugins>
 
         <!-- 设置构建的 jar 包名 -->
-        <finalName>${project.artifactId}</finalName>
+<!--        <finalName>${project.artifactId}-${revision}</finalName>-->
     </build>
 
 

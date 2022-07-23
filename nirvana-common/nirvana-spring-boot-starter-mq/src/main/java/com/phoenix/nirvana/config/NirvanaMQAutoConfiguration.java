@@ -21,7 +21,7 @@ public class NirvanaMQAutoConfiguration {
     /**
      * 覆盖 {@link RocketMQMessageConverter} 的配置，去掉 fastjson 的转换器，解决不兼容的问题
      */
-    @Bean
+    @Bean(name = RocketMQMessageConverter.DEFAULT_NAME)
     @ConditionalOnMissingBean(RocketMQMessageConverter.class)
     public CompositeMessageConverter rocketMQMessageConverter() {
         List<MessageConverter> messageConverters = new ArrayList<>();
