@@ -33,7 +33,7 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>common-framework</artifactId>
+            <artifactId>nirvana-common</artifactId>
         </dependency>
 
         <dependency>
@@ -59,7 +59,7 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>nirvana-spring-boot-starter-dubbo</artifactId>
+            <artifactId>nirvana-spring-boot-starter-rpc</artifactId>
         </dependency>
 
         <dependency>

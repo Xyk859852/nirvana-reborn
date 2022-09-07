@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * 租户 DO
  *
- * @author 芋道源码
+ * @author xuyongkang
  */
 @TableName(value = "sys_tenant", autoResultMap = true)
 @Data

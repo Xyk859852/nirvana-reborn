@@ -1,12 +1,17 @@
 package com.phoenix.nirvana.service.system.service.permission;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.ArrayUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.util.CollectionUtils;
 import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.convert.permission.PermissionMenuTreeConvert;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.user.SysUserDO;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysPermissionMapper;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysRoleMapper;
+import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.UpdatePermissionDTO;
@@ -18,9 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants.*;
@@ -30,6 +33,9 @@ public class SysPermissionService {
 
     @Autowired
     SysPermissionMapper permissionMapper;
+
+    @Autowired
+    SysUserMapper userMapper;
 
     @Resource(name = "queryAuthorizedPermissionOperation")
     PermissionOperation<PermissionMenuTreeItemVO> queryAuthorizedPermissionOperation;
@@ -42,11 +48,7 @@ public class SysPermissionService {
         if (CollectionUtils.isAnyEmpty(sysPermissionDOPage.getRecords())) {
             return PageResult.empty();
         }
-        return new PageResult<PermissionMenuListItemVO>()
-                .setPageNo(permissionListDTO.getCurrent())
-                .setPageSize(permissionListDTO.getSize())
-                .setTotalCount(sysPermissionDOPage.getTotal())
-                .setData(PermissionMenuTreeConvert.INTERFACE.convert(sysPermissionDOPage.getRecords()));
+        return new PageResult<PermissionMenuListItemVO>().setPageNo(permissionListDTO.getCurrent()).setPageSize(permissionListDTO.getSize()).setTotalCount(sysPermissionDOPage.getTotal()).setData(PermissionMenuTreeConvert.INTERFACE.convert(sysPermissionDOPage.getRecords()));
     }
 
     public List<PermissionMenuTreeItemVO> getPermissionMenuTreeSuperior(Long id) {
@@ -64,6 +66,10 @@ public class SysPermissionService {
             permissionMenuTreeItemVOS.add(sysPermissionDO.execute(queryAuthorizedPermissionOperation));
         }
         return permissionMenuTreeItemVOS;
+    }
+
+    public Set<String> getUserPermissionCodes(Long roleId) {
+        return permissionMapper.selectPermissionCodes(roleId);
     }
 
     public Boolean createPermission(AddPermissionDTO addPermissionDTO) {
@@ -133,5 +139,19 @@ public class SysPermissionService {
                 throw ServiceExceptionUtil.exception(MENU_IFRAME_URL_TOP_ERROR);
             }
         }
+    }
+
+    public Boolean hasAnyRoles(Long userId, String... roles) {
+        return null;
+
+    }
+
+    public Boolean hasAnyPermissions(Long userId, String[] permissions) {
+        if (ArrayUtil.isEmpty(permissions)) {
+            return true;
+        }
+        SysUserDO userDO = userMapper.selectById(userId);
+        Set<String> perCodes = getUserPermissionCodes(userDO.getRoleId());
+        return Arrays.stream(permissions).anyMatch(role -> CollUtil.contains(perCodes, role));
     }
 }

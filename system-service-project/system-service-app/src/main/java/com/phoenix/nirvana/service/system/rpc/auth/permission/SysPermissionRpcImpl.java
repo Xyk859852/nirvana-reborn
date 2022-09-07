@@ -11,12 +11,14 @@ import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.Permissi
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 
 @Service
 @DubboService
+@RestController
 public class SysPermissionRpcImpl implements SysPermissionRpc {
 
     @Autowired
@@ -35,6 +37,16 @@ public class SysPermissionRpcImpl implements SysPermissionRpc {
     @Override
     public CommonResult<List<PermissionMenuTreeItemVO>> getPermissionMenuAllTree() {
         return permissionManager.getPermissionMenuAllTree();
+    }
+
+    @Override
+    public CommonResult<Boolean> hasAnyPermissions(Long userId, String... permissions) {
+        return permissionManager.hasAnyPermissions(userId, permissions);
+    }
+
+    @Override
+    public CommonResult<Boolean> hasAnyRoles(Long userId, String... roles) {
+        return permissionManager.hasAnyRoles(userId, roles);
     }
 
     @Override

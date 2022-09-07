@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * 租户套餐 DO
  *
- * @author 芋道源码
+ * @author xuyongkang
  */
 @TableName(value = "sys_tenant_package", autoResultMap = true)
 @Data

@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.phoenix.nirvana.admin.security.config.NirvanaSecurityAutoConfiguration,\
+  com.phoenix.nirvana.admin.security.config.NirvanaSecurityRpcAutoConfiguration,\
+  com.phoenix.nirvana.admin.security.config.NirvanaSecurityWebAutoConfiguration

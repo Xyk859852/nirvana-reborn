@@ -17,6 +17,21 @@ public class AuthenticationUserVO implements Serializable {
     @ApiModelProperty(value = "用户id")
     private Long id;
 
+    /**
+     * 用户名称
+     */
+    private String userName;
+
+    /**
+     * 用户密码
+     */
+    private String password;
+
+    /**
+     * 当前用户是否可用
+     */
+    private Boolean enable;
+
     @ApiModelProperty(value = "验证token信息")
     private String token;
 

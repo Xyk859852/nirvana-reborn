@@ -1,5 +1,6 @@
 package com.phoenix.nirvana.service.system.service.auth;
 
+import cn.hutool.core.util.IdUtil;
 import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
 import com.phoenix.nirvana.common.constant.CommonNirvanaConstants;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
@@ -17,8 +18,10 @@ import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.dto.AdminAuthenticationDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -46,6 +49,9 @@ public class AuthenticationService {
     @Autowired
     RedisUtils redisUtils;
 
+    @Resource
+    PasswordEncoder passwordEncoder;
+
     public AuthenticationUserVO login(AdminAuthenticationDTO adminAuthenticationDTO) {
 //        String cacheCode = (String) redisUtils.get(adminAuthenticationDTO.getCodeId());
 //        if (!adminAuthenticationDTO.getCode().equals(cacheCode)) {
@@ -58,8 +64,13 @@ public class AuthenticationService {
         if (user.getEnable()) {
             throw ServiceExceptionUtil.exception(USER_IS_ENABLE);
         }
+        if (!passwordEncoder.matches(adminAuthenticationDTO.getPassword(), user.getPassword())) {
+            throw ServiceExceptionUtil.exception(USER_PASSWORD_ERROR);
+        }
+        // 生成令牌
+        String token = IdUtil.fastSimpleUUID();
 //        redisUtils.del(adminAuthenticationDTO.getCodeId());
-        return new AuthenticationUserVO().setId(user.getId());
+        return new AuthenticationUserVO().setUserName(user.getUserName()).setPassword(user.getPassword()).setEnable(user.getEnable()).setId(user.getId()).setToken(token);
     }
 
     public AuthenticationUserInfoVO getUserInfo(Long userId) {

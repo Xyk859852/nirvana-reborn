@@ -8,9 +8,13 @@ import com.phoenix.nirvana.mybatis.core.query.LambdaQueryWrapperX;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -49,4 +53,13 @@ public interface SysPermissionMapper extends BaseMapperX<SysPermissionDO> {
     default Boolean deleteByPid(Long pid) {
         return delete(new LambdaQueryWrapperX<SysPermissionDO>().eq(SysPermissionDO::getPid, pid)) > 0;
     }
+
+    @Select("SELECT " +
+            "p.perm_code " +
+            "FROM " +
+            "sys_permission p " +
+            "LEFT JOIN sys_role_permission rp ON p.id = rp.pid " +
+            "LEFT JOIN sys_role r on r.id = rp.rid " +
+            "where r.id = #{roleId} ")
+    Set<String> selectPermissionCodes(Long roleId);
 }

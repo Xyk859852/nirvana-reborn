@@ -62,7 +62,7 @@
         <!-- 工具类相关 -->
         <fastjson.version>1.2.56</fastjson.version>
         <hibernate-validator.version>6.0.16.Final</hibernate-validator.version>
-        <hutool.version>5.2.5</hutool.version>
+        <hutool.version>5.7.22</hutool.version>
         <guava.version>27.0.1-jre</guava.version>
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
@@ -304,7 +304,7 @@
             <!--  nirvana 相关配置组件  -->
             <dependency>
                 <groupId>com.phoenix</groupId>
-                <artifactId>common-framework</artifactId>
+                <artifactId>nirvana-common</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -339,7 +339,7 @@
 
             <dependency>
                 <groupId>com.phoenix</groupId>
-                <artifactId>nirvana-spring-boot-starter-dubbo</artifactId>
+                <artifactId>nirvana-spring-boot-starter-rpc</artifactId>
                 <version>${revision}</version>
             </dependency>
 

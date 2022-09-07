@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.web.system.controller.permission;
 
-import com.phoenix.nirvana.admin.security.utils.SecurityUtils;
+import com.phoenix.nirvana.admin.security.core.utils.SecurityFrameworkUtils;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
@@ -47,7 +47,7 @@ public class SysPermissionController {
     @ApiOperation("新增菜单")
     @PostMapping("createPermission")
     public CommonResult<Boolean> createPermission(AddPermissionDTO addPermissionDTO) {
-        Long currentUserId = SecurityUtils.getCurrentUserId();
+        Long currentUserId = SecurityFrameworkUtils.getLoginUserId();
         addPermissionDTO.setCreator(currentUserId);
         addPermissionDTO.setUpdater(currentUserId);
         return success(permissionRpcClient.createPermission(addPermissionDTO));
@@ -56,7 +56,7 @@ public class SysPermissionController {
     @ApiOperation("修改菜单")
     @PostMapping("updatePermission")
     public CommonResult<Boolean> updatePermission(UpdatePermissionDTO updatePermissionDTO) {
-        Long currentUserId = SecurityUtils.getCurrentUserId();
+        Long currentUserId = SecurityFrameworkUtils.getLoginUserId();
         updatePermissionDTO.setUpdater(currentUserId);
         return success(permissionRpcClient.updatePermission(updatePermissionDTO));
     }

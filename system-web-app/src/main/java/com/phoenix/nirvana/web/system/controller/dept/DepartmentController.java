@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.web.system.controller.dept;
 
-import com.phoenix.nirvana.admin.security.utils.SecurityUtils;
+import com.phoenix.nirvana.admin.security.core.utils.SecurityFrameworkUtils;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.service.system.rpc.dept.domain.vo.DepartmentCascade;
 import com.phoenix.nirvana.web.system.client.dept.DepartmentRpcClient;
@@ -24,7 +24,7 @@ public class DepartmentController {
     @ApiOperation("根据登录用户查询其子集部门")
     @GetMapping("getDepartmentsCascade")
     public CommonResult<List<DepartmentCascade>> getDepartmentsCascade() {
-        return CommonResult.success(departmentRpcClient.getDepartmentsCascade(SecurityUtils.getCurrentUserId()));
+        return CommonResult.success(departmentRpcClient.getDepartmentsCascade(SecurityFrameworkUtils.getLoginUserId()));
     }
 
 }

@@ -26,7 +26,7 @@ mybatis-plus:
 
 dubbo:
   application:
-    name: ${spring.application.name}
+    name: ${spring.application.name}-dubbo
   registry:
     address: nacos://127.0.0.1:8848
     timeout: 2000

@@ -48,7 +48,7 @@ spring:
 
 dubbo:
   application:
-    name: ${spring.application.name}
+    name: ${spring.application.name}-dubbo
   protocol:
     name: dubbo
     port: -1

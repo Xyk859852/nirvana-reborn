@@ -11,9 +11,8 @@
     <version>${revision}</version>
 
     <modules>
-        <module>nirvana-common</module>
+        <module>nirvana-framework</module>
         <module>nirvana-dependencies</module>
-        <module>admin-web</module>
         <module>system-service-project</module>
         <module>system-web-app</module>
         <module>nirvana-gateway</module>

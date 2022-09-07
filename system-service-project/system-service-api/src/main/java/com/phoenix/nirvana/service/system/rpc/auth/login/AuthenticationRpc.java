@@ -16,4 +16,13 @@ public interface AuthenticationRpc {
      * @return
      */
     CommonResult<AuthenticationUserInfoVO> getUserInfo(Long userId);
+
+
+    /**
+     * 用户登录
+     *
+     * @param adminAuthenticationDTO
+     * @return
+     */
+    CommonResult<AuthenticationUserVO> login(AdminAuthenticationDTO adminAuthenticationDTO);
 }

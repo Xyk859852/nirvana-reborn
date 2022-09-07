@@ -8,6 +8,9 @@ import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.UpdateP
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.PermissionMenuListItemVO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.PermissionMenuTreeItemVO;
 import com.phoenix.nirvana.service.system.service.permission.SysPermissionService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +35,14 @@ public class SysPermissionManager {
 
     public CommonResult<List<PermissionMenuTreeItemVO>> getPermissionMenuAllTree() {
         return success(permissionService.getPermissionMenuAllTree());
+    }
+
+    public CommonResult<Boolean> hasAnyPermissions(Long userId, String... permissions) {
+        return success(permissionService.hasAnyPermissions(userId, permissions));
+    }
+
+    public CommonResult<Boolean> hasAnyRoles(Long userId, String... roles) {
+        return success(permissionService.hasAnyRoles(userId, roles));
     }
 
     @Transactional

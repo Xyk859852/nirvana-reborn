@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.web.system.controller.role;
 
-import com.phoenix.nirvana.admin.security.utils.SecurityUtils;
+import com.phoenix.nirvana.admin.security.core.utils.SecurityFrameworkUtils;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.rpc.role.domain.dto.AddRoleDTO;
@@ -28,7 +28,7 @@ public class RoleController {
     @ApiOperation("根据登录用户查询其子集角色")
     @GetMapping("getRolesCascade")
     public CommonResult<List<RoleCascade>> getRolesCascade() {
-        return CommonResult.success(roleRpcClient.getRolesCascade(SecurityUtils.getCurrentUserId()));
+        return CommonResult.success(roleRpcClient.getRolesCascade(SecurityFrameworkUtils.getLoginUserId()));
     }
 
     @ApiOperation("角色列表分页查询")
@@ -40,16 +40,16 @@ public class RoleController {
     @ApiOperation("新增角色")
     @PostMapping("createRole")
     public CommonResult<Boolean> createRole(@RequestBody AddRoleDTO addRoleDTO) {
-        Long currentUserId = SecurityUtils.getCurrentUserId();
+        Long currentUserId = SecurityFrameworkUtils.getLoginUserId();
         addRoleDTO.setCreator(currentUserId);
         addRoleDTO.setUpdater(currentUserId);
-        return CommonResult.success(roleRpcClient.createRole(addRoleDTO, SecurityUtils.getCurrentUserId()));
+        return CommonResult.success(roleRpcClient.createRole(addRoleDTO, SecurityFrameworkUtils.getLoginUserId()));
     }
 
     @ApiOperation("修改角色")
     @PostMapping("updateRole")
     public CommonResult<Boolean> updateRole(@RequestBody UpdateRoleDTO updateRoleDTO) {
-        Long currentUserId = SecurityUtils.getCurrentUserId();
+        Long currentUserId = SecurityFrameworkUtils.getLoginUserId();
         updateRoleDTO.setUpdater(currentUserId);
         return CommonResult.success(roleRpcClient.updateRole(updateRoleDTO));
     }

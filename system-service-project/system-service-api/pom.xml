@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>common-framework</artifactId>
+            <artifactId>nirvana-common</artifactId>
         </dependency>
 
         <!-- swagger2 相关 -->
@@ -29,6 +29,14 @@
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
         </dependency>
+
+        <!-- RPC 远程调用相关 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <optional>true</optional>
+        </dependency>
+
 
     </dependencies>
 </project>

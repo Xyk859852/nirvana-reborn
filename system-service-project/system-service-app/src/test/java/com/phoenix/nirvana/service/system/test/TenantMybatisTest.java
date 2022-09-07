@@ -28,6 +28,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -91,5 +92,11 @@ public class TenantMybatisTest {
 
         List<SysTenantPackageDO> tenantPackageList = tenantPackageMapper.selectList();
         log.info("tenantPackageList:{}", tenantPackageList);
+    }
+
+    @Test
+    public void test2(){
+        Set<String> codes = permissionMapper.selectPermissionCodes(1l);
+        log.info("selectPermissionCodes:{}",codes);
     }
 }
