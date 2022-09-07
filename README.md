@@ -1,10 +1,13 @@
+## 个人博客 [小许的Java驿站](https://blog.csdn.net/qq_38100149?type=blog) 欢迎大家查阅指导
+
+
+
 > 这个项目主要做技术整合
->
-> * 1、微服务技术选型以 Spring Cloud Alibaba 为中心。
+> 
+>* 1、微服务技术选型以 Spring Cloud Alibaba 为中心。
 > * 2、整合开发使用的一系列中间件比如：nacos，dubbo，mq 等
-> * 3、主做后台服务开发，前端页面暂不开发，若是后面有人加入在考虑
-> * 4、在进行整合技术框架时，我会对应相应的文章进行讲解
-> * 5、在进行做整合时，会根据一些面试问题进行对应的开发指导，希望会对大部分人有帮助
+> * 3、在进行整合技术框架时，我会对应相应的文章进行讲解，目前已有：SpringCloud，Eureka，SpringMVC，Mybatis等文章全部可以在  [小许的Java驿站](https://blog.csdn.net/qq_38100149?type=blog) 里面找到。
+> * 4、在进行做整合时，会根据一些面试问题进行对应的开发指导，希望会对大部分人有帮助
 
 ## 技术栈
 
@@ -35,4 +38,15 @@
 
 - [ ] 服务保障 Sentinel
 - [ ] 网关 Soul
+
+## 前端
+
+前端代码 [传送门](https://gitee.com/xu983364/nirvana-reborn-vue-ui.git)
+
+| 框架 | 说明 |  版本 |
+| --- | --- | --- |
+| [Vue](https://cn.vuejs.org/index.html) | JavaScript 框架 | 2.5.17 |
+| [Vue Ant Design](https://ant.design/docs/react/introduce-cn) | 后台前端解决方案 | - |
+
+
 
