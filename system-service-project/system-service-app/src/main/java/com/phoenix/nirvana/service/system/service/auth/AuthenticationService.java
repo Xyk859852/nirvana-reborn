@@ -97,6 +97,7 @@ public class AuthenticationService {
                 .setId(sysUser.getId())
                 .setName(sysUser.getUserName())
                 .setPhone(sysUser.getPhone())
+                .setDeptId(sysUser.getDeptId())
                 .setRole(new AuthenticationUserRoleVO()
                         .setId(sysRole.getId())
                         .setName(sysRole.getName())
