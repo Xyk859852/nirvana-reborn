@@ -30,6 +30,6 @@ public class AuthenticationUserInfoVO implements Serializable {
     private AuthenticationUserRoleVO role;
 
     @ApiModelProperty(value = "部门Id")
-    private Long departmentNameId;
+    private Long deptId;
 
 }
