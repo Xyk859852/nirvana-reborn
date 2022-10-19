@@ -64,4 +64,4 @@ nirvana:
       - sys_role_permission
   error-code:
     group: system-service-app
-    loadingClass: com.phoenix.nirvana.admin.web.impl.enums.AdminWebCodeConstants
+    loadingClass: com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants
