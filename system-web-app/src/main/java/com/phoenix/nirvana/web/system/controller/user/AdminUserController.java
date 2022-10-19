@@ -28,7 +28,7 @@ public class AdminUserController {
 
     @ApiOperation("管理员列表分页查询")
     @GetMapping("getUserPageList")
-    @PreAuthorize("@ss.hasPermission('system:dept:create')")
+//    @PreAuthorize("@ss.hasPermission('system:dept:create')")
     public CommonResult<PageResult<AdminUserPageItemVO>> getUserPageList(@Validated AdminUserPageDTO adminUserPageDTO) {
         return CommonResult.success(adminUserRpcClient.getUserPageList(adminUserPageDTO));
     }

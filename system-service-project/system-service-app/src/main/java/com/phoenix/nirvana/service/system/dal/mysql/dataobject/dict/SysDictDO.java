@@ -1,56 +1,63 @@
 package com.phoenix.nirvana.service.system.dal.mysql.dataobject.dict;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.phoenix.nirvana.mybatis.core.dataobject.BaseDO;
+import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.util.Date;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 字典表
  * </p>
  *
  * @author Xuyk
- * @since 2021-02-01
+ * @since 2022-09-13
  */
 @Data
-@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @TableName("sys_dict")
-public class SysDictDO extends BaseDO implements Serializable {
+@ApiModel(value="SysDict对象", description="字典表")
+public class SysDictDO implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * 字典id
-     */
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @ApiModelProperty(value = "字典id")
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    /**
-     * 字典名称
-     */
+    @ApiModelProperty(value = "字典名称")
     private String name;
 
-    /**
-     * 字典值
-     */
+    @ApiModelProperty(value = "字典值")
     private String value;
 
-    /**
-     * 类型id
-     */
+    @ApiModelProperty(value = "类型id")
     private Long pid;
 
-    /**
-     * 0.类型 1.字典
-     */
+    @ApiModelProperty(value = "0.类型 1.字典")
     private Integer type;
+
+    @ApiModelProperty(value = "创建人")
+    private Long creator;
+
+    @ApiModelProperty(value = "修改人")
+    private Long updater;
+
+    @ApiModelProperty(value = "创建日期")
+    private Date createTime;
+
+    @ApiModelProperty(value = "修改日期")
+    private Date updateTime;
+
+    @ApiModelProperty(value = "是否删除 0未删除，1删除")
+    private Boolean deleted;
 
 
 }
