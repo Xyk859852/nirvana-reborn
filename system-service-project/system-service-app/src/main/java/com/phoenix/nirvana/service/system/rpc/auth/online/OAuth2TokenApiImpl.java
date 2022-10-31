@@ -4,6 +4,7 @@ import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.service.system.manager.online.OnlineUserManager;
 import com.phoenix.nirvana.service.system.rpc.admin.OAuth2TokenApi;
 import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
+import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.LoginUserInfoVO;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +23,5 @@ public class OAuth2TokenApiImpl implements OAuth2TokenApi {
         return onlineUserManager.getOnlineUserByToken(token);
     }
 
-    @Override
-    public CommonResult<OnlineUserBO> getOnlineUserByUserName(String userName) {
-        return onlineUserManager.getOnlineUserByUserName(userName);
-    }
 }
 

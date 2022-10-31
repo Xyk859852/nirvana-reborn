@@ -37,5 +37,6 @@
         <module>nirvana-spring-boot-starter-sentinel</module>
         <module>nirvana-spring-boot-starter-tenant</module>
         <module>nirvana-spring-boot-starter-mq</module>
+        <module>nirvana-spring-boot-starter-operate-log</module>
     </modules>
 </project>

@@ -7,6 +7,7 @@
         <groupId>com.phoenix</groupId>
         <version>${revision}</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>system-web-app</artifactId>
@@ -46,6 +47,7 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+
         <!-- 读取bootstrap配置文件-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -65,7 +67,11 @@
         <dependency>
             <groupId>com.phoenix</groupId>
             <artifactId>system-service-api</artifactId>
-            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-operate-log</artifactId>
         </dependency>
 
         <dependency>
@@ -82,15 +88,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <compilerArgument>-parameters</compilerArgument>
                     <source>8</source>
                     <target>8</target>
                 </configuration>
-            </plugin>
-
-            <!-- 提供给 mapstruct 使用 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
 
             <!-- 打包 -->
@@ -104,7 +105,7 @@
         </plugins>
 
         <!-- 设置构建的 jar 包名 -->
-<!--        <finalName>${project.artifactId}-${revision}</finalName>-->
+        <!--        <finalName>${project.artifactId}-${revision}</finalName>-->
     </build>
 
 

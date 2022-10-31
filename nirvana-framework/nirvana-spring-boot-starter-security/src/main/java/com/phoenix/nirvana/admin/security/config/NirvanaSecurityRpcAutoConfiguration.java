@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author xuyongkang
  */
 @Configuration(proxyBeanMethods = false)
-@EnableFeignClients(clients = {SysPermissionRpc.class , OAuth2TokenApi.class})
+//@EnableFeignClients(clients = {SysPermissionRpc.class , OAuth2TokenApi.class})
 public class NirvanaSecurityRpcAutoConfiguration {
 
     @Bean

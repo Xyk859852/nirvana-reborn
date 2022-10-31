@@ -1,8 +1,10 @@
 package com.phoenix.nirvana.service.system.service.online;
 
-import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
-import com.phoenix.nirvana.service.system.convert.user.SysUserConvert;
+import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
+import com.phoenix.nirvana.service.system.dal.redis.loginuser.LoginUserInfoRedisDAO;
+import com.phoenix.nirvana.service.system.dal.redis.onlineuser.OnlineUserRedisDAO;
+import com.phoenix.nirvana.service.system.rpc.admin.OAuth2TokenApi;
 import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +18,17 @@ public class OnlineUserService {
     @Autowired
     SysUserMapper userMapper;
 
+    @Autowired
+    LoginUserInfoRedisDAO loginUserInfoRedisDao;
+
+    @Autowired
+    OnlineUserRedisDAO onlineUserRedisDAO;
+
     public OnlineUserBO getOnlineUserByToken(String token) {
-        if (redisUtils.hasKey(token)) {
-            return (OnlineUserBO) redisUtils.get(token);
+        if (onlineUserRedisDAO.hasKey(token)) {
+            return onlineUserRedisDAO.get(token);
         }
         return null;
     }
 
-    public OnlineUserBO getOnlineUserByUserName(String userName) {
-        return SysUserConvert.INTERFACE.convert(userMapper.selectOneByUserName(userName));
-    }
 }

@@ -21,6 +21,7 @@ import com.phoenix.nirvana.admin.security.core.filter.TokenAuthenticationFilter;
 import com.phoenix.nirvana.admin.security.core.handler.AccessDeniedHandlerImpl;
 import com.phoenix.nirvana.admin.security.core.utils.SpringContextHolder;
 import com.phoenix.nirvana.common.enums.RequestMethodEnum;
+import com.phoenix.nirvana.web.core.servlet.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.ApplicationContext;

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.phoenix.nirvana.config.NirvanaOperateLogRpcAutoConfiguration,\
+  com.phoenix.nirvana.config.NirvanaOperateLogAutoConfiguration

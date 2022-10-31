@@ -172,7 +172,7 @@
         不能设置为INHERITED或者同义词NULL。默认是DEBUG
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
-    <logger name="com.alibaba.nacos.client.config.impl.ClientWorker" level="error"/>
+    <logger name="com.alibaba.nacos.client.naming" level="error"/>
 
 
     <root level="info">

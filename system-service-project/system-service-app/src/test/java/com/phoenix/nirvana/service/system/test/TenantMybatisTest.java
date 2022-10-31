@@ -3,7 +3,6 @@ package com.phoenix.nirvana.service.system.test;
 import com.phoenix.nirvana.service.system.SystemServiceApplication;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.dept.SysPostDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.errorcode.SysErrorCodeDO;
-import com.phoenix.nirvana.service.system.dal.mysql.dataobject.logger.SysLogDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysRoleDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysRolePermissionDO;
@@ -12,7 +11,6 @@ import com.phoenix.nirvana.service.system.dal.mysql.dataobject.tenant.SysTenantP
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.user.SysUserDO;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.dept.SysPostMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.errorcode.SysErrorCodeMapper;
-import com.phoenix.nirvana.service.system.dal.mysql.mapper.logger.SysLogMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysPermissionMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysRoleMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysRolePermissionMapper;
@@ -51,9 +49,6 @@ public class TenantMybatisTest {
     SysPostMapper postMapper;
 
     @Autowired
-    SysLogMapper logMapper;
-
-    @Autowired
     SysErrorCodeMapper errorCodeMapper;
 
     @Autowired
@@ -80,9 +75,6 @@ public class TenantMybatisTest {
 
         List<SysPostDO> sysPostList = postMapper.selectList();
         log.info("sysPostList:{}", sysPostList);
-
-        List<SysLogDO> sysLogList = logMapper.selectList();
-        log.info("sysLogList:{}", sysLogList);
 
         List<SysErrorCodeDO> sysErrorCodeList = errorCodeMapper.selectList();
         log.info("sysErrorCodeList:{}", sysErrorCodeList);

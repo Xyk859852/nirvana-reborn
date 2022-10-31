@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(ApiConstants.NAME)
+@FeignClient(ApiConstants.SYSTEM_SERVICE_APP)
 public interface SysPermissionRpc {
 
-    String PREFIX = ApiConstants.PREFIX + "/permission";
+    String PREFIX = ApiConstants.SYSTEM_SERVICE_APP_PREFIX + "/permission";
 
     /**
      * 菜单列表数据查询

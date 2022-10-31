@@ -5,16 +5,10 @@ server:
 spring:
   application:
     name: nirvana-gateway
-  cloud:
-    nacos:
-      discovery:
-        #gateway工程注册到nacos上的地址
-        server-addr: 127.0.0.1:8848
-    gateway:
-      discovery:
-        locator:
-          #开启gateway从nacos上获取服务列表
-          enabled: true
+  main:
+    allow-circular-references: true # 允许循环依赖，因为项目是三层架构，无法避免这个情况。
+    allow-bean-definition-overriding: true # 允许 Bean 覆盖，例如说 Dubbo 或者 Feign 等会存在重复定义的服务
+
 #开启acutor端点
 management:
   endpoints:

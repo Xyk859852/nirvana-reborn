@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 @ApiModel("平台用户详细信息")
-public class AuthenticationUserInfoVO implements Serializable {
+public class LoginUserInfoVO implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户id")
     private Long id;
@@ -27,9 +27,16 @@ public class AuthenticationUserInfoVO implements Serializable {
     private String avatar;
 
     @ApiModelProperty(value = "用户权限")
-    private AuthenticationUserRoleVO role;
+    private LoginUserRoleVO role;
 
     @ApiModelProperty(value = "部门Id")
     private Long deptId;
+
+    @ApiModelProperty(value = "用户密码")
+    private String password;
+
+    @ApiModelProperty(value = "当前用户是否可用")
+    private Boolean enable;
+
 
 }
