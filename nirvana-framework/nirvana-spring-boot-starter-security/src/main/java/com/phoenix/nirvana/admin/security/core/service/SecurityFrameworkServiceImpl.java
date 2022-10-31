@@ -2,10 +2,11 @@ package com.phoenix.nirvana.admin.security.core.service;
 
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.phoenix.nirvana.admin.security.core.bo.LoginUser;
 import com.phoenix.nirvana.admin.security.core.utils.SecurityFrameworkUtils;
 import com.phoenix.nirvana.common.core.KeyValue;
 import com.phoenix.nirvana.common.util.cache.CacheUtils;
+import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
+import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.LoginUserInfoVO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.SysPermissionRpc;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -84,7 +85,7 @@ public class SecurityFrameworkServiceImpl implements SecurityFrameworkService {
 
     @Override
     public boolean hasAnyScopes(String... scope) {
-        LoginUser user = SecurityFrameworkUtils.getLoginUser();
+        OnlineUserBO user = SecurityFrameworkUtils.getLoginUser();
         if (user == null) {
             return false;
         }

@@ -46,6 +46,11 @@ spring:
       write-durations-as-timestamps: true # 设置 Duration 的格式，使用时间戳
       fail-on-empty-beans: false # 允许序列化无属性的 Bean
 
+# 日志文件配置。注意，如果 logging.file.name 不放在 bootstrap.yaml 配置文件，而是放在 application.yaml 中，会导致出现 LOG_FILE_IS_UNDEFINED 文件
+logging:
+  file:
+    name: ${user.home}/logs/${spring.application.name}.log # 日志文件名，全路径
+
 dubbo:
   application:
     name: ${spring.application.name}-dubbo
@@ -59,9 +64,3 @@ dubbo:
     address: nacos://127.0.0.1:8848
   metadata-report:
     address: nacos://127.0.0.1:8848
-
-
-# 日志文件配置。注意，如果 logging.file.name 不放在 bootstrap.yaml 配置文件，而是放在 application.yaml 中，会导致出现 LOG_FILE_IS_UNDEFINED 文件
-logging:
-  file:
-    name: ${user.home}/logs/${spring.application.name}.log # 日志文件名，全路径

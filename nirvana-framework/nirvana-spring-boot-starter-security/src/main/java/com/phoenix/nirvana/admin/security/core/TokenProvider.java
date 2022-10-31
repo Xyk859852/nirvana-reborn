@@ -19,7 +19,7 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import com.phoenix.nirvana.admin.security.core.bean.SecurityProperties;
-import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
+import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

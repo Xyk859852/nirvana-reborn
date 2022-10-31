@@ -1,5 +1,7 @@
 package com.phoenix.nirvana.web.core.servlet;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +12,7 @@ import java.io.IOException;
  *
  * 未来使用 {@link org.springframework.web.filter.CorsFilter} 替换
  */
+@Slf4j
 public class CorsFilter implements Filter {
 
     @Override
@@ -26,7 +29,7 @@ public class CorsFilter implements Filter {
         // 例如说，vue axios 请求时，会自带该逻辑的
         HttpServletRequest req = (HttpServletRequest) request;
         if (req.getMethod().equals("OPTIONS")) {
-            resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+            resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
             return;
         }
         // 如果是其它请求方法，则继续过滤器。

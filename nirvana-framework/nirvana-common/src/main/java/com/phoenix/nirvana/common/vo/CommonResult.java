@@ -6,6 +6,7 @@ import com.phoenix.nirvana.common.exception.ErrorCode;
 import com.phoenix.nirvana.common.exception.GlobalException;
 import com.phoenix.nirvana.common.exception.ServiceException;
 import com.phoenix.nirvana.common.exception.enums.GlobalErrorCodeConstants;
+import lombok.Data;
 import org.springframework.util.Assert;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.io.Serializable;
  *
  * @param <T> 数据泛型
  */
+@Data
 public final class CommonResult<T> implements Serializable {
 
     /**
@@ -94,47 +96,19 @@ public final class CommonResult<T> implements Serializable {
                 globalException.getDetailMessage());
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public String getDetailMessage() {
-        return detailMessage;
-    }
-
     public CommonResult<T> setDetailMessage(String detailMessage) {
         this.detailMessage = detailMessage;
         return this;
     }
 
-    @JSONField(serialize = false) // 避免序列化
+    @JsonIgnore // 避免序列化
     public boolean isSuccess() {
         return GlobalErrorCodeConstants.SUCCESS.getCode().equals(code);
     }
 
     // ========= 和 Exception 异常体系集成 =========
 
-    @JSONField(serialize = false) // 避免序列化
+    @JsonIgnore// 避免序列化
     public boolean isError() {
         return !isSuccess();
     }
@@ -152,6 +126,7 @@ public final class CommonResult<T> implements Serializable {
     /**
      * 判断是否有异常。如果有，则抛出 {@link GlobalException} 或 {@link ServiceException} 异常
      */
+    @JSONField(serialize = false) // 避免序列化
     public void checkError() throws GlobalException, ServiceException {
         if (isSuccess()) {
             return;

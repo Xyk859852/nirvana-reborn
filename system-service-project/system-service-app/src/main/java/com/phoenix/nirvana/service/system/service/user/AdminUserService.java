@@ -10,6 +10,7 @@ import com.phoenix.nirvana.service.system.dal.mysql.dataobject.user.SysUserDO;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.dept.SysDepartmentMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysRoleMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
+import com.phoenix.nirvana.service.system.mq.producer.loginuser.LoginUserProducer;
 import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserCreateDTO;
 import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserPageDTO;
 import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserUpdateDTO;
@@ -23,8 +24,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import static com.phoenix.nirvana.common.util.CollectionUtils.convertList;
-import static com.phoenix.nirvana.common.util.CollectionUtils.convertMap;
+import static com.phoenix.nirvana.common.util.CollectionUtils.*;
 import static com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants.USER_PHONE_EXIST;
 
 @Service
@@ -41,6 +41,9 @@ public class AdminUserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    LoginUserProducer loginUserProducer;
 
     public PageResult<AdminUserPageItemVO> getUserPageList(AdminUserPageDTO adminUserPageDTO) {
         PageResult<SysUserDO> pageResult = sysUserMapper.selectPageList(adminUserPageDTO);
@@ -61,7 +64,7 @@ public class AdminUserService {
             userPageItemVOS.add(pageItemVO);
         });
         return new PageResult(userPageItemVOS, pageResult.getTotalCount(),
-                pageResult.getPageNo(), pageResult.getPageSize(),pageResult.getTotalPage());
+                pageResult.getPageNo(), pageResult.getPageSize(), pageResult.getTotalPage());
     }
 
     public Boolean createAdminUser(AdminUserCreateDTO adminUserCreateDTO) {
@@ -78,7 +81,9 @@ public class AdminUserService {
     }
 
     public Boolean deleteAdminUser(List<Long> ids) {
-        return sysUserMapper.deleteBatchIds(ids) > 0;
+        sysUserMapper.deleteBatchIds(ids);
+        loginUserProducer.sendCleanLoginUserTokenMessage(ids);
+        return true;
     }
 
     /**

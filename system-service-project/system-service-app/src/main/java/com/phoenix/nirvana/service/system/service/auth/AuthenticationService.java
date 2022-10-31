@@ -1,7 +1,7 @@
 package com.phoenix.nirvana.service.system.service.auth;
 
 import cn.hutool.core.util.IdUtil;
-import com.phoenix.nirvana.cache.redis.utils.RedisUtils;
+import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
 import com.phoenix.nirvana.common.constant.CommonNirvanaConstants;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.service.system.convert.permission.SysPermissionConvert;
@@ -73,13 +73,13 @@ public class AuthenticationService {
         return new AuthenticationUserVO().setUserName(user.getUserName()).setPassword(user.getPassword()).setEnable(user.getEnable()).setId(user.getId()).setToken(token);
     }
 
-    public AuthenticationUserInfoVO getUserInfo(Long userId) {
+    public LoginUserInfoVO getUserInfo(Long userId) {
         SysUserDO sysUser = userMapper.selectById(userId);
         SysRoleDO sysRole = roleMapper.selectById(sysUser.getRoleId());
         List<SysRolePermissionDO> sysRolePermissions = sysRolePermissionMapper.selectListByRoleId(sysUser.getRoleId());
         //当前角色没有资源的时候，直接返回用户信息，不进行菜单资源获取
         if (sysRolePermissions == null || sysRolePermissions.isEmpty()) {
-            return new AuthenticationUserInfoVO().setPhone(sysUser.getUserName()).setName(sysUser.getUserName()).setRole(SysRoleConvert.INTERFACE.convert(sysRole));
+            return new LoginUserInfoVO().setPhone(sysUser.getUserName()).setName(sysUser.getUserName()).setRole(SysRoleConvert.INTERFACE.convert(sysRole));
         }
         List<SysPermissionDO> permissions = sysPermissionMapper.selectListByIds(sysRolePermissions.stream().map(SysRolePermissionDO::getPid).collect(Collectors.toSet()));
         List<SysPermissionDO> buttons = permissions.stream().filter(permission -> permission.getType().equals(CommonNirvanaConstants.PERMISSION_BUTTON)).collect(Collectors.toList());
@@ -87,21 +87,21 @@ public class AuthenticationService {
         //根据上级id把按钮数据归类
         Map<Long, List<SysPermissionDO>> collect = buttons.stream().collect(Collectors.groupingBy(SysPermissionDO::getPid));
         //把按钮数据放入到父菜单
-        List<AuthenticationRolePermissionMenuVO> authenticationRolePermissionMenuVOS = SysPermissionConvert.INTERFACE.convertMenus(permissions);
+        List<LoginUserRolePermissionMenuVO> loginUserRolePermissionMenuVOS = SysPermissionConvert.INTERFACE.convertMenus(permissions);
         permissions.parallelStream().filter(menu -> collect.containsKey(menu.getId()))
-                .forEach(sysPermission -> authenticationRolePermissionMenuVOS.stream()
+                .forEach(sysPermission -> loginUserRolePermissionMenuVOS.stream()
                         .filter(menuFilter -> menuFilter.getPermissionId().equals(sysPermission.getPermCode()))
                         .forEach(menusVO -> menusVO.setActions(SysPermissionConvert.INTERFACE.convertButton(collect.get(sysPermission.getId()))))
                 );
-        return new AuthenticationUserInfoVO()
+        return new LoginUserInfoVO()
                 .setId(sysUser.getId())
                 .setName(sysUser.getUserName())
                 .setPhone(sysUser.getPhone())
                 .setDeptId(sysUser.getDeptId())
-                .setRole(new AuthenticationUserRoleVO()
+                .setRole(new LoginUserRoleVO()
                         .setId(sysRole.getId())
                         .setName(sysRole.getName())
-                        .setPermissions(authenticationRolePermissionMenuVOS)
+                        .setPermissions(loginUserRolePermissionMenuVOS)
                 );
     }
 }

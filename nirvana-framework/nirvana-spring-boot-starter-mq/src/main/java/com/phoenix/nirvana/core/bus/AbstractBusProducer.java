@@ -41,7 +41,6 @@ public abstract class AbstractBusProducer {
     }
 
     /**
-     *
      * @return
      */
     protected Destination selfDestinationService() {

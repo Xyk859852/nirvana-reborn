@@ -3,6 +3,8 @@ package com.phoenix.nirvana.web.system.controller.user;
 import com.phoenix.nirvana.admin.security.core.utils.SecurityFrameworkUtils;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.common.vo.PageResult;
+import com.phoenix.nirvana.core.annotation.OperateLog;
+import com.phoenix.nirvana.core.enums.OperateTypeEnum;
 import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserCreateDTO;
 import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserPageDTO;
 import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserUpdateDTO;
@@ -28,6 +30,7 @@ public class AdminUserController {
 
     @ApiOperation("管理员列表分页查询")
     @GetMapping("getUserPageList")
+    @OperateLog(module = "管理员列表", type = OperateTypeEnum.GET)
 //    @PreAuthorize("@ss.hasPermission('system:dept:create')")
     public CommonResult<PageResult<AdminUserPageItemVO>> getUserPageList(@Validated AdminUserPageDTO adminUserPageDTO) {
         return CommonResult.success(adminUserRpcClient.getUserPageList(adminUserPageDTO));

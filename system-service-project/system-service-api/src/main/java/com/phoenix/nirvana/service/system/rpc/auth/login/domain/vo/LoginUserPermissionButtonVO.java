@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 @ApiModel("平台登录用户按钮")
-public class AuthenticationPermissionButtonVO implements Serializable {
+public class LoginUserPermissionButtonVO implements Serializable {
 
     private static final long serialVersionUID=1L;
 

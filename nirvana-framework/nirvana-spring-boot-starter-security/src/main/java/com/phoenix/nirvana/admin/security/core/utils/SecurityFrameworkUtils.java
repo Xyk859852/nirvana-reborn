@@ -15,7 +15,7 @@
  */
 package com.phoenix.nirvana.admin.security.core.utils;
 
-import com.phoenix.nirvana.admin.security.core.bo.LoginUser;
+import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
 import com.phoenix.nirvana.web.core.util.WebFrameworkUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
@@ -25,7 +25,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 
@@ -72,7 +71,7 @@ public class SecurityFrameworkUtils {
      * @return 系统用户ID
      */
     public static Long getLoginUserId() {
-        LoginUser loginUser = getLoginUser();
+        OnlineUserBO loginUser = getLoginUser();
         return loginUser != null ? loginUser.getId() : null;
     }
 
@@ -114,12 +113,12 @@ public class SecurityFrameworkUtils {
      * @return 当前用户
      */
     @Nullable
-    public static LoginUser getLoginUser() {
+    public static OnlineUserBO getLoginUser() {
         Authentication authentication = getAuthentication();
         if (authentication == null) {
             return null;
         }
-        return authentication.getPrincipal() instanceof LoginUser ? (LoginUser) authentication.getPrincipal() : null;
+        return authentication.getPrincipal() instanceof OnlineUserBO ? (OnlineUserBO) authentication.getPrincipal() : null;
     }
 
     /**
@@ -128,7 +127,7 @@ public class SecurityFrameworkUtils {
      * @param loginUser 登录用户
      * @param request   请求
      */
-    public static void setLoginUser(LoginUser loginUser, HttpServletRequest request) {
+    public static void setLoginUser(OnlineUserBO loginUser, HttpServletRequest request) {
         // 创建 Authentication，并设置到上下文
         Authentication authentication = buildAuthentication(loginUser, request);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -136,10 +135,9 @@ public class SecurityFrameworkUtils {
         // 额外设置到 request 中，用于 ApiAccessLogFilter 可以获取到用户编号；
         // 原因是，Spring Security 的 Filter 在 ApiAccessLogFilter 后面，在它记录访问日志时，线上上下文已经没有用户编号等信息
         WebFrameworkUtils.setLoginUserId(request, loginUser.getId());
-        WebFrameworkUtils.setLoginUserType(request, loginUser.getUserType());
     }
 
-    private static Authentication buildAuthentication(LoginUser loginUser, HttpServletRequest request) {
+    private static Authentication buildAuthentication(OnlineUserBO loginUser, HttpServletRequest request) {
         // 创建 UsernamePasswordAuthenticationToken 对象
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 loginUser, null, Collections.emptyList());

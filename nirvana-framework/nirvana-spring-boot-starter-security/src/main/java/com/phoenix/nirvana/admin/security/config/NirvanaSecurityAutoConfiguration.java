@@ -10,6 +10,7 @@ import com.phoenix.nirvana.admin.security.core.service.SecurityFrameworkServiceI
 import com.phoenix.nirvana.service.system.rpc.admin.OAuth2TokenApi;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.SysPermissionRpc;
 import com.phoenix.nirvana.web.core.handler.GlobalExceptionHandler;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -37,6 +38,11 @@ public class NirvanaSecurityAutoConfiguration {
     @Resource
     private SecurityProperties securityProperties;
 
+    @DubboReference
+    SysPermissionRpc permissionRpc;
+
+    @DubboReference
+    OAuth2TokenApi oAuth2TokenApi;
 
     /**
      * 认证失败处理类 Bean
@@ -70,13 +76,12 @@ public class NirvanaSecurityAutoConfiguration {
      * Token 认证过滤器 Bean
      */
     @Bean
-    public TokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
-                                                               OAuth2TokenApi OAuth2TokenApi) {
-        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler, OAuth2TokenApi);
+    public TokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler) {
+        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler, oAuth2TokenApi);
     }
 
     @Bean("ss") // 使用 Spring Security 的缩写，方便使用
-    public SecurityFrameworkService securityFrameworkService(SysPermissionRpc permissionRpc) {
+    public SecurityFrameworkService securityFrameworkService() {
         return new SecurityFrameworkServiceImpl(permissionRpc);
     }
 

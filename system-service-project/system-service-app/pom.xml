@@ -7,6 +7,7 @@
         <groupId>com.phoenix</groupId>
         <version>${revision}</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>system-service-app</artifactId>
@@ -66,7 +67,6 @@
         <dependency>
             <groupId>com.phoenix</groupId>
             <artifactId>system-service-api</artifactId>
-            <version>${revision}</version>
         </dependency>
 
         <dependency>
@@ -93,11 +93,11 @@
 
     <build>
         <plugins>
-            <!-- 提供给 mapstruct 使用 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <compilerArgument>-parameters</compilerArgument>
                     <source>8</source>
                     <target>8</target>
                 </configuration>

@@ -26,4 +26,5 @@ public class OnlineUserBO implements Serializable {
      * 当前用户是否可用
      */
     private Boolean enable;
+
 }

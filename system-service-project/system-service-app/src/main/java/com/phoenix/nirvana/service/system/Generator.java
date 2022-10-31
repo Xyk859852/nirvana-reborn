@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
+import com.phoenix.nirvana.tenant.core.aop.Tenant;
+import com.phoenix.nirvana.tenant.core.db.TenantBaseDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
@@ -58,20 +60,21 @@ public class Generator {
         PackageConfig pc = new PackageConfig.Builder()
                 .parent("com.phoenix.nirvana.service.system")
                 .controller("controller")
-                .service("service.config")
-                .serviceImpl("service.config.impl")
-                .mapper("dal.mysql.mapper.config")
-                .entity("dal.mysql.dataobject.config")
+                .service("service.logger")
+                .serviceImpl("service.logger.impl")
+                .mapper("dal.mysql.mapper.logger")
+                .entity("dal.mysql.dataobject.logger")
                 .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + "/system-service-project/system-service-app/src/main/resources/mapper"))
                 .build();
 
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig.Builder()
-                .addInclude("sys_config")
+                .addInclude("sys_operate_log")
                 .enableCapitalMode()
                 .entityBuilder()
                 .formatFileName("%sDO")
+                .superClass(TenantBaseDO.class)
                 .enableLombok()
                 .enableFileOverride()
                 .idType(IdType.AUTO)

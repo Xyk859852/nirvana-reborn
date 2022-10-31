@@ -5,7 +5,7 @@ import com.phoenix.nirvana.service.system.rpc.role.domain.dto.AddRoleDTO;
 import com.phoenix.nirvana.service.system.rpc.role.domain.dto.UpdateRoleDTO;
 import com.phoenix.nirvana.service.system.rpc.role.domain.vo.RoleCascade;
 import com.phoenix.nirvana.service.system.rpc.role.domain.vo.RolePageItemVO;
-import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationUserRoleVO;
+import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.LoginUserRoleVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
@@ -18,7 +18,7 @@ public interface SysRoleConvert {
     SysRoleConvert INTERFACE = Mappers.getMapper(SysRoleConvert.class);
 
     @Mappings({})
-    AuthenticationUserRoleVO convert(SysRoleDO sysRole);
+    LoginUserRoleVO convert(SysRoleDO sysRole);
 
     @Mappings({})
     RolePageItemVO convertPageItem(SysRoleDO sysRole);
