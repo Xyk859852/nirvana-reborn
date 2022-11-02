@@ -12,9 +12,9 @@
     <!--Linux下的路径-->
     <!--<property name="LOG_PATH" value="/www/wwwroot/zdj_log/" />-->
     <!--    <property name="LOG_PATH" value="/opt/dubbo-kitchen/kitchen-service/logs" />-->
-<!--    <springProperty scope="context" name="LOG_PATH" source="logging.defaultValue" defaultValue="/opt/system-web-app/logs" />-->
+
     <springProperty scope="context" name="destination-url" source="logging.destination-url" defaultValue="127.0.0.1:4560" />
-    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="system-service-app" />
+    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="nirvana-gateway" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
@@ -26,6 +26,7 @@
     <!-- 彩色日志格式 -->
     <property name="CONSOLE_LOG_PATTERN"
               value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}|-|${appName}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
 
     <!--输出到控制台-->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -179,10 +180,7 @@
         不能设置为INHERITED或者同义词NULL。默认是DEBUG
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
-
-    <logger name="com.phoenix.nirvana.service.system.dal.mysql.mapper" level="debug"/>
     <logger name="com.alibaba.nacos.client.naming" level="error"/>
-
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>

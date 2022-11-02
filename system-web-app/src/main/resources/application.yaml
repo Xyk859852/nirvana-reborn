@@ -23,6 +23,13 @@ spring:
       write-durations-as-timestamps: true # 设置 Duration 的格式，使用时间戳
       fail-on-empty-beans: false # 允许序列化无属性的 Bean
 
+server:
+  port: 18097
+  tomcat:
+    max-connections: 200
+    max-threads: 800
+    accept-count: 1000
+    min-spare-threads: 100
 
 # logging
 logging:

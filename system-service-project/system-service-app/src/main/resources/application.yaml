@@ -11,7 +11,15 @@ spring:
       write-date-timestamps-as-nanoseconds: false # 设置不使用 nanoseconds 的格式。例如说 1611460870.401，而是直接 1611460870401
       write-durations-as-timestamps: true # 设置 Duration 的格式，使用时间戳
       fail-on-empty-beans: false # 允许序列化无属性的 Bean
-
+  profiles:
+    active: pro
+server:
+  port: 18099
+  tomcat:
+    max-connections: 200
+    max-threads: 800
+    accept-count: 1000
+    min-spare-threads: 100
 
 mybatis-plus:
   configuration:
@@ -23,19 +31,6 @@ mybatis-plus:
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.phoenix.nirvana.service.system.dal.mysql.dataobject
-
-dubbo:
-  application:
-    name: ${spring.application.name}-dubbo
-  registry:
-    address: nacos://127.0.0.1:8848
-    timeout: 2000
-    protocol: -1
-    port: -1
-    # 协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受
-  protocol:
-    port: -1
-    name: dubbo
 
 # Actuator 监控端点的配置项
 management:
