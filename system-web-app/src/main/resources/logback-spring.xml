@@ -14,6 +14,9 @@
 <!--    <property name="LOG_PATH" value="/opt/dubbo-kitchen/kitchen-service/logs" />-->
 <!--    <property name="LOG_PATH" value="/Users/xuyongkang/idea-project/nirvana-reborn/system-web-app" />-->
     <springProperty scope="context" name="LOG_PATH" source="logging.defaultValue" defaultValue="./system-web-app/logs" />
+    <springProperty scope="context" name="destination-url" source="logging.destination-url" defaultValue="127.0.0.1:4560" />
+    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="system-web-app" />
+
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
@@ -21,7 +24,9 @@
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
     <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
     <!-- 彩色日志格式 -->
-    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}|-|${appName}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
 
     <!--输出到控制台-->
@@ -147,6 +152,14 @@
         </filter>
     </appender>
 
+    <!--输出到logstash的appender-->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!--可以访问的logstash日志收集端口-->
+        <destination>${destination-url}</destination>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+
     <!--
         <logger>用来设置某一个包或者具体的某一个类的日志打印级别、
         以及指定<appender>。<logger>仅有一个name属性，
@@ -174,12 +187,12 @@
     -->
     <logger name="com.alibaba.nacos.client.naming" level="error"/>
 
-
     <root level="info">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="DEBUG_FILE" />
         <appender-ref ref="INFO_FILE" />
         <appender-ref ref="WARN_FILE" />
         <appender-ref ref="ERROR_FILE" />
+        <appender-ref ref="LOGSTASH"/>
     </root>
 </configuration>

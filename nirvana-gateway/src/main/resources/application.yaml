@@ -21,3 +21,8 @@ management:
       show-details: always
 
 
+# logging
+logging:
+  config: classpath:logback-spring.xml
+
+
