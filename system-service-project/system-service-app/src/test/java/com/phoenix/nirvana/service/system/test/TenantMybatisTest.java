@@ -1,7 +1,9 @@
 package com.phoenix.nirvana.service.system.test;
 
+import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.phoenix.nirvana.service.system.SystemServiceApplication;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.dept.SysPostDO;
+import com.phoenix.nirvana.service.system.dal.mysql.dataobject.dict.SysDictDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.errorcode.SysErrorCodeDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysRoleDO;
@@ -17,6 +19,7 @@ import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysRolePer
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.tenant.SysTenantMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.tenant.SysTenantPackageMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
+import com.phoenix.nirvana.service.system.service.logger.OperateLogService;
 import com.phoenix.nirvana.tenant.core.context.TenantContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -25,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -57,6 +61,9 @@ public class TenantMybatisTest {
     @Autowired
     SysTenantPackageMapper tenantPackageMapper;
 
+    @Autowired
+    OperateLogService operateLogService;
+
 
     @Test
     public void test() {
@@ -87,8 +94,30 @@ public class TenantMybatisTest {
     }
 
     @Test
-    public void test2(){
-        Set<String> codes = permissionMapper.selectPermissionCodes(1l);
-        log.info("selectPermissionCodes:{}",codes);
+    public void test2() {
+        operateLogService.getById(123);
     }
+
+
+    @Test
+    public void test3() {
+        SysDictDO dictDO1 = new SysDictDO();
+        dictDO1.setName("123");
+        dictDO1.setPid(0l);
+        dictDO1.setCreator(0l);
+        dictDO1.setType(0);
+        SysDictDO dictDO2 = new SysDictDO();
+        dictDO2.setName("123");
+        dictDO2.setPid(0l);
+        dictDO2.setCreator(0l);
+        dictDO2.setType(0);
+        SysDictDO dictDO3 = new SysDictDO();
+        dictDO3.setName("123");
+        dictDO3.setPid(0l);
+        dictDO3.setCreator(0l);
+        dictDO3.setType(0);
+        Db.saveBatch(Arrays.asList(dictDO1, dictDO2, dictDO3));
+
+    }
+
 }

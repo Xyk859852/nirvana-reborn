@@ -1,6 +1,7 @@
 package com.phoenix.nirvana.service.system.service.logger;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.phoenix.nirvana.service.system.convert.logger.OperateLogConvert;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.logger.SysOperateLogDO;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.logger.SysOperateLogMapper;
@@ -20,7 +21,7 @@ import static com.phoenix.nirvana.service.system.dal.mysql.dataobject.logger.Sys
  * @since 2022-10-20
  */
 @Service
-public class OperateLogService {
+public class OperateLogService extends ServiceImpl<SysOperateLogMapper, SysOperateLogDO> {
 
     @Autowired
     SysOperateLogMapper operateLogMapper;
@@ -30,7 +31,7 @@ public class OperateLogService {
         logDO.setJavaMethodArgs(StrUtil.maxLength(logDO.getJavaMethodArgs(), JAVA_METHOD_ARGS_MAX_LENGTH));
         logDO.setResultData(StrUtil.maxLength(logDO.getResultData(), RESULT_MAX_LENGTH));
         operateLogMapper.insert(logDO);
-        return null;
+        return true;
     }
 
 }

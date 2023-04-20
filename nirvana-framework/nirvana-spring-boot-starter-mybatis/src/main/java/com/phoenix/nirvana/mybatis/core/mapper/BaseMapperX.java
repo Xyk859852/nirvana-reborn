@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
+import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.phoenix.nirvana.common.vo.PageParam;
 import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.mybatis.core.util.MyBatisUtils;
@@ -76,8 +77,7 @@ public interface BaseMapperX<T> extends BaseMapper<T> {
     }
 
     default void insertBatch(Collection<T> entities) {
-        // TODO 芋艿：修改成支持批量的
-        entities.forEach(this::insert);
+        Db.saveBatch(entities);
     }
 
     default void updateBatch(T update) {

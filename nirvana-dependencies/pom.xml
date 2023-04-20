@@ -45,7 +45,7 @@
         <mybatis-spring-boot-starter.version>2.0.0</mybatis-spring-boot-starter.version>
         <mybatis.version>3.5.4</mybatis.version>
         <velocity-engine-core.version>2.3</velocity-engine-core.version>
-        <mybatis-plus.version>3.5.0</mybatis-plus.version>
+        <mybatis-plus.version>3.5.3</mybatis-plus.version>
         <mybatis-plus-generator.version>3.5.3</mybatis-plus-generator.version>
         <spring-boot-starter-data-jest.version>3.2.5.RELEASE</spring-boot-starter-data-jest.version>
         <redisson.version>3.17.3</redisson.version>

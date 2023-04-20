@@ -2,6 +2,7 @@ package com.phoenix.nirvana.service.system.service.user;
 
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.util.CollectionUtils;
+import com.phoenix.nirvana.common.util.StringUtils;
 import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.service.system.convert.user.SysUserConvert;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.dept.SysDepartmentDO;

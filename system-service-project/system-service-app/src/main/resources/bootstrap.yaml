@@ -7,7 +7,7 @@ spring:
   application:
     name: system-service-app
   profiles:
-    active: pro
+    active: local
 
 # Actuator 监控端点的配置项
 management:

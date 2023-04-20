@@ -4,6 +4,7 @@ import com.phoenix.nirvana.service.system.dal.mysql.dataobject.config.SysConfigD
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.config.SysConfigMapper;
 import com.phoenix.nirvana.service.system.service.config.SysConfigService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
  * @since 2022-10-19
  */
 @Service
+@DubboService
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfigDO> implements SysConfigService {
 
 }
+
+

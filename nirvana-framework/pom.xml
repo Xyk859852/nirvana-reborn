@@ -38,5 +38,6 @@
         <module>nirvana-spring-boot-starter-tenant</module>
         <module>nirvana-spring-boot-starter-mq</module>
         <module>nirvana-spring-boot-starter-operate-log</module>
+        <module>nirvana-spring-boot-starter-es</module>
     </modules>
 </project>

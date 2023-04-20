@@ -12,7 +12,9 @@ spring:
       write-durations-as-timestamps: true # 设置 Duration 的格式，使用时间戳
       fail-on-empty-beans: false # 允许序列化无属性的 Bean
   profiles:
-    active: pro
+    active: local
+  resources:
+    add-mappings: false
 server:
   port: 18099
   tomcat:
