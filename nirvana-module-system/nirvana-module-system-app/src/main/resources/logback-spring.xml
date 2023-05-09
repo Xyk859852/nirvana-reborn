@@ -3,29 +3,31 @@
 <!-- scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true -->
 <!-- scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。 -->
 <!-- debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
-<configuration scan="true" scanPeriod="10 seconds">
+<configuration  scan="true" scanPeriod="10 seconds">
 
-    <!-- 引用 Spring Boot 的 logback 基础配置 -->
-    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
+
     <contextName>logback</contextName>
     <!-- name的值是变量的名称，value的值时变量定义的值。通过定义的值会被插入到logger上下文中。定义变量后，可以使“${}”来使用变量。 -->
     <!--Linux下的路径-->
     <!--<property name="LOG_PATH" value="/www/wwwroot/zdj_log/" />-->
-    <!--    <property name="LOG_PATH" value="/opt/dubbo-kitchen/kitchen-service/logs" />-->
-<!--    <springProperty scope="context" name="LOG_PATH" source="logging.defaultValue" defaultValue="/opt/system-web-app/logs" />-->
+<!--    <property name="LOG_PATH" value="/opt/dubbo-kitchen/kitchen-service/logs" />-->
+<!--    <property name="LOG_PATH" value="/Users/xuyongkang/idea-project/nirvana-reborn/system-web-app" />-->
+    <springProperty scope="context" name="LOG_PATH" source="logging.file.path"/>
     <springProperty scope="context" name="destination-url" source="logging.destination-url" defaultValue="127.0.0.1:4560" />
-    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="system-service-app" />
+    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="system-web-app" />
+
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
-    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
-    <conversionRule conversionWord="wex"
-                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
-    <conversionRule conversionWord="wEx"
-                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+    <!-- 彩色日志格式 -->
     <!-- 彩色日志格式 -->
     <property name="CONSOLE_LOG_PATTERN"
               value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}|-|${appName}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
 
     <!--输出到控制台-->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -39,6 +41,9 @@
             <charset>UTF-8</charset>
         </encoder>
     </appender>
+
+
+    <!--输出到文件-->
 
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
     <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -154,6 +159,7 @@
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
+
     <!--
         <logger>用来设置某一个包或者具体的某一个类的日志打印级别、
         以及指定<appender>。<logger>仅有一个name属性，
@@ -179,17 +185,14 @@
         不能设置为INHERITED或者同义词NULL。默认是DEBUG
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
-
-    <logger name="com.phoenix.nirvana.service.system.dal.mysql.mapper" level="debug"/>
-<!--    <logger name="com.alibaba.nacos.client.naming" level="error"/>-->
-
+    <logger name="com.alibaba.nacos.client.naming" level="error"/>
 
     <root level="info">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="DEBUG_FILE"/>
-        <appender-ref ref="INFO_FILE"/>
-        <appender-ref ref="WARN_FILE"/>
-        <appender-ref ref="ERROR_FILE"/>
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="DEBUG_FILE" />
+        <appender-ref ref="INFO_FILE" />
+        <appender-ref ref="WARN_FILE" />
+        <appender-ref ref="ERROR_FILE" />
         <appender-ref ref="LOGSTASH"/>
     </root>
 </configuration>

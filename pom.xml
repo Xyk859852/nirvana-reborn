@@ -13,13 +13,27 @@
     <modules>
         <module>nirvana-framework</module>
         <module>nirvana-dependencies</module>
-        <module>system-service-project</module>
-        <module>system-web-app</module>
         <module>nirvana-gateway</module>
+        <module>nirvana-module-system</module>
+
 
     </modules>
 
     <name>${project.artifactId}</name>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-dependencies</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <!-- 属性 -->
     <properties>
         <revision>1.0.0</revision>

@@ -2,23 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>nirvana-reborn</artifactId>
-        <groupId>com.phoenix</groupId>
-        <version>${revision}</version>
-    </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
-    <packaging>pom</packaging>
-
+    <groupId>com.phoenix</groupId>
     <artifactId>nirvana-dependencies</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
 
     <description>Maven Bom，定义 nirvana-reborn 项目的所有依赖的版本</description>
 
 
     <!-- 属性 -->
     <properties>
+        <revision>1.0.0</revision>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <resource.delimiter>@</resource.delimiter>
@@ -408,10 +405,15 @@
                 <version>${revision}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-module-system-service-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.phoenix</groupId>
-                <artifactId>system-service-api</artifactId>
+                <artifactId>system-service-app</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -448,9 +450,9 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <configuration>
-                        <fork>true</fork>
-                    </configuration>
+                    <!--                    <configuration>-->
+                    <!--                        <fork>true</fork>-->
+                    <!--                    </configuration>-->
                 </plugin>
             </plugins>
         </pluginManagement>

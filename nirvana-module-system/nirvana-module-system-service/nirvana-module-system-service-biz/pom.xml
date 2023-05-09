@@ -3,32 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>nirvana-reborn</artifactId>
+        <artifactId>nirvana-module-system-service</artifactId>
         <groupId>com.phoenix</groupId>
         <version>${revision}</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>system-web-app</artifactId>
+    <artifactId>nirvana-module-system-service-biz</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.phoenix</groupId>
-                <artifactId>nirvana-dependencies</artifactId>
-                <version>${revision}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
 
@@ -39,8 +27,19 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>nirvana-spring-boot-starter-security</artifactId>
+            <artifactId>nirvana-spring-boot-starter-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-rpc</artifactId>
+        </dependency>
+
 
         <!-- Registry 和 Config 相关 -->
         <dependency>
@@ -55,23 +54,34 @@
         </dependency>
 
         <dependency>
-            <groupId>com.phoenix</groupId>
-            <artifactId>nirvana-spring-boot-starter-web</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- 参数验证 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>nirvana-spring-boot-starter-rpc</artifactId>
+            <artifactId>nirvana-module-system-service-api</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>system-service-api</artifactId>
+            <artifactId>nirvana-spring-boot-starter-cache-redis</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>nirvana-spring-boot-starter-operate-log</artifactId>
+            <artifactId>nirvana-spring-boot-starter-tenant</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-mq</artifactId>
         </dependency>
 
         <dependency>
@@ -120,6 +130,5 @@
 
         </plugins>
     </build>
-
 
 </project>
