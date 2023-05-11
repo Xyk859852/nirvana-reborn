@@ -10,7 +10,6 @@ import com.phoenix.nirvana.service.system.convert.permission.PermissionMenuTreeC
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.user.SysUserDO;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysPermissionMapper;
-import com.phoenix.nirvana.service.system.dal.mysql.mapper.permission.SysRoleMapper;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.AddPermissionDTO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
@@ -18,7 +17,6 @@ import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.UpdateP
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.PermissionMenuListItemVO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.PermissionMenuTreeItemVO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.tree.PermissionOperation;
-import com.phoenix.nirvana.service.system.rpc.role.domain.vo.RolePageItemVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +46,7 @@ public class SysPermissionService {
         if (CollectionUtils.isAnyEmpty(sysPermissionDOPage.getRecords())) {
             return PageResult.empty();
         }
-        return new PageResult<PermissionMenuListItemVO>().setPageNo(permissionListDTO.getCurrent()).setPageSize(permissionListDTO.getSize()).setTotalCount(sysPermissionDOPage.getTotal()).setData(PermissionMenuTreeConvert.INTERFACE.convert(sysPermissionDOPage.getRecords()));
+        return new PageResult<PermissionMenuListItemVO>().setPageNo(permissionListDTO.getPageNo()).setPageSize(permissionListDTO.getPageSize()).setTotalCount(sysPermissionDOPage.getTotal()).setData(PermissionMenuTreeConvert.INTERFACE.convert(sysPermissionDOPage.getRecords()));
     }
 
     public List<PermissionMenuTreeItemVO> getPermissionMenuTreeSuperior(Long id) {

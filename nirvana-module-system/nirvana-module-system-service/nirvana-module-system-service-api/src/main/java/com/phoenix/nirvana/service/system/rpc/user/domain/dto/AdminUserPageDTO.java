@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.service.system.rpc.user.domain.dto;
 
-import com.phoenix.nirvana.common.vo.PageParam;
+import com.phoenix.nirvana.common.dto.PageParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

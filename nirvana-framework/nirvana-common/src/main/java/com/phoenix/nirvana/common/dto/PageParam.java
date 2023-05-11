@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.common.vo;
+package com.phoenix.nirvana.common.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -49,8 +49,8 @@ public class RoleService {
             pageItemVOS.add(pageItemVO);
         });
         return new PageResult<RolePageItemVO>()
-                .setPageNo(rolePageDTO.getCurrent())
-                .setPageSize(rolePageDTO.getSize())
+                .setPageNo(rolePageDTO.getPageNo())
+                .setPageSize(rolePageDTO.getPageSize())
                 .setTotalCount(sysRolePage.getTotal())
                 .setData(pageItemVOS);
     }

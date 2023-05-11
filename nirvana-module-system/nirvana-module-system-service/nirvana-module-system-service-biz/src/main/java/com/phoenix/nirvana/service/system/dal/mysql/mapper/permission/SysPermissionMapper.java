@@ -8,8 +8,6 @@ import com.phoenix.nirvana.mybatis.core.query.LambdaQueryWrapperX;
 import com.phoenix.nirvana.service.system.dal.mysql.dataobject.permission.SysPermissionDO;
 import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.dto.PermissionListDTO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.Collection;
@@ -44,7 +42,7 @@ public interface SysPermissionMapper extends BaseMapperX<SysPermissionDO> {
     }
 
     default Page<SysPermissionDO> selectListByPidOrLikeTitle(PermissionListDTO permissionListDTO) {
-        return selectPage(new Page(permissionListDTO.getCurrent(), permissionListDTO.getSize()), new LambdaQueryWrapperX<SysPermissionDO>()
+        return selectPage(new Page(permissionListDTO.getPageNo(), permissionListDTO.getPageSize()), new LambdaQueryWrapperX<SysPermissionDO>()
                 .likeIfPresent(SysPermissionDO::getTitle, permissionListDTO.getKeyboard())
                 .eqIfPresent(SysPermissionDO::getPid, permissionListDTO.getPid())
                 .orderByDesc(SysPermissionDO::getSort));

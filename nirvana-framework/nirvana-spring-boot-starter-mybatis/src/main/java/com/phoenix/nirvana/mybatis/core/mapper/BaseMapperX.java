@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
-import com.phoenix.nirvana.common.vo.PageParam;
+import com.phoenix.nirvana.common.dto.PageParam;
 import com.phoenix.nirvana.common.vo.PageResult;
 import com.phoenix.nirvana.mybatis.core.util.MyBatisUtils;
 import org.apache.ibatis.annotations.Param;

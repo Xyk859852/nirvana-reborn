@@ -25,7 +25,7 @@ public interface SysRoleMapper extends BaseMapperX<SysRoleDO> {
     }
 
     default Page<SysRoleDO> selectPageList(RolePageDTO rolePageDTO) {
-        return selectPage(new Page(rolePageDTO.getCurrent(), rolePageDTO.getSize()), new LambdaQueryWrapperX<SysRoleDO>()
+        return selectPage(new Page(rolePageDTO.getPageNo(), rolePageDTO.getPageSize()), new LambdaQueryWrapperX<SysRoleDO>()
                 .likeIfPresent(SysRoleDO::getName, rolePageDTO.getKeyboard())
                 .orderByDesc(SysRoleDO::getSort)
         );

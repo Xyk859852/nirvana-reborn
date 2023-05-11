@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.phoenix.nirvana.mybatis.core.dataobject.BaseDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -23,7 +24,7 @@ import java.io.Serializable;
 @Setter
 @TableName("product_catalog")
 @ApiModel(value = "ProductCatalogDO对象", description = "商品三级分类")
-public class ProductCatalogDO implements Serializable {
+public class ProductCatalogDO extends BaseDO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
