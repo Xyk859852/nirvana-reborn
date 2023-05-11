@@ -7,15 +7,13 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>nirvana-module-system</artifactId>
+    <artifactId>nirvana-module-mall</artifactId>
     <packaging>pom</packaging>
 
-    <description>nirvana-reborn 管理平台端服务</description>
-
+    <description>nirvana-reborn 商城端服务</description>
 
     <modules>
-        <module>nirvana-module-system-service</module>
-        <module>nirvana-module-system-app</module>
+        <module>mall-product</module>
     </modules>
 
     <properties>

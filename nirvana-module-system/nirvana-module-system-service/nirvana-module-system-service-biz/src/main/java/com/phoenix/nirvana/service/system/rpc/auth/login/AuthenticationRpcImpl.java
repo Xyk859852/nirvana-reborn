@@ -5,10 +5,8 @@ import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.service.system.manager.auth.AuthenticationManager;
 import com.phoenix.nirvana.service.system.rpc.admin.OAuth2TokenApi;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.dto.AdminAuthenticationDTO;
-import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.LoginUserInfoVO;
 import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.AuthenticationUserVO;
-import com.phoenix.nirvana.service.system.rpc.auth.permission.SysPermissionRpc;
-import org.apache.dubbo.config.annotation.DubboReference;
+import com.phoenix.nirvana.service.system.rpc.auth.login.domain.vo.LoginUserInfoVO;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,10 +24,6 @@ public class AuthenticationRpcImpl implements AuthenticationRpc {
 
     @Autowired
     OAuth2TokenApi oAuth2TokenApi;
-
-    @DubboReference
-    SysPermissionRpc permissionRpc;
-
 
     @Override
     public CommonResult<AuthenticationUserVO> login(AdminAuthenticationDTO adminAuthenticationDTO) {

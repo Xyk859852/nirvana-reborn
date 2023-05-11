@@ -15,7 +15,7 @@
 
     <!-- 属性 -->
     <properties>
-        <revision>1.0.0</revision>
+        <revision>1.1.0</revision>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <resource.delimiter>@</resource.delimiter>
@@ -413,7 +413,7 @@
 
             <dependency>
                 <groupId>com.phoenix</groupId>
-                <artifactId>system-service-app</artifactId>
+                <artifactId>mall-product-api</artifactId>
                 <version>${revision}</version>
             </dependency>
 
