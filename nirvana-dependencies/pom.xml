@@ -54,6 +54,9 @@
         <qiniu.version>7.2.18</qiniu.version>
         <yunpian-java-sdk.version>1.2.7</yunpian-java-sdk.version>
         <aliyun-java-sdk-core.version>4.1.0</aliyun-java-sdk-core.version>
+        <okio.version>3.0.0</okio.version>
+        <okhttp3.version>4.10.0</okhttp3.version>
+        <minio.version>8.5.1</minio.version>
         <!-- 监控相关 -->
         <skywalking.version>8.7.0</skywalking.version>
         <spring-boot-admin.version>2.6.7</spring-boot-admin.version>
@@ -68,6 +71,7 @@
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <jjwt.version>0.11.1</jjwt.version>
         <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
+        <tika-core.version>2.6.0</tika-core.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -248,7 +252,6 @@
                 <artifactId>qiniu-java-sdk</artifactId> <!-- 七牛文件服务器 -->
                 <version>${qiniu.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.yunpian.sdk</groupId>
                 <artifactId>yunpian-java-sdk</artifactId> <!-- 云片短信 -->
@@ -258,6 +261,22 @@
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-core</artifactId> <!-- 七牛短信 -->
                 <version>${aliyun-java-sdk-core.version}</version>
+            </dependency>
+            <!--    S3协议        -->
+            <dependency>
+                <groupId>com.squareup.okio</groupId>
+                <artifactId>okio</artifactId>
+                <version>${okio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
             </dependency>
 
             <!-- 工具类相关 -->
@@ -276,6 +295,12 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${org.projectlombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId> <!-- 文件类型的识别 -->
+                <version>${tika-core.version}</version>
             </dependency>
 
             <!--集成logstash-->
@@ -355,6 +380,12 @@
             <dependency>
                 <groupId>com.phoenix</groupId>
                 <artifactId>nirvana-spring-boot-starter-tenant</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-file</artifactId>
                 <version>${revision}</version>
             </dependency>
 
