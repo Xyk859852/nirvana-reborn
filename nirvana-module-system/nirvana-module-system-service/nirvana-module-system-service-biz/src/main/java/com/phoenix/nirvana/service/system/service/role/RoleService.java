@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,7 +57,6 @@ public class RoleService {
     public Boolean createRole(AddRoleDTO addRoleDTO, Long userId) {
         SysRoleDO sysRoleDO = SysRoleConvert.INTERFACE.convert(addRoleDTO);
         sysRoleDO.setCreator(userId);
-        sysRoleDO.setCreateTime(new Date());
         roleMapper.insert(sysRoleDO);
         if (!CollectionUtils.isAnyEmpty(addRoleDTO.getPermissions())) {
             addRoleDTO.getPermissions().forEach(menu -> rolePermissionMapper.insert(new SysRolePermissionDO().setRid(sysRoleDO.getId()).setPid(menu)));
@@ -68,7 +66,6 @@ public class RoleService {
 
     public Boolean updateRole(UpdateRoleDTO updateRoleDTO) {
         SysRoleDO sysRoleDO = SysRoleConvert.INTERFACE.convert(updateRoleDTO);
-        sysRoleDO.setUpdateTime(new Date());
         roleMapper.updateById(sysRoleDO);
         rolePermissionMapper.deleteByRoleId(sysRoleDO.getId());
         if (!CollectionUtils.isAnyEmpty(updateRoleDTO.getPermissions())) {

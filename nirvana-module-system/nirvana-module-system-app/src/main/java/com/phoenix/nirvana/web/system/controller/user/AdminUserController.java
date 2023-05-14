@@ -13,6 +13,7 @@ import com.phoenix.nirvana.web.system.client.user.AdminUserRpcClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class AdminUserController {
     @ApiOperation("管理员列表分页查询")
     @GetMapping("getUserPageList")
     @OperateLog(module = "管理员列表", type = OperateTypeEnum.GET)
-//    @PreAuthorize("@ss.hasPermission('system:dept:create')")
+    @PreAuthorize("@ss.hasPermission('system:dept:create')")
     public CommonResult<PageResult<AdminUserPageItemVO>> getUserPageList(@Validated AdminUserPageDTO adminUserPageDTO) {
         return CommonResult.success(adminUserRpcClient.getUserPageList(adminUserPageDTO));
     }

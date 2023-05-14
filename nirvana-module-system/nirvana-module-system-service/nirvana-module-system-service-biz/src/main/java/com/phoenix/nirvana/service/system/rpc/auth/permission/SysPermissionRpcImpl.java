@@ -11,14 +11,12 @@ import com.phoenix.nirvana.service.system.rpc.auth.permission.domain.vo.Permissi
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 
 @Service
 @DubboService
-@RestController
 public class SysPermissionRpcImpl implements SysPermissionRpc {
 
     @Autowired

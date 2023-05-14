@@ -1,11 +1,5 @@
 package com.phoenix.nirvana.web.config;
 
-import com.alibaba.fastjson.serializer.SerializeConfig;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
-import com.alibaba.fastjson.serializer.ToStringSerializer;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -21,16 +15,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.math.BigInteger;
-import java.nio.charset.Charset;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Configuration
@@ -70,8 +58,8 @@ public class NirvanaWebConfiguration implements WebMvcConfigurer {
                 simpleModule
                         .addSerializer(Long.class, com.fasterxml.jackson.databind.ser.std.ToStringSerializer.instance)
                         .addSerializer(Long.TYPE, com.fasterxml.jackson.databind.ser.std.ToStringSerializer.instance)
-                        .addSerializer(LocalDateTime.class, LocalDateTimeSerializer.INSTANCE)
-                        .addDeserializer(LocalDateTime.class, LocalDateTimeDeserializer.INSTANCE);
+                        .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                        .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
                 objectMapper.registerModules(simpleModule);
                 JsonUtils.init(objectMapper);

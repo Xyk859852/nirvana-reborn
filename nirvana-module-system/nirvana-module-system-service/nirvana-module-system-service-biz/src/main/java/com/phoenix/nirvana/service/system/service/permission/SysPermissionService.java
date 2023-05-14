@@ -72,7 +72,6 @@ public class SysPermissionService {
 
     public Boolean createPermission(AddPermissionDTO addPermissionDTO) {
         SysPermissionDO sysPermissionDO = PermissionMenuTreeConvert.INTERFACE.convert(addPermissionDTO);
-        sysPermissionDO.setCreateTime(new Date());
         checkIFrame(addPermissionDTO.getIFrame(), addPermissionDTO.getUrl());
         permissionMapper.insert(sysPermissionDO);
         if (addPermissionDTO.getPid() != 0) {
@@ -92,7 +91,6 @@ public class SysPermissionService {
         Long newPid = updatePermissionDTO.getPid();
         Long oldPid = sysPermissionDO.getPid();
         sysPermissionDO = PermissionMenuTreeConvert.INTERFACE.convert(updatePermissionDTO);
-        sysPermissionDO.setUpdateTime(new Date());
         permissionMapper.updateById(sysPermissionDO);
         if (!newPid.equals(oldPid)) {
             updateMenuSubCont(newPid, 1);
