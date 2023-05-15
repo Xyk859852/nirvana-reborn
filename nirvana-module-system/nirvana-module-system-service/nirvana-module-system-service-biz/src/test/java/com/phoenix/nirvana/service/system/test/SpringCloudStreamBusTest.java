@@ -1,22 +1,15 @@
 package com.phoenix.nirvana.service.system.test;
 
-import cn.hutool.core.thread.ThreadUtil;
-import com.phoenix.nirvana.core.bus.AbstractBusProducer;
 import com.phoenix.nirvana.service.system.SystemServiceApplication;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import com.phoenix.nirvana.service.system.mq.producer.loginuser.LoginUserProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.bus.event.Destination;
-import org.springframework.cloud.bus.event.RemoteApplicationEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
 
 /**
  * @author xuyongkang
@@ -29,6 +22,12 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = SystemServiceApplication.class)
 public class SpringCloudStreamBusTest {
 
+    @Autowired
+    LoginUserProducer loginUserProducer;
 
+    @Test
+    public void test() {
+        loginUserProducer.sendCleanLoginUserTokenMessage(Arrays.asList(1l, 2l, 3l));
+    }
 
 }

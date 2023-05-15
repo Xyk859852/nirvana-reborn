@@ -181,7 +181,7 @@
     -->
 
     <logger name="com.phoenix.nirvana.service.system.dal.mysql.mapper" level="debug"/>
-<!--    <logger name="com.alibaba.nacos.client.naming" level="error"/>-->
+    <logger name="com.alibaba.nacos.client.naming" level="error"/>
 
 
     <root level="info">

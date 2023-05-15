@@ -42,15 +42,15 @@ dubbo:
 spring:
   cloud:
     stream:
-      #      function:
-      #        definition: smsSendConsumer;
-      #      # Binding 配置项，对应 BindingProperties Map
-      #      bindings:
-      #        smsSend-out-0:
-      #          destination: system_sms_send
-      #        smsSendConsumer-in-0:
-      #          destination: system_sms_send
-      #          group: system_sms_send_consumer_group
+#      function:
+#        definition: loginUserConsumer;
+      # Binding 配置项，对应 BindingProperties Map
+#      bindings:
+#        loginUserConsumer-out-0:
+#          destination: system_login_user_send
+#        loginUserConsumer-in-0:
+#          destination: system_login_user_send
+#          group: system_login_user_send_consumer_group
       # Spring Cloud Stream RocketMQ 配置项
       rocketmq:
         # RocketMQ Binder 配置项，对应 RocketMQBinderConfigurationProperties 类

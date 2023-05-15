@@ -9,8 +9,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * 管理平台服务
  */
-@RemoteApplicationEventScan(basePackages = "com.phoenix.nirvana.service.system.mq")
-@EnableDubbo(scanBasePackages = "com.phoenix.nirvana.service.system.rpc")
+@RemoteApplicationEventScan(basePackages = "com.phoenix.nirvana")
+@EnableDubbo(scanBasePackages = "com.phoenix.nirvana")
 @EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = "com.phoenix.nirvana")
 public class SystemServiceApplication {
