@@ -4,13 +4,14 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 /**
  * <p>
@@ -34,7 +35,7 @@ public class ProductOrderDO implements Serializable {
 
     @ApiModelProperty("订单编号 ")
     @TableField("order_no")
-    private Long orderNo;
+    private String orderNo;
 
     @ApiModelProperty("订单类型 0正常 1 预定")
     @TableField("order_type")

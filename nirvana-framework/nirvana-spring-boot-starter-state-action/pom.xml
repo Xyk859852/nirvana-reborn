@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>nirvana-framework</artifactId>
+        <groupId>com.phoenix</groupId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>nirvana-spring-boot-starter-state-action</artifactId>
+    <packaging>jar</packaging>
+
+    <name>nirvana-spring-boot-starter-state-action</name>
+    <url>http://maven.apache.org</url>
+
+    <description>状态机流转</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.squirrelframework</groupId>
+            <artifactId>squirrel-foundation</artifactId>
+        </dependency>
+    </dependencies>
+</project>

@@ -77,6 +77,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!--集成logstash-->
         <dependency>
             <groupId>net.logstash.logback</groupId>
@@ -90,8 +95,21 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-state-action</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
             <artifactId>mall-order-api</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-core -->
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>4.2.18</version>
+        </dependency>
+
 
     </dependencies>
 </project>

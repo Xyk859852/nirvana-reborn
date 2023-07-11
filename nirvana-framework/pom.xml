@@ -28,5 +28,6 @@
         <module>nirvana-spring-boot-starter-operate-log</module>
         <module>nirvana-spring-boot-starter-es</module>
         <module>nirvana-spring-boot-starter-file</module>
+        <module>nirvana-spring-boot-starter-state-action</module>
     </modules>
 </project>

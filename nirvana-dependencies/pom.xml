@@ -72,6 +72,7 @@
         <jjwt.version>0.11.1</jjwt.version>
         <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
         <tika-core.version>2.6.0</tika-core.version>
+        <squirrel.version>0.3.8</squirrel.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -364,6 +365,23 @@
                 <version>${hibernate-validator.version}</version>
             </dependency>
 
+            <!--状态机流转-->
+            <dependency>
+                <groupId>org.squirrelframework</groupId>
+                <artifactId>squirrel-foundation</artifactId>
+                <version>${squirrel.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <!--  nirvana 相关配置组件  -->
             <dependency>
                 <groupId>com.phoenix</groupId>
@@ -433,6 +451,12 @@
             <dependency>
                 <groupId>com.phoenix</groupId>
                 <artifactId>nirvana-spring-boot-starter-operate-log</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-state-action</artifactId>
                 <version>${revision}</version>
             </dependency>
 
