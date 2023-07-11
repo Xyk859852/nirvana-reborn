@@ -3,18 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.phoenix</groupId>
-        <artifactId>nirvana-reborn</artifactId>
+        <artifactId>nirvana-module-mall</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>nirvana-module-mall</artifactId>
+    <artifactId>mall-order</artifactId>
     <packaging>pom</packaging>
 
-    <description>nirvana-reborn 商城端服务</description>
-
+    <name>mall-order</name>
     <modules>
-        <module>mall-product</module>
-        <module>mall-order</module>
+        <module>mall-order-api</module>
+        <module>mall-order-biz</module>
     </modules>
 
     <properties>
