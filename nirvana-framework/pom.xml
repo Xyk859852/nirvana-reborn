@@ -29,5 +29,6 @@
         <module>nirvana-spring-boot-starter-es</module>
         <module>nirvana-spring-boot-starter-file</module>
         <module>nirvana-spring-boot-starter-state-action</module>
+        <module>nirvana-spring-boot-starter-process-engine</module>
     </modules>
 </project>

@@ -69,6 +69,11 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-process-engine</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
             <artifactId>nirvana-spring-boot-starter-mq</artifactId>
         </dependency>
 

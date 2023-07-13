@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * 订单操作类型枚举值
  *
- * @author zhonghuashishan
+ * @author xuyongkang
  * @version 1.0
  */
 @Getter

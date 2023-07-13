@@ -1,9 +1,8 @@
-package com.phoenix.nirvana.order.squirrel.create;
+package com.phoenix.nirvana.order.statemachine.order.create;
 
 import com.phoenix.nirvana.order.enums.OrderStatusChangeEnum;
 import com.phoenix.nirvana.order.rpc.order.domain.dto.CreateOrderDTO;
 import com.phoenix.nirvana.order.rpc.order.domain.vo.OrderInfoVO;
-import com.phoenix.nirvana.order.squirrel.OrderStateAction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

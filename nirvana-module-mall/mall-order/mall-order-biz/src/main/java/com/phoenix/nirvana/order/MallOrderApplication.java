@@ -14,6 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Author: xuyongkang
  * @Date 2023/6/29 14:21
  */
+//@EnableProcessEngine("nirvana-reborn-order-process.xml")
 @RemoteApplicationEventScan(basePackages = "com.phoenix.nirvana.order.mq")
 @EnableDubbo(scanBasePackages = "com.phoenix.nirvana.order.rpc")
 @EnableDiscoveryClient
@@ -23,4 +24,5 @@ public class MallOrderApplication {
     public static void main(String[] args) {
         SpringApplication.run(MallOrderApplication.class, args);
     }
+
 }

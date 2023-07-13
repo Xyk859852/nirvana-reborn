@@ -52,18 +52,18 @@ public class Generator {
         // 包配置
         PackageConfig pc = new PackageConfig.Builder()
                 .parent("com.phoenix.nirvana.order")
-                .controller("controller.audit")
-                .service("service.audit")
-                .serviceImpl("service.audit.impl")
-                .mapper("dal.mysql.mapper.audit")
-                .entity("dal.mysql.dataobject.audit")
+                .controller("controller.orderiterm")
+                .service("service.orderiterm")
+                .serviceImpl("service.orderiterm.impl")
+                .mapper("dal.mysql.mapper.orderiterm")
+                .entity("dal.mysql.dataobject.orderiterm")
                 .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + "/nirvana-module-mall/mall-order/mall-order-biz/src/main/resources/mapper"))
                 .build();
 
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig.Builder()
-                .addInclude("product_order_audit")
+                .addInclude("product_order_item")
                 .enableCapitalMode()
                 .entityBuilder()
                 .formatFileName("%sDO")

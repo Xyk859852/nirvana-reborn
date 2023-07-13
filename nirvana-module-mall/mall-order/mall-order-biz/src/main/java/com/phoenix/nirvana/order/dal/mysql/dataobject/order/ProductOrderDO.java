@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
@@ -39,51 +38,51 @@ public class ProductOrderDO implements Serializable {
 
     @ApiModelProperty("订单类型 0正常 1 预定")
     @TableField("order_type")
-    private String orderType;
+    private Integer orderType;
 
     @ApiModelProperty("订单来源渠道")
     @TableField("order_source_channel")
-    private String orderSourceChannel;
+    private Integer orderSourceChannel;
 
     @ApiModelProperty("订单支付类型")
     @TableField("order_pay_type")
-    private String orderPayType;
+    private Integer orderPayType;
 
     @ApiModelProperty("订单原价")
     @TableField("order_old_price")
-    private BigDecimal orderOldPrice;
+    private Integer orderOldPrice;
 
     @ApiModelProperty("订单实际价格")
     @TableField("order_real_price")
-    private BigDecimal orderRealPrice;
+    private Integer orderRealPrice;
 
     @ApiModelProperty("订单优惠价格")
     @TableField("order_discount_price")
-    private BigDecimal orderDiscountPrice;
+    private Integer orderDiscountPrice;
 
     @ApiModelProperty("订单配送费用")
     @TableField("delivery_fee")
-    private BigDecimal deliveryFee;
+    private Integer deliveryFee;
 
     @ApiModelProperty("订单包装费用")
     @TableField("pack_fee")
-    private BigDecimal packFee;
+    private Integer packFee;
 
     @ApiModelProperty("订单总价")
     @TableField("order_total_price")
-    private BigDecimal orderTotalPrice;
+    private Integer orderTotalPrice;
 
     @ApiModelProperty("订单平台服务费")
     @TableField("platform_service_fee")
-    private BigDecimal platformServiceFee;
+    private Integer platformServiceFee;
 
     @ApiModelProperty("订单平台补贴费")
     @TableField("platform_allowancen_fee")
-    private BigDecimal platformAllowancenFee;
+    private Integer platformAllowancenFee;
 
     @ApiModelProperty("用户打赏费用")
     @TableField("user_give_fee")
-    private BigDecimal userGiveFee;
+    private Integer userGiveFee;
 
     @ApiModelProperty("分销商id")
     @TableField("tenant_id")

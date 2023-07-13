@@ -73,6 +73,7 @@
         <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
         <tika-core.version>2.6.0</tika-core.version>
         <squirrel.version>0.3.8</squirrel.version>
+        <dom4j.version>1.6.1</dom4j.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -365,6 +366,12 @@
                 <version>${hibernate-validator.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
+            </dependency>
+
             <!--状态机流转-->
             <dependency>
                 <groupId>org.squirrelframework</groupId>
@@ -457,6 +464,12 @@
             <dependency>
                 <groupId>com.phoenix</groupId>
                 <artifactId>nirvana-spring-boot-starter-state-action</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-process-engine</artifactId>
                 <version>${revision}</version>
             </dependency>
 

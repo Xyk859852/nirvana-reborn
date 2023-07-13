@@ -16,5 +16,5 @@ public interface GenOrderNoService {
      * @param userId      用户ID
      * @return 订单ID
      */
-    String genOrderId(Integer orderNoType, String userId);
+    String genOrderNo(Integer orderNoType, String userId);
 }

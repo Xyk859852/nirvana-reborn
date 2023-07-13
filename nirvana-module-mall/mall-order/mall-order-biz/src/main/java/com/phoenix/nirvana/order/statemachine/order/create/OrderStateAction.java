@@ -1,4 +1,4 @@
-package com.phoenix.nirvana.order.squirrel;
+package com.phoenix.nirvana.order.statemachine.order.create;
 
 import com.phoenix.nirvana.order.enums.OrderStatusChangeEnum;
 import com.phoenix.nirvana.order.rpc.order.domain.vo.OrderInfoVO;

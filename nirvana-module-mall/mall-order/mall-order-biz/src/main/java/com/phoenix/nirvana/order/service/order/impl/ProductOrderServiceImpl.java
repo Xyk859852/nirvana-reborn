@@ -26,6 +26,6 @@ public class ProductOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Pro
 
     @Override
     public GenOrderIdVO genOrderId(GenOrderIdDTO genOrderIdDTO) {
-        return new GenOrderIdVO().setOrderNo(genOrderNoService.genOrderId(genOrderIdDTO.getBusinessIdentifier(), genOrderIdDTO.getUserId()));
+        return new GenOrderIdVO().setOrderNo(genOrderNoService.genOrderNo(genOrderIdDTO.getBusinessIdentifier(), genOrderIdDTO.getUserId()));
     }
 }

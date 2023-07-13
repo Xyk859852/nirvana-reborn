@@ -28,7 +28,7 @@ public class GenOrderNoServiceImpl implements GenOrderNoService {
 
 
     @Override
-    public String genOrderId(Integer orderNoType, String userId) {
+    public String genOrderNo(Integer orderNoType, String userId) {
         OrderNoTypeEnum orderNoTypeEnum = OrderNoTypeEnum.getByCode(orderNoType);
         if (orderNoTypeEnum == null) {
             throw new ServiceException(ORDER_NO_TYPE_ERROR);
