@@ -32,4 +32,5 @@ public class NirvanaMQAutoConfiguration {
         messageConverters.add(new MappingJackson2MessageConverter());
         return new CompositeMessageConverter(messageConverters);
     }
+
 }

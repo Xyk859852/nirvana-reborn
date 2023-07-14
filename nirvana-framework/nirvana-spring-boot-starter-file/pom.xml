@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>nirvana-framework</artifactId>
+        <groupId>com.phoenix</groupId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>nirvana-spring-boot-starter-file</artifactId>
+    <packaging>jar</packaging>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId> <!-- 文件类型的识别 -->
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

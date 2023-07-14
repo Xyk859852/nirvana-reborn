@@ -21,8 +21,7 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>system-service-api</artifactId>
-            <version>${revision}</version>
+            <artifactId>nirvana-module-system-service-api</artifactId>
         </dependency>
 
         <dependency>

@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.Async;
  * <p>
  * 基于 {@link OperateLogApi} 远程服务，记录操作日志
  *
- * @author 芋道源码
+ * @author xuyongkang
  */
 @RequiredArgsConstructor
 public class OperateLogFrameworkServiceImpl implements OperateLogFrameworkService {

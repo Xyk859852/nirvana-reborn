@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: system-service-biz
+  main:
+    allow-circular-references: true # 允许循环依赖，因为项目是三层架构，无法避免这个情况。
+    allow-bean-definition-overriding: true # 允许 Bean 覆盖，例如说 Dubbo 或者 Feign 等会存在重复定义的服务
+  # Jackson 配置项
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true # 设置 Date 的格式，使用时间戳
+      write-date-timestamps-as-nanoseconds: false # 设置不使用 nanoseconds 的格式。例如说 1611460870.401，而是直接 1611460870401
+      write-durations-as-timestamps: true # 设置 Duration 的格式，使用时间戳
+      fail-on-empty-beans: false # 允许序列化无属性的 Bean
+  profiles:
+    active: local
+  resources:
+    add-mappings: false
+server:
+  port: 18099
+  tomcat:
+    max-connections: 200
+    max-threads: 800
+    accept-count: 1000
+    min-spare-threads: 100
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # 虽然默认为 true ，但是还是显示去指定下。
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.phoenix.nirvana.service.system.dal.mysql.dataobject
+
+# Actuator 监控端点的配置项
+management:
+  endpoints:
+    web:
+      base-path: /actuator # Actuator 提供的 API 接口的根目录。默认为 /actuator
+      exposure:
+        include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
+
+
+# logging
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: ${user.home}/logs
+
+nirvana:
+  info:
+    version: 1.0.0
+    base-package: com.phoenix.nirvana
+  tenant:
+    enable: true
+    ignoreTables:
+      - sys_log
+      - sys_error_code
+      - oauth2_access_token
+      - sys_permission
+      - sys_role_permission
+  error-code:
+    group: system-service-app
+    loadingClass: com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants

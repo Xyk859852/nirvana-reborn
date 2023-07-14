@@ -9,6 +9,7 @@ import com.phoenix.nirvana.web.core.util.WebFrameworkUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
@@ -32,6 +33,7 @@ import static com.phoenix.nirvana.common.exception.enums.GlobalErrorCodeConstant
 /**
  * 全局异常处理器，将 Exception 翻译成 CommonResult + 对应的异常编号
  */
+@Order(999999)
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

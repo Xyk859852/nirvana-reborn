@@ -19,7 +19,7 @@ import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import com.phoenix.nirvana.admin.security.core.bean.SecurityProperties;
-import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
+import com.phoenix.nirvana.cache.redis.core.RedisCache;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -48,7 +48,7 @@ public class TokenProvider implements InitializingBean {
     SecurityProperties securityProperties;
 
     @Resource
-    RedisUtils redisUtils;
+    RedisCache redisCache;
 
     public String AUTHORITIES_KEY = "admin";
     private JwtParser jwtParser;
@@ -104,14 +104,14 @@ public class TokenProvider implements InitializingBean {
      */
     public void checkRenewal(String token) {
         // 判断是否续期token,计算token的过期时间
-        long time = redisUtils.getExpire(securityProperties.getOnlineKey() + token) * 1000;
+        long time = redisCache.getExpire(securityProperties.getOnlineKey() + token) * 1000;
         Date expireDate = DateUtil.offset(new Date(), DateField.MILLISECOND, (int) time);
         // 判断当前时间与过期时间的时间差
         long differ = expireDate.getTime() - System.currentTimeMillis();
         // 如果在续期检查的范围内，则续期
         if (differ <= securityProperties.getDetect()) {
             long renew = time + securityProperties.getRenew();
-            redisUtils.expire(securityProperties.getOnlineKey() + token, renew, TimeUnit.MILLISECONDS);
+            redisCache.expire(securityProperties.getOnlineKey() + token, renew, TimeUnit.MILLISECONDS);
         }
     }
 

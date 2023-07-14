@@ -2,23 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>nirvana-reborn</artifactId>
-        <groupId>com.phoenix</groupId>
-        <version>${revision}</version>
-    </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
-    <packaging>pom</packaging>
-
+    <groupId>com.phoenix</groupId>
     <artifactId>nirvana-dependencies</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
 
     <description>Maven Bom，定义 nirvana-reborn 项目的所有依赖的版本</description>
 
 
     <!-- 属性 -->
     <properties>
+        <revision>1.1.0</revision>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <resource.delimiter>@</resource.delimiter>
@@ -41,11 +38,11 @@
         <swagger-annotations.version>1.6.6</swagger-annotations.version>
         <!-- DB 相关 -->
         <mysql-connector-java.version>5.1.46</mysql-connector-java.version>
-        <druid.version>1.1.16</druid.version>
+        <druid.version>1.1.21</druid.version>
         <mybatis-spring-boot-starter.version>2.0.0</mybatis-spring-boot-starter.version>
         <mybatis.version>3.5.4</mybatis.version>
         <velocity-engine-core.version>2.3</velocity-engine-core.version>
-        <mybatis-plus.version>3.5.0</mybatis-plus.version>
+        <mybatis-plus.version>3.5.3</mybatis-plus.version>
         <mybatis-plus-generator.version>3.5.3</mybatis-plus-generator.version>
         <spring-boot-starter-data-jest.version>3.2.5.RELEASE</spring-boot-starter-data-jest.version>
         <redisson.version>3.17.3</redisson.version>
@@ -57,6 +54,9 @@
         <qiniu.version>7.2.18</qiniu.version>
         <yunpian-java-sdk.version>1.2.7</yunpian-java-sdk.version>
         <aliyun-java-sdk-core.version>4.1.0</aliyun-java-sdk-core.version>
+        <okio.version>3.0.0</okio.version>
+        <okhttp3.version>4.10.0</okhttp3.version>
+        <minio.version>8.5.1</minio.version>
         <!-- 监控相关 -->
         <skywalking.version>8.7.0</skywalking.version>
         <spring-boot-admin.version>2.6.7</spring-boot-admin.version>
@@ -71,6 +71,9 @@
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <jjwt.version>0.11.1</jjwt.version>
         <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
+        <tika-core.version>2.6.0</tika-core.version>
+        <squirrel.version>0.3.8</squirrel.version>
+        <dom4j.version>1.6.1</dom4j.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -251,7 +254,6 @@
                 <artifactId>qiniu-java-sdk</artifactId> <!-- 七牛文件服务器 -->
                 <version>${qiniu.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.yunpian.sdk</groupId>
                 <artifactId>yunpian-java-sdk</artifactId> <!-- 云片短信 -->
@@ -261,6 +263,22 @@
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-core</artifactId> <!-- 七牛短信 -->
                 <version>${aliyun-java-sdk-core.version}</version>
+            </dependency>
+            <!--    S3协议        -->
+            <dependency>
+                <groupId>com.squareup.okio</groupId>
+                <artifactId>okio</artifactId>
+                <version>${okio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
             </dependency>
 
             <!-- 工具类相关 -->
@@ -279,6 +297,12 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${org.projectlombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId> <!-- 文件类型的识别 -->
+                <version>${tika-core.version}</version>
             </dependency>
 
             <!--集成logstash-->
@@ -342,6 +366,29 @@
                 <version>${hibernate-validator.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
+            </dependency>
+
+            <!--状态机流转-->
+            <dependency>
+                <groupId>org.squirrelframework</groupId>
+                <artifactId>squirrel-foundation</artifactId>
+                <version>${squirrel.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <!--  nirvana 相关配置组件  -->
             <dependency>
                 <groupId>com.phoenix</groupId>
@@ -358,6 +405,12 @@
             <dependency>
                 <groupId>com.phoenix</groupId>
                 <artifactId>nirvana-spring-boot-starter-tenant</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-file</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -408,10 +461,39 @@
                 <version>${revision}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-spring-boot-starter-state-action</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.phoenix</groupId>
-                <artifactId>system-service-api</artifactId>
+                <artifactId>nirvana-spring-boot-starter-process-engine</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>nirvana-module-system-service-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>mall-product-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>mall-order-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.phoenix</groupId>
+                <artifactId>mall-inventory-api</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -448,9 +530,9 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <configuration>
-                        <fork>true</fork>
-                    </configuration>
+                    <!--                    <configuration>-->
+                    <!--                        <fork>true</fork>-->
+                    <!--                    </configuration>-->
                 </plugin>
             </plugins>
         </pluginManagement>

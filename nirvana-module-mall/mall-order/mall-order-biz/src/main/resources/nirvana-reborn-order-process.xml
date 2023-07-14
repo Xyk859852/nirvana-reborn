@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-context xmlns="http://www.w3school.com.cn"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.w3school.com.cn process-engine.xsd">
+    <!--主订单生单流程-->
+    <process name="masterOrderCreateProcess">
+        <!--检查参数节点-->
+        <node name="createOrderCheckNode"
+              class="com.phoenix.nirvana.order.statemachine.order.create.node.CreateOrderCheckNode"
+              next="createOrderDeductStockNode"
+              begin="true"/>
+        <!--锁定库存节点，异常可回滚-->
+        <node name="createOrderDeductStockNode"
+              class="com.phoenix.nirvana.order.statemachine.order.create.node.CreateOrderDeductStockNode"
+              next="createOrderCalculateAmountNode"/>
+        <!--计算订单金额节点-->
+        <node name="createOrderCalculateAmountNode"
+              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderCalculateAmountNode"
+              next="createOrderLockCouponNode"/>
+        <!--锁定优惠券节点，异常可回滚-->
+        <node name="createOrderLockCouponNode"
+              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderLockCouponNode"
+              next="createOrderDeductStockNode"/>
+        <!--构建主订单信息节点-->
+        <node name="createOrderMasterBuilderNode"
+              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderMasterBuilderNode"
+              next="orderCreateDBNode"/>
+        <!--保存订单信息到数据库节点-->
+        <node name="orderCreateDBNode"
+              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.OrderCreateDBNode"
+              next="createOrderSendPayTimeoutDelayMessageNode"/>
+        <!--发送超时取消MQ信息节点-->
+        <node name="createOrderSendPayTimeoutDelayMessageNode"
+              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderSendPayTimeoutDelayMessageNode"/>
+    </process>
+
+
+
+</process-context>

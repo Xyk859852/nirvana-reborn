@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.phoenix</groupId>
+        <artifactId>nirvana-module-mall</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>mall-product</artifactId>
+    <packaging>pom</packaging>
+
+    <name>mall-product</name>
+    <modules>
+        <module>mall-product-api</module>
+        <module>mall-product-biz</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+</project>

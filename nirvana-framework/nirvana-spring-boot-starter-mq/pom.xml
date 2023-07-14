@@ -17,6 +17,14 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-common</artifactId>
+        </dependency>
+
+
+
         <!-- MQ 相关 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

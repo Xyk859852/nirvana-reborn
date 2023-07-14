@@ -1,0 +1,32 @@
+---
+spring:
+  application:
+    name: system-web-app
+  main:
+    allow-circular-references: true # 允许循环依赖，因为项目是三层架构，无法避免这个情况。
+    allow-bean-definition-overriding: true # 允许 Bean 覆盖，例如说 Dubbo 或者 Feign 等会存在重复定义的服务
+
+  # Servlet 配置
+  servlet:
+    # 文件上传相关配置项
+    multipart:
+      max-file-size: 16MB # 单个文件大小
+      max-request-size: 32MB # 设置总上传的文件大小
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER # 解决 SpringFox 与 SpringBoot 2.6.x 不兼容的问题，参见 SpringFoxHandlerProviderBeanPostProcessor 类
+  # Jackson 配置项
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true # 设置 Date 的格式，使用时间戳
+      write-date-timestamps-as-nanoseconds: false # 设置不使用 nanoseconds 的格式。例如说 1611460870.401，而是直接 1611460870401
+      write-durations-as-timestamps: true # 设置 Duration 的格式，使用时间戳
+      fail-on-empty-beans: false # 允许序列化无属性的 Bean
+  profiles:
+    active: local
+
+# 日志文件配置。注意，如果 logging.file.name 不放在 bootstrap.yaml 配置文件，而是放在 application.yaml 中，会导致出现 LOG_FILE_IS_UNDEFINED 文件
+logging:
+  file:
+    name: ${user.home}/logs/${spring.application.name}/${spring.application.name}.log # 日志文件名，全路径
+    path: ${user.home}/logs/${spring.application.name}/

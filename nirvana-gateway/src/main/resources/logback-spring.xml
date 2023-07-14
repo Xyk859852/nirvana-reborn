@@ -12,7 +12,7 @@
     <!--Linux下的路径-->
     <!--<property name="LOG_PATH" value="/www/wwwroot/zdj_log/" />-->
     <!--    <property name="LOG_PATH" value="/opt/dubbo-kitchen/kitchen-service/logs" />-->
-
+    <springProperty scope="context" name="LOG_PATH" source="logging.file.path"/>
     <springProperty scope="context" name="destination-url" source="logging.destination-url" defaultValue="127.0.0.1:4560" />
     <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="nirvana-gateway" />
 

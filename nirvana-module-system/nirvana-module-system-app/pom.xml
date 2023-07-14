@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>nirvana-module-system</artifactId>
+        <groupId>com.phoenix</groupId>
+        <version>${revision}</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>nirvana-module-system-app</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- Registry 和 Config 相关 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <!-- 读取bootstrap配置文件-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-rpc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-module-system-service-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phoenix</groupId>
+            <artifactId>nirvana-spring-boot-starter-operate-log</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <!--集成logstash-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>

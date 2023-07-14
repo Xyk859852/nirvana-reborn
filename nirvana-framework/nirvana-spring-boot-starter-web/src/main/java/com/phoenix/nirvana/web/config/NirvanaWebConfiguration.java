@@ -2,9 +2,9 @@ package com.phoenix.nirvana.web.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.phoenix.nirvana.common.util.json.JsonUtils;
 import com.phoenix.nirvana.web.core.handler.GlobalExceptionHandler;
 import com.phoenix.nirvana.web.core.servlet.CorsFilter;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Configuration
@@ -40,32 +41,6 @@ public class NirvanaWebConfiguration implements WebMvcConfigurer {
         return registrationBean;
     }
 
-    // ========== MessageConverter 相关 ==========
-
-//    @Override
-//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-//        // 创建 FastJsonHttpMessageConverter 对象
-//        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
-//        //Long类型转String类型
-//        SerializeConfig serializeConfig = SerializeConfig.getGlobalInstance();
-//        // ToStringSerializer 是这个包 com.alibaba.fastjson.serializer.ToStringSerializer
-//        serializeConfig.put(BigInteger.class, ToStringSerializer.instance);
-//        serializeConfig.put(Long.class, ToStringSerializer.instance);
-//        serializeConfig.put(Long.TYPE, ToStringSerializer.instance);
-//        serializeConfig.put(Date.class, new SimpleDateFormatSerializer("yyyy-MM-dd HH:mm:ss"));
-//        // 自定义 FastJson 配置
-//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-//        fastJsonConfig.setCharset(Charset.defaultCharset()); // 设置字符集
-//        fastJsonConfig.setSerializeConfig(serializeConfig);
-//        fastJsonConfig.setSerializerFeatures(SerializerFeature.DisableCircularReferenceDetect, // 剔除循环引用
-//                SerializerFeature.WriteNonStringKeyAsString, SerializerFeature.WriteMapNullValue); // 解决 Integer 作为 Key 时，转换为 String 类型，避免浏览器报错
-//        fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
-//        // 设置支持的 MediaType
-//        fastJsonHttpMessageConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
-//        // 添加到 converters 中
-//        converters.add(0, fastJsonHttpMessageConverter); // 注意，添加到最开头，放在 MappingJackson2XmlHttpMessageConverter 前面
-//    }
-
     @Bean
     public BeanPostProcessor objectMapperBeanPostProcessor() {
         return new BeanPostProcessor() {
@@ -81,13 +56,13 @@ public class NirvanaWebConfiguration implements WebMvcConfigurer {
                  * 2. 新增LocalDateTime序列化、反序列化规则
                  */
                 simpleModule
-                        .addSerializer(Long.class, ToStringSerializer.instance)
-                        .addSerializer(Long.TYPE, ToStringSerializer.instance)
-                        .addSerializer(LocalDateTime.class, LocalDateTimeSerializer.INSTANCE)
-                        .addDeserializer(LocalDateTime.class, LocalDateTimeDeserializer.INSTANCE);
+                        .addSerializer(Long.class, com.fasterxml.jackson.databind.ser.std.ToStringSerializer.instance)
+                        .addSerializer(Long.TYPE, com.fasterxml.jackson.databind.ser.std.ToStringSerializer.instance)
+                        .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                        .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
                 objectMapper.registerModules(simpleModule);
-//                JsonUtils.init(objectMapper);
+                JsonUtils.init(objectMapper);
                 log.info("初始化 jackson 自动配置");
                 return bean;
             }

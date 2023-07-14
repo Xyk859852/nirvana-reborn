@@ -82,7 +82,7 @@
 
         <dependency>
             <groupId>com.phoenix</groupId>
-            <artifactId>system-service-api</artifactId>
+            <artifactId>nirvana-module-system-service-api</artifactId>
         </dependency>
 
         <!--集成logstash-->

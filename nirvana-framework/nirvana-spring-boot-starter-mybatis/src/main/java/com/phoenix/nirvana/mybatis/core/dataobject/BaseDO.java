@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 基础实体对象
@@ -20,12 +20,12 @@ public abstract class BaseDO implements Serializable {
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
     /**
      * 最后更新时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
     /**
      * 创建者，目前使用 SysUser 的 id 编号
      * <p>
