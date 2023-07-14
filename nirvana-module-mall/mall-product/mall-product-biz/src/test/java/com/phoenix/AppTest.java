@@ -35,12 +35,6 @@ public class AppTest {
 
     @Test
     public void test() throws Exception {
-
-        /**
-         * LTAI5tRz1qgj6AKLYzC3v7DD
-         * oSYH6IivXxcH0RDvHl5nyhoDfDEfo4
-         * https://nirvana-phoenix.oss-cn-shanghai.aliyuncs.com/
-         */
         FileClient fileClient = clientFactory.getFileClient(FileStorageEnum.S3.getConfigId());
         File file = new File("/Users/xuyongkang/Desktop/1675391296538.jpg");
         byte[] content = FileUtil.readBytes(file);
