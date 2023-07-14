@@ -1,7 +1,10 @@
 package com.phoenix.nirvana.order.convert.order;
 
+import com.phoenix.nirvana.inventory.rpc.dto.DeductProductStockDTO;
+import com.phoenix.nirvana.inventory.rpc.dto.ReleaseProductStockDTO;
 import com.phoenix.nirvana.order.dal.mysql.dataobject.order.ProductOrderDO;
 import com.phoenix.nirvana.order.mq.message.OrderStdChangeMessage;
+import com.phoenix.nirvana.order.rpc.order.domain.dto.CreateOrderDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
@@ -21,4 +24,10 @@ public interface ProductOrderConvert {
 
     @Mappings({})
     OrderStdChangeMessage convert(ProductOrderDO order);
+
+    @Mappings({})
+    DeductProductStockDTO convert2Deduct(CreateOrderDTO createOrder);
+
+    @Mappings({})
+    ReleaseProductStockDTO convert2Release(CreateOrderDTO createOrder);
 }

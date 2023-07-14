@@ -1,10 +1,9 @@
 package com.phoenix.nirvana.service.system.service.online;
 
-import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
+import com.phoenix.nirvana.cache.redis.core.RedisCache;
 import com.phoenix.nirvana.service.system.dal.mysql.mapper.user.SysUserMapper;
 import com.phoenix.nirvana.service.system.dal.redis.loginuser.LoginUserInfoRedisDAO;
 import com.phoenix.nirvana.service.system.dal.redis.onlineuser.OnlineUserRedisDAO;
-import com.phoenix.nirvana.service.system.rpc.admin.OAuth2TokenApi;
 import com.phoenix.nirvana.service.system.rpc.admin.domain.bo.OnlineUserBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class OnlineUserService {
 
     @Autowired
-    RedisUtils redisUtils;
+    RedisCache redisCache;
 
     @Autowired
     SysUserMapper userMapper;

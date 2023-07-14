@@ -108,12 +108,11 @@
             <artifactId>mall-order-api</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-core -->
         <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-core</artifactId>
-            <version>4.2.18</version>
+            <groupId>com.phoenix</groupId>
+            <artifactId>mall-inventory-api</artifactId>
         </dependency>
+
 
 
     </dependencies>

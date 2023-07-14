@@ -6,7 +6,7 @@ import com.phoenix.nirvana.admin.security.core.bean.LoginCodeEnum;
 import com.phoenix.nirvana.admin.security.core.bean.LoginProperties;
 import com.phoenix.nirvana.admin.security.core.bean.SecurityProperties;
 import com.phoenix.nirvana.admin.security.core.utils.SecurityFrameworkUtils;
-import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
+import com.phoenix.nirvana.cache.redis.core.RedisCache;
 import com.phoenix.nirvana.common.util.servlet.ServletUtils;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.core.annotation.OperateLog;
@@ -23,7 +23,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -39,7 +38,7 @@ public class AuthenticationController {
     LoginProperties loginProperties;
 
     @Resource
-    RedisUtils redisUtils;
+    RedisCache redisCache;
 
     @Resource
     AuthenticationRpcClient authenticationRpcClient;
@@ -79,7 +78,7 @@ public class AuthenticationController {
             captchaValue = captchaValue.split("\\.")[0];
         }
         // 保存
-        redisUtils.set(uuid, captchaValue, loginProperties.getLoginCode().getExpiration(), TimeUnit.MINUTES);
+        redisCache.set(uuid, captchaValue, loginProperties.getLoginCode().getExpiration(), TimeUnit.MINUTES);
         return CommonResult.success(new AuthenticationLoginCodeVO().setImage(captcha.toBase64()).setUuId(uuid));
     }
 

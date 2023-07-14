@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.phoenix.nirvana.cache.redis.core.utils;
+package com.phoenix.nirvana.cache.redis.core;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -31,19 +31,19 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * redis 公共工具类
+ * redis common cache
  *
  * @author xuyongkang
  */
 @Component
 @SuppressWarnings({"unchecked", "all"})
-public class RedisUtils {
+public class RedisCache {
 
-    private static final Logger log = LoggerFactory.getLogger(RedisUtils.class);
+    private static final Logger log = LoggerFactory.getLogger(RedisCache.class);
 
     private RedisTemplate<Object, Object> redisTemplate;
 
-    public RedisUtils(RedisTemplate<Object, Object> redisTemplate) {
+    public RedisCache(RedisTemplate<Object, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

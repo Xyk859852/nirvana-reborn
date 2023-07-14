@@ -53,7 +53,7 @@ public class CreateOrderDTO implements Serializable {
 
     @NotNull(message = "下单人不能为空")
     @ApiModelProperty("下单人 ")
-    private Long userId;
+    private String userId;
 
     @ApiModelProperty("订单收货地址id ")
     @NotNull(message = "收货地址不能为空")
@@ -103,7 +103,7 @@ public class CreateOrderDTO implements Serializable {
 
         @NotNull(message = "商品sku编号不能为空")
         @ApiModelProperty("商品sku编号 ")
-        private Long skuCode;
+        private String skuCode;
 
         @NotNull(message = "商品销售价格不能为空")
         @ApiModelProperty("商品销售价格")

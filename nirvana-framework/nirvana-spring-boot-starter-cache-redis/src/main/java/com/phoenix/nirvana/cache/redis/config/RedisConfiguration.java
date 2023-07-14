@@ -1,5 +1,11 @@
 package com.phoenix.nirvana.cache.redis.config;
 
+import com.phoenix.nirvana.cache.redis.core.RedisLock;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.StringCodec;
+import org.redisson.config.Config;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -20,6 +26,18 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 @ConditionalOnClass(RedisOperations.class)
 @EnableConfigurationProperties(RedisProperties.class)
 public class RedisConfiguration {
+
+    @Value("${spring.redis.host}")
+    private String host;
+
+    @Value("${spring.redis.port}")
+    private String port;
+
+    @Value("${spring.redis.password}")
+    private String password;
+
+    @Value("${spring.redis.timeout}")
+    private int timeout;
 
     /**
      * 创建 RedisTemplate Bean，使用 JSON 序列化方式
@@ -66,6 +84,35 @@ public class RedisConfiguration {
             config = config.disableKeyPrefix();
         }
         return config;
+    }
+
+    @Bean
+    @ConditionalOnClass(RedissonClient.class)
+    public RedissonClient redissonClient() {
+        Config config = new Config();
+        config.useSingleServer()
+                .setAddress("redis://" + host + ":" + port)
+                .setPassword(password)
+                .setConnectionMinimumIdleSize(10)
+                .setConnectionPoolSize(100)
+                .setIdleConnectionTimeout(600000)
+                .setSubscriptionConnectionMinimumIdleSize(10)
+                .setSubscriptionConnectionPoolSize(100)
+                .setTimeout(timeout);
+
+        config.setCodec(new StringCodec());
+        config.setThreads(5);
+        config.setNettyThreads(5);
+
+        RedissonClient client = Redisson.create(config);
+
+        return client;
+    }
+
+    @Bean
+    @ConditionalOnClass(RedissonClient.class)
+    public RedisLock redisLock(RedissonClient redissonClient) {
+        return new RedisLock(redissonClient);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.phoenix.nirvana.service.system.service.auth;
 
 import cn.hutool.core.util.IdUtil;
-import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
+import com.phoenix.nirvana.cache.redis.core.RedisCache;
 import com.phoenix.nirvana.common.constant.CommonNirvanaConstants;
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.service.system.convert.permission.SysPermissionConvert;
@@ -47,7 +47,7 @@ public class AuthenticationService {
     SysPermissionMapper sysPermissionMapper;
 
     @Autowired
-    RedisUtils redisUtils;
+    RedisCache redisCache;
 
     @Resource
     PasswordEncoder passwordEncoder;

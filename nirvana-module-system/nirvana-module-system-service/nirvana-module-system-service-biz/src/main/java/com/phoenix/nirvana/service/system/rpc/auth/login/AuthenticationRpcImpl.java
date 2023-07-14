@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.service.system.rpc.auth.login;
 
-import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
+import com.phoenix.nirvana.cache.redis.core.RedisCache;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.service.system.manager.auth.AuthenticationManager;
 import com.phoenix.nirvana.service.system.rpc.admin.OAuth2TokenApi;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationRpcImpl implements AuthenticationRpc {
 
     @Autowired
-    RedisUtils redisUtils;
+    RedisCache redisCache;
 
     @Autowired
     AuthenticationManager authenticationManager;

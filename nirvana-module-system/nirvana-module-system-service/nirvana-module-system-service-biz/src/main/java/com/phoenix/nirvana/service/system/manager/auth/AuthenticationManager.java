@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.service.system.manager.auth;
 
-import com.phoenix.nirvana.cache.redis.core.utils.RedisUtils;
+import com.phoenix.nirvana.cache.redis.core.RedisCache;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.service.system.dal.redis.loginuser.LoginUserInfoRedisDAO;
 import com.phoenix.nirvana.service.system.dal.redis.onlineuser.OnlineUserRedisDAO;
@@ -19,7 +19,7 @@ public class AuthenticationManager {
     AuthenticationService authenticationService;
 
     @Autowired
-    RedisUtils redisUtils;
+    RedisCache redisCache;
 
     @Autowired
     LoginUserInfoRedisDAO loginUserInfoRedisDao;

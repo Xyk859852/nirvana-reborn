@@ -7,11 +7,11 @@
         <!--检查参数节点-->
         <node name="createOrderCheckNode"
               class="com.phoenix.nirvana.order.statemachine.order.create.node.CreateOrderCheckNode"
-              next="createOrderRiskCheckNode"
+              next="createOrderDeductStockNode"
               begin="true"/>
-        <!--风控节点-->
-        <node name="createOrderRiskCheckNode"
-              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderRiskCheckNode"
+        <!--锁定库存节点，异常可回滚-->
+        <node name="createOrderDeductStockNode"
+              class="com.phoenix.nirvana.order.statemachine.order.create.node.CreateOrderDeductStockNode"
               next="createOrderCalculateAmountNode"/>
         <!--计算订单金额节点-->
         <node name="createOrderCalculateAmountNode"
@@ -21,10 +21,6 @@
         <node name="createOrderLockCouponNode"
               class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderLockCouponNode"
               next="createOrderDeductStockNode"/>
-        <!--锁定库存节点，异常可回滚-->
-        <node name="createOrderDeductStockNode"
-              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderDeductStockNode"
-              next="createOrderMasterBuilderNode"/>
         <!--构建主订单信息节点-->
         <node name="createOrderMasterBuilderNode"
               class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderMasterBuilderNode"
