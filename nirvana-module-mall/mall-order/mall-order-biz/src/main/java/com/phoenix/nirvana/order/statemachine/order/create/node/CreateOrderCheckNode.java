@@ -2,10 +2,11 @@ package com.phoenix.nirvana.order.statemachine.order.create.node;
 
 import com.phoenix.nirvana.common.exception.util.ServiceExceptionUtil;
 import com.phoenix.nirvana.common.util.CollectionUtils;
-import com.phoenix.nirvana.order.enums.OrderAmountTypeEnum;
-import com.phoenix.nirvana.order.rpc.order.domain.dto.CreateOrderDTO;
+import com.phoenix.nirvana.common.enums.OrderAmountTypeEnum;
+import com.phoenix.nirvana.order.rpc.domain.dto.CreateOrderDTO;
 import com.phoenix.nirvana.process.core.process.ProcessContext;
 import com.phoenix.nirvana.process.core.process.StandardProcessor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,11 +20,13 @@ import static com.phoenix.nirvana.order.enums.OrderErrorCodeConstants.*;
  * @Author: xuyongkang
  * @Date 2023/7/13 14:58
  */
+@Slf4j
 @Component
 public class CreateOrderCheckNode extends StandardProcessor {
 
     @Override
     protected void processInternal(ProcessContext context) {
+        log.info("订单参数校验...");
         CreateOrderDTO createOrder = context.get("createOrderDTO");
         //判断下单条目不能为空
         if (CollectionUtils.isAnyEmpty(createOrder.getOrderItemList())) {
@@ -33,9 +36,6 @@ public class CreateOrderCheckNode extends StandardProcessor {
         CollectionUtils.filterList(createOrder.getOrderItemList(), (orderItem -> {
             if (orderItem.getSaleQuantity() <= 0) {
                 throw ServiceExceptionUtil.exception(ORDER_ITEM_SALE_QUANTITY_ERROR);
-            }
-            if (orderItem.getSalePrice() < 0) {
-                throw ServiceExceptionUtil.exception(ORDER_ITEM_SALE_PRICE_ERROR);
             }
             return true;
         }));

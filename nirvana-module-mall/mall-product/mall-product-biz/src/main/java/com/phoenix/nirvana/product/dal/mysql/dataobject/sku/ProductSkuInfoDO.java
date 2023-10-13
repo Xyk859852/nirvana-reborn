@@ -11,7 +11,6 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * <p>
@@ -58,21 +57,22 @@ public class ProductSkuInfoDO extends BaseDO implements Serializable {
 
     @ApiModelProperty("原价")
     @TableField("old_price")
-    private BigDecimal oldPrice;
+    private Integer oldPrice;
 
     @ApiModelProperty("现价")
     @TableField("new_price")
-    private BigDecimal newPrice;
+    private Integer newPrice;
 
     @ApiModelProperty("重量")
     @TableField("weight")
-    private BigDecimal weight;
+    private Integer weight;
 
     @ApiModelProperty("商品状态（0正常 1停用）")
     @TableField("status")
-    private String status;
+    private Integer status;
 
     @ApiModelProperty("备注")
     @TableField("remark")
     private String remark;
+
 }

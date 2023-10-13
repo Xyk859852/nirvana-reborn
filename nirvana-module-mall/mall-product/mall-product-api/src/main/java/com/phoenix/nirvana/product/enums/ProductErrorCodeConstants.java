@@ -23,7 +23,10 @@ public interface ProductErrorCodeConstants {
     ErrorCode PRODUCT_SPU_ATTR_NUMBERS_MUST_BE_EQUALS = new ErrorCode(1003002001, "一个 Spu 下的每个 SKU ，其规格数必须一致");
     ErrorCode PRODUCT_SPU_SKU_NOT_DUPLICATE = new ErrorCode(1003002002, "一个 SPU 下的每个 SKU ，必须不重复");
     ErrorCode PRODUCT_SPU_NOT_EXISTS = new ErrorCode(1003002003, "SPU 不存在");
-    ErrorCode PRODUCT_SPU_CATEGORY_MUST_BE_LEVEL2 = new ErrorCode(1003002003, "SPU 只能添加在二级分类下");
+
+    ErrorCode PRODUCT_SPU_EXISTS = new ErrorCode(1003002004, "SPU 已存在");
+    ErrorCode PRODUCT_SPU_CATEGORY_MUST_BE_LEVEL2 = new ErrorCode(1003002005, "SPU 只能添加在二级分类下");
+    ErrorCode PRODUCT_SPU_INSERT_ERROR = new ErrorCode(1003002006, "SPU 入库失败");
 
     // ========== PRODUCT ATTR + ATTR_VALUE 模块 ==========
     ErrorCode PRODUCT_ATTR_VALUE_NOT_EXIST = new ErrorCode(1003003000, "商品属性值不存在");

@@ -16,7 +16,7 @@ spring:
   resources:
     add-mappings: false
 server:
-  port: 19002
+  port: 19004
   tomcat:
     max-connections: 200
     max-threads: 800

@@ -3,7 +3,7 @@ package com.phoenix.nirvana.product.rpc.attr;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.product.manager.attr.ProductAttrManager;
 import com.phoenix.nirvana.product.rpc.attr.domain.dto.ProductAttrValuesCreateDTO;
-import com.phoenix.nirvana.product.rpc.attr.domain.vo.ProductAttrValuesVO;
+import com.phoenix.nirvana.product.rpc.attr.domain.vo.ProductAttrVO;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class ProductAttrRpcImpl implements ProductAttrRpc {
      *
      * @return
      */
-    public CommonResult<Boolean> createAttrKeyValues(ProductAttrValuesCreateDTO productAttrCreateDTO) {
+    public CommonResult<ProductAttrVO> createAttrKeyValues(ProductAttrValuesCreateDTO productAttrCreateDTO) {
         return productAttrManager.createAttrKeyValues(productAttrCreateDTO);
     }
 
@@ -41,7 +41,7 @@ public class ProductAttrRpcImpl implements ProductAttrRpc {
      * @return
      */
     @Override
-    public CommonResult<ProductAttrValuesVO> getAttrDetailById(Long attrId) {
+    public CommonResult<ProductAttrVO> getAttrDetailById(Long attrId) {
         return productAttrManager.getAttrDetailById(attrId);
     }
 }

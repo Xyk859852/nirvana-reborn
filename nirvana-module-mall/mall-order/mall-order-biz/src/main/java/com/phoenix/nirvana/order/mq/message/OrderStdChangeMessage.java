@@ -1,12 +1,12 @@
 package com.phoenix.nirvana.order.mq.message;
 
-import com.phoenix.nirvana.order.enums.OrderStatusChangeEnum;
+import com.phoenix.nirvana.common.enums.OrderStatusChangeEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * 订单状态流转消息实体
@@ -57,52 +57,52 @@ public class OrderStdChangeMessage implements Serializable {
     /**
      * 订单下单时间
      */
-    private Timestamp createTime;
+    private LocalDateTime createTime;
 
     /**
      * 订单支付时间
      */
-    private Timestamp payTime;
+    private LocalDateTime payTime;
 
     /**
      * 商家接单时间
      */
-    private Timestamp shopAcceptTime;
+    private LocalDateTime shopAcceptTime;
 
     /**
      * 骑手接单时间
      */
-    private Timestamp deliveryAcceptTime;
+    private LocalDateTime deliveryAcceptTime;
 
     /**
      * 商家出餐时间
      */
-    private Timestamp shopMealTime;
+    private LocalDateTime shopMealTime;
 
     /**
      * 订单配送时间
      */
-    private Timestamp deliveryTime;
+    private LocalDateTime deliveryTime;
 
     /**
      * 订单预计完成时间
      */
-    private Timestamp estimatedCompleteTime;
+    private LocalDateTime estimatedCompleteTime;
 
     /**
      * 订单用户确认收货时间
      */
-    private Timestamp userConfirmTime;
+    private LocalDateTime userConfirmTime;
 
     /**
      * 订单完成时间
      */
-    private Timestamp completeTime;
+    private LocalDateTime completeTime;
 
     /**
      * 订单取消时间
      */
-    private Timestamp cancelTime;
+    private LocalDateTime cancelTime;
 
     /**
      * 订单状态变更枚举

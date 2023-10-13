@@ -24,4 +24,11 @@ public interface ProductAttrMapper extends BaseMapperX<ProductAttrDO> {
                 .neIfPresent(ProductAttrDO::getAttrId, attrId)
         );
     }
+
+    default ProductAttrDO selectAttrDetailByProductIdAndAttrName(Long productId, String attrKeyName) {
+        return this.selectOne(new LambdaQueryWrapperX<ProductAttrDO>()
+                .eq(ProductAttrDO::getProductId, productId)
+                .eq(ProductAttrDO::getAttrName, attrKeyName)
+        );
+    }
 }

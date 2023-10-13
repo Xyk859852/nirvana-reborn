@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.order.dal.mysql.mapper.audit;
 
-import com.phoenix.nirvana.order.dal.mysql.dataobject.audit.ProductOrderAuditDO;
+import com.phoenix.nirvana.order.dal.mysql.dataobject.ProductOrderAuditDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

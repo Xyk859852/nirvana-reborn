@@ -15,25 +15,20 @@
               next="createOrderCalculateAmountNode"/>
         <!--计算订单金额节点-->
         <node name="createOrderCalculateAmountNode"
-              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderCalculateAmountNode"
-              next="createOrderLockCouponNode"/>
-        <!--锁定优惠券节点，异常可回滚-->
-        <node name="createOrderLockCouponNode"
-              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderLockCouponNode"
-              next="createOrderDeductStockNode"/>
+              class="com.phoenix.nirvana.order.statemachine.order.create.node.CreateOrderCalculateAmountNode"
+              next="createOrderBuilderNode"/>
         <!--构建主订单信息节点-->
-        <node name="createOrderMasterBuilderNode"
-              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderMasterBuilderNode"
+        <node name="createOrderBuilderNode"
+              class="com.phoenix.nirvana.order.statemachine.order.create.node.CreateOrderBuilderNode"
               next="orderCreateDBNode"/>
         <!--保存订单信息到数据库节点-->
         <node name="orderCreateDBNode"
-              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.OrderCreateDBNode"
+              class="com.phoenix.nirvana.order.statemachine.order.create.node.CreateOrderCreateDbNode"
               next="createOrderSendPayTimeoutDelayMessageNode"/>
         <!--发送超时取消MQ信息节点-->
         <node name="createOrderSendPayTimeoutDelayMessageNode"
-              class="com.ruyuan.eshop.order.statemachine.action.order.create.node.CreateOrderSendPayTimeoutDelayMessageNode"/>
+              class="com.phoenix.nirvana.order.statemachine.order.create.node.CreateOrderSendPayTimeoutDelayMessageNode"/>
     </process>
-
 
 
 </process-context>

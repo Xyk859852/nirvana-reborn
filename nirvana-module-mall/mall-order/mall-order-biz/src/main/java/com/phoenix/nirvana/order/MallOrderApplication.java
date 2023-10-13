@@ -1,6 +1,7 @@
 package com.phoenix.nirvana.order;
 
 
+import com.phoenix.nirvana.process.engine.annoations.EnableProcessEngine;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,10 +15,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Author: xuyongkang
  * @Date 2023/6/29 14:21
  */
-//@EnableProcessEngine("nirvana-reborn-order-process.xml")
+@EnableProcessEngine("nirvana-reborn-order-process.xml")
+@EnableDiscoveryClient
 @RemoteApplicationEventScan(basePackages = "com.phoenix.nirvana.order.mq")
 @EnableDubbo(scanBasePackages = "com.phoenix.nirvana.order.rpc")
-@EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = "com.phoenix.nirvana")
 public class MallOrderApplication {
 

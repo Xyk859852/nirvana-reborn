@@ -1,6 +1,7 @@
 package com.phoenix.nirvana.product.dal.mysql.mapper.spu;
 
 import com.phoenix.nirvana.mybatis.core.mapper.BaseMapperX;
+import com.phoenix.nirvana.mybatis.core.query.LambdaQueryWrapperX;
 import com.phoenix.nirvana.product.dal.mysql.dataobject.spu.ProductSpuInfoDO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,4 +16,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ProductSpuInfoMapper extends BaseMapperX<ProductSpuInfoDO> {
 
+
+    default Boolean existsProductSpu(String productName) {
+        return this.exists(new LambdaQueryWrapperX<ProductSpuInfoDO>()
+                .eq(ProductSpuInfoDO::getProductName, productName));
+    }
 }

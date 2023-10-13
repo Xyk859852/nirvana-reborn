@@ -2,7 +2,7 @@ package com.phoenix.nirvana.order.dal.mysql.mapper.order;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.phoenix.nirvana.common.exception.ServiceException;
-import com.phoenix.nirvana.order.dal.mysql.dataobject.order.OrderAutoNoDO;
+import com.phoenix.nirvana.order.dal.mysql.dataobject.OrderAutoNoDO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -16,6 +16,7 @@
         <module>mall-product</module>
         <module>mall-order</module>
         <module>mall-inventory</module>
+        <module>mall-market</module>
     </modules>
 
     <properties>
