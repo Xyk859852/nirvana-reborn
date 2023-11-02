@@ -26,32 +26,11 @@ server:
     context-path: /
 
 mybatis-plus:
-  configuration:
-    map-underscore-to-camel-case: true # 虽然默认为 true ，但是还是显示去指定下。
-  global-config:
-    db-config:
-      id-type: auto
-      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
-      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.phoenix.nirvana.inventory.dal.mysql.dataobject
-
-# Actuator 监控端点的配置项
-management:
-  endpoints:
-    web:
-      base-path: /actuator # Actuator 提供的 API 接口的根目录。默认为 /actuator
-      exposure:
-        include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
-
 
 # logging
 logging:
   config: classpath:logback-spring.xml
   file:
     path: ${user.home}/logs
-
-nirvana:
-  info:
-    version: 1.1.0
-    base-package: com.phoenix.nirvana

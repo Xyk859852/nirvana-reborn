@@ -27,7 +27,8 @@ dubbo:
   application:
     name: ${spring.application.name}-dubbo
   registry:
-    address: nacos://10.66.109.145:8848
+    address: nacos://127.0.0.1:8848
+    register-mode: instance
     timeout: 2000
     protocol: -1
     port: -1
