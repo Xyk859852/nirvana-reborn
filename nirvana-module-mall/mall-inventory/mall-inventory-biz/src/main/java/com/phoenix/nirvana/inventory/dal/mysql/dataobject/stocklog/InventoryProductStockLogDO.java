@@ -4,13 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.phoenix.nirvana.mybatis.core.dataobject.BaseDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
  * <p>
@@ -24,7 +24,7 @@ import java.sql.Timestamp;
 @Setter
 @TableName("inventory_product_stock_log")
 @ApiModel(value = "InventoryProductStockLogDO对象", description = "库存扣减日志表")
-public class InventoryProductStockLogDO implements Serializable {
+public class InventoryProductStockLogDO extends BaseDO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -60,15 +60,4 @@ public class InventoryProductStockLogDO implements Serializable {
     @TableField("status")
     private Integer status;
 
-    @ApiModelProperty("创建时间")
-    @TableField("create_time")
-    private Timestamp createTime;
-
-    @ApiModelProperty("更新时间")
-    @TableField("update_time")
-    private Timestamp updateTime;
-
-    @ApiModelProperty("删除标志（0代表存在 1代表删除）")
-    @TableField("deleted")
-    private Boolean deleted;
 }

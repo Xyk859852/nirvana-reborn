@@ -2,7 +2,7 @@ package com.phoenix.nirvana.product.rpc.attr;
 
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.product.rpc.attr.domain.dto.ProductAttrValuesCreateDTO;
-import com.phoenix.nirvana.product.rpc.attr.domain.vo.ProductAttrValuesVO;
+import com.phoenix.nirvana.product.rpc.attr.domain.vo.ProductAttrVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +28,7 @@ public interface ProductAttrRpc {
      * @return
      */
     @PostMapping("/createAttrKeyValues")
-    CommonResult<Boolean> createAttrKeyValues(@RequestBody ProductAttrValuesCreateDTO productAttrCreateDTO);
+    CommonResult<ProductAttrVO> createAttrKeyValues(@RequestBody ProductAttrValuesCreateDTO productAttrCreateDTO);
 
 
     /**
@@ -38,5 +38,5 @@ public interface ProductAttrRpc {
      * @return
      */
     @GetMapping("/getAttrDetailById/{attrId}")
-    CommonResult<ProductAttrValuesVO> getAttrDetailById(@PathVariable("attrId") Long attrId);
+    CommonResult<ProductAttrVO> getAttrDetailById(@PathVariable("attrId") Long attrId);
 }

@@ -6,7 +6,7 @@ package com.phoenix;
 
 import com.phoenix.nirvana.core.DefaultProducer;
 import com.phoenix.nirvana.order.MallOrderApplication;
-import com.phoenix.nirvana.order.enums.OrderNoTypeEnum;
+import com.phoenix.nirvana.common.enums.OrderNoTypeEnum;
 import com.phoenix.nirvana.order.mq.message.OrderStdChangeMessage;
 import com.phoenix.nirvana.order.service.generator.GenOrderNoService;
 import lombok.extern.slf4j.Slf4j;

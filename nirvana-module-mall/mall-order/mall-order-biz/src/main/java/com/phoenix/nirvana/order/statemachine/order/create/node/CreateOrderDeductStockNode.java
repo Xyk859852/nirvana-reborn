@@ -3,7 +3,7 @@ package com.phoenix.nirvana.order.statemachine.order.create.node;
 import com.phoenix.nirvana.inventory.rpc.InventoryRpc;
 import com.phoenix.nirvana.inventory.rpc.dto.ReleaseProductStockDTO;
 import com.phoenix.nirvana.order.convert.order.ProductOrderConvert;
-import com.phoenix.nirvana.order.rpc.order.domain.dto.CreateOrderDTO;
+import com.phoenix.nirvana.order.rpc.domain.dto.CreateOrderDTO;
 import com.phoenix.nirvana.process.core.process.ProcessContext;
 import com.phoenix.nirvana.process.core.process.RollbackProcessor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreateOrderDeductStockNode extends RollbackProcessor {
 
-    @DubboReference
+    @DubboReference(retries = 0)
     InventoryRpc inventoryRpc;
 
 

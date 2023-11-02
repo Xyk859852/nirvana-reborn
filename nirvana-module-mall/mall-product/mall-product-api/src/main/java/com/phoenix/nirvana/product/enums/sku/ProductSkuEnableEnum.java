@@ -12,10 +12,14 @@ public enum ProductSkuEnableEnum {
     TRUE("0"),
     FALSE("1");
 
-    private final String enable;
+    public final String code;
 
 
-    ProductSkuEnableEnum(String enable) {
-        this.enable = enable;
+    ProductSkuEnableEnum(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

@@ -3,7 +3,7 @@ package com.phoenix.nirvana.product.manager.attr;
 import com.phoenix.nirvana.common.vo.CommonResult;
 import com.phoenix.nirvana.product.rpc.attr.domain.dto.ProductAttrValuesCreateDTO;
 import com.phoenix.nirvana.product.rpc.attr.domain.dto.ProductAttrValuesUpdateDTO;
-import com.phoenix.nirvana.product.rpc.attr.domain.vo.ProductAttrValuesVO;
+import com.phoenix.nirvana.product.rpc.attr.domain.vo.ProductAttrVO;
 import com.phoenix.nirvana.product.service.attr.ProductAttrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class ProductAttrManager {
      * @param attrId 属性key id
      * @return
      */
-    public CommonResult<ProductAttrValuesVO> getAttrDetailById(Long attrId) {
+    public CommonResult<ProductAttrVO> getAttrDetailById(Long attrId) {
         return CommonResult.success(productAttrService.getAttrDetailById(attrId));
     }
 
@@ -37,7 +37,7 @@ public class ProductAttrManager {
      *
      * @return
      */
-    public CommonResult<Boolean> createAttrKeyValues(ProductAttrValuesCreateDTO attrValuesCreate) {
+    public CommonResult<ProductAttrVO> createAttrKeyValues(ProductAttrValuesCreateDTO attrValuesCreate) {
         return CommonResult.success(productAttrService.createAttrKeyValues(attrValuesCreate));
     }
 
@@ -46,7 +46,7 @@ public class ProductAttrManager {
      *
      * @return
      */
-    public CommonResult<Boolean> updateAttrKeyValues(ProductAttrValuesUpdateDTO attrValuesUpdate) {
+    public CommonResult<ProductAttrVO> updateAttrKeyValues(ProductAttrValuesUpdateDTO attrValuesUpdate) {
         return CommonResult.success(productAttrService.updateAttrKeyValues(attrValuesUpdate));
     }
 

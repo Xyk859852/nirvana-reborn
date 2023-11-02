@@ -1,21 +1,31 @@
 package com.phoenix.nirvana.product.rpc.attr.domain.vo;
 
-import com.phoenix.nirvana.product.rpc.attr.domain.dto.ProductAttrValuesUpdateDTO;
-import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
 /**
- * 云路信息科技有限公司 版权所有 ©Copyright 2023
+ * 商品属性值返回对象
  *
- * @Description: TODO
  * @Author: xuyongkang
- * @Date 2023/5/11 11:31
+ * @Date 2023/8/3 14:32
  */
 @Data
-@Accessors(chain = true)
-@ApiModel("商品属性明细")
-public class ProductAttrValuesVO extends ProductAttrValuesUpdateDTO implements Serializable {
+@Accessors
+public class ProductAttrValuesVO implements Serializable {
+
+    @ApiModelProperty("属性value id")
+    private Long attrValueId;
+
+    @ApiModelProperty("商品属性id")
+    private Long attrId;
+
+    @ApiModelProperty("属性值名称")
+    private String attrValueName;
+
+    @ApiModelProperty("属性 值排序")
+    private Integer attrValueSort;
+
 }

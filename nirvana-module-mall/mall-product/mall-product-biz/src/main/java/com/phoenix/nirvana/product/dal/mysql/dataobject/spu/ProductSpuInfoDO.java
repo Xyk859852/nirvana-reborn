@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -107,23 +107,23 @@ public class ProductSpuInfoDO extends BaseDO implements Serializable {
 
     @ApiModelProperty("原价")
     @TableField("old_price")
-    private BigDecimal oldPrice;
+    private Integer oldPrice;
 
     @ApiModelProperty("现价")
     @TableField("new_price")
-    private BigDecimal newPrice;
+    private Integer newPrice;
 
     @ApiModelProperty("包装费")
     @TableField("pack_fee")
-    private BigDecimal packFee;
+    private Integer packFee;
 
     @ApiModelProperty("售卖开始时间")
     @TableField("sale_start_time")
-    private String saleStartTime;
+    private LocalDateTime saleStartTime;
 
     @ApiModelProperty("售卖结束时间")
     @TableField("sale_end_time")
-    private String saleEndTime;
+    private LocalDateTime saleEndTime;
 
     @ApiModelProperty("是否必选（0非 1是）")
     @TableField("must_choose")

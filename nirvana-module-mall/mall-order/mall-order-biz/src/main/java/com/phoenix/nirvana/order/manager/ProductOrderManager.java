@@ -1,9 +1,9 @@
 package com.phoenix.nirvana.order.manager;
 
 import com.phoenix.nirvana.common.vo.CommonResult;
-import com.phoenix.nirvana.order.rpc.order.domain.dto.GenOrderIdDTO;
-import com.phoenix.nirvana.order.rpc.order.domain.vo.GenOrderIdVO;
-import com.phoenix.nirvana.order.service.order.ProductOrderService;
+import com.phoenix.nirvana.order.rpc.domain.dto.GenOrderIdDTO;
+import com.phoenix.nirvana.order.rpc.domain.vo.GenOrderIdVO;
+import com.phoenix.nirvana.order.service.ProductOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

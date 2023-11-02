@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.order.service.generator.impl;
 
-import com.phoenix.nirvana.order.dal.mysql.dataobject.order.OrderAutoNoDO;
+import com.phoenix.nirvana.order.dal.mysql.dataobject.OrderAutoNoDO;
 import com.phoenix.nirvana.order.dal.mysql.mapper.order.OrderAutoNoMapper;
 import com.phoenix.nirvana.order.service.generator.SegmentIDGen;
 import com.phoenix.nirvana.order.service.generator.core.Segment;

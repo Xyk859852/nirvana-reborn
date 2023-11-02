@@ -3,7 +3,7 @@ package com.phoenix.nirvana.order.service.generator.impl;
 import com.phoenix.nirvana.common.exception.ServiceException;
 import com.phoenix.nirvana.common.util.DateUtil;
 import com.phoenix.nirvana.common.util.NumberUtil;
-import com.phoenix.nirvana.order.enums.OrderNoTypeEnum;
+import com.phoenix.nirvana.common.enums.OrderNoTypeEnum;
 import com.phoenix.nirvana.order.service.generator.GenOrderNoService;
 import com.phoenix.nirvana.order.service.generator.SegmentIDGen;
 import org.springframework.beans.factory.annotation.Autowired;

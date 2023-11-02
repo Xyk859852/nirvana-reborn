@@ -1,7 +1,7 @@
 package com.phoenix.nirvana.order.dal.mysql.mapper.orderiterm;
 
-import com.phoenix.nirvana.order.dal.mysql.dataobject.orderiterm.ProductOrderItemDO;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.phoenix.nirvana.mybatis.core.mapper.BaseMapperX;
+import com.phoenix.nirvana.order.dal.mysql.dataobject.ProductOrderItemDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023-07-13
  */
 @Mapper
-public interface ProductOrderItemMapper extends BaseMapper<ProductOrderItemDO> {
+public interface ProductOrderItemMapper extends BaseMapperX<ProductOrderItemDO> {
 
 }
