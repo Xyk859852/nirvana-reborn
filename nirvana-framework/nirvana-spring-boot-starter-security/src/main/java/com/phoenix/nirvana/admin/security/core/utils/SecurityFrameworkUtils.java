@@ -25,7 +25,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -139,10 +138,10 @@ public class SecurityFrameworkUtils {
 
     private static Authentication buildAuthentication(OnlineUserBO loginUser, HttpServletRequest request) {
         // 创建 UsernamePasswordAuthenticationToken 对象
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+
+        //        authenticationToken.setDetails(new WebAuthenticationDetails(request));
+        return new UsernamePasswordAuthenticationToken(
                 loginUser, null, Collections.emptyList());
-        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        return authenticationToken;
     }
 
 }

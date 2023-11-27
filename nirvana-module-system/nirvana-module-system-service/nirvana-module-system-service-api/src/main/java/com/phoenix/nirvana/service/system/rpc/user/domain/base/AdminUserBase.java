@@ -5,9 +5,10 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
-public class AdminUserBase {
+public class AdminUserBase implements Serializable {
 
     @ApiModelProperty("用户名")
     @NotNull(message = "用户名不能为空")

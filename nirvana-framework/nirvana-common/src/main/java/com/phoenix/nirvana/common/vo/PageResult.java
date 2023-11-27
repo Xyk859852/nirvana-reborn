@@ -7,7 +7,6 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Data
@@ -22,13 +21,13 @@ public class PageResult<T> implements Serializable {
     private Integer pageNo = 0;
 
     @ApiModelProperty("总页码")
-    private Long totalPage = 0l;
+    private Long totalPage = 0L;
 
     @ApiModelProperty("数据总数")
-    private Long totalCount = 0l;
+    private Long totalCount = 0L;
 
     @ApiModelProperty("分页数据")
-    private List<T> data = Collections.EMPTY_LIST;
+    private List<T> data = new ArrayList<>();
 
     public PageResult() {
     }

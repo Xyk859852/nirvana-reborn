@@ -130,7 +130,7 @@
         </root>
     </springProfile>
     <!-- 其它环境 -->
-    <springProfile name="dev,test,stage,prod,default">
+    <springProfile name="dev,test,stage,pro,default">
         <root level="INFO">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="ASYNC"/>

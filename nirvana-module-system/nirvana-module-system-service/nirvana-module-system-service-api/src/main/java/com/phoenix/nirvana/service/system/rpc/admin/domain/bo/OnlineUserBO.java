@@ -1,10 +1,12 @@
 package com.phoenix.nirvana.service.system.rpc.admin.domain.bo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
+@JsonSerialize
 public class OnlineUserBO implements Serializable {
 
     /**

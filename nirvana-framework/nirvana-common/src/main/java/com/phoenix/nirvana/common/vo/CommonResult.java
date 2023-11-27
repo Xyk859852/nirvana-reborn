@@ -1,6 +1,6 @@
 package com.phoenix.nirvana.common.vo;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.phoenix.nirvana.common.exception.ErrorCode;
 import com.phoenix.nirvana.common.exception.GlobalException;
@@ -143,7 +143,7 @@ public final class CommonResult<T> implements Serializable {
      * 判断是否有异常。如果有，则抛出 {@link ServiceException} 异常
      * 如果没有，则返回 {@link #data} 数据
      */
-    @JsonIgnore // 避免 jackson 序列化
+    @JsonIgnore // 避免序列化
     public T getCheckedData() {
         checkError();
         return data;

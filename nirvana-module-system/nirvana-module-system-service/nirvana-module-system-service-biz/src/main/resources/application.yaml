@@ -48,19 +48,3 @@ logging:
   config: classpath:logback-spring.xml
   file:
     path: ${user.home}/logs
-
-nirvana:
-  info:
-    version: 1.0.0
-    base-package: com.phoenix.nirvana
-  tenant:
-    enable: true
-    ignoreTables:
-      - sys_log
-      - sys_error_code
-      - oauth2_access_token
-      - sys_permission
-      - sys_role_permission
-  error-code:
-    group: system-service-app
-    loadingClass: com.phoenix.nirvana.service.system.enums.AdminWebCodeConstants

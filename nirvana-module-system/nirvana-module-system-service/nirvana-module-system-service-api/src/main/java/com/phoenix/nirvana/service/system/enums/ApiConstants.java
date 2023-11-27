@@ -15,7 +15,7 @@ public class ApiConstants {
      * <p>
      * 注意，需要保证和 spring.application.name 保持一致
      */
-    public static final String SYSTEM_SERVICE_APP = "system-service-app";
+    public static final String SYSTEM_SERVICE_APP = "system-service-biz";
 
     public static final String SYSTEM_SERVICE_APP_PREFIX = RpcConstants.RPC_API_PREFIX + "/system";
 

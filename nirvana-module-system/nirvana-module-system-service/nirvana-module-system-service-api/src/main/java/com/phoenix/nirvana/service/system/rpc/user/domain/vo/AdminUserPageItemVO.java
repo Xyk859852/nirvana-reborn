@@ -4,6 +4,7 @@ import com.phoenix.nirvana.service.system.rpc.user.domain.base.AdminUserBase;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @ApiModel("用户列表查询对象")
 @Accessors(chain = true)
+@EqualsAndHashCode(callSuper = true)
 public class AdminUserPageItemVO extends AdminUserBase implements Serializable {
 
     @ApiModelProperty("用户id")
