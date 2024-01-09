@@ -53,9 +53,6 @@ public class AuthenticationController {
 //            throw ServiceExceptionUtil.exception(CACHE_CODE_ERROR);
 //        }
         AuthenticationUserVO user = authenticationRpcClient.login(adminAuthenticationDTO);
-
-//        redisUtils.set(securityProperties.getOnlineKey() + ":" + user.getToken(), onlineUser, securityProperties.getTokenValidityInSeconds(), TimeUnit.MILLISECONDS);
-//        redisUtils.del(adminAuthenticationDTO.getCodeId());
         return CommonResult.success(user);
     }
 

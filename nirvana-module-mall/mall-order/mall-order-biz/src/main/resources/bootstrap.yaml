@@ -8,7 +8,7 @@ spring:
   application:
     name: mall-order-biz
   profiles:
-    active: local
+    active: pro
 
 # Actuator 监控端点的配置项
 management:

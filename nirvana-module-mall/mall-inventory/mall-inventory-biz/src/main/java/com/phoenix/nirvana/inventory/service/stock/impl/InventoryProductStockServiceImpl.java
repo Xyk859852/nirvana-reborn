@@ -52,7 +52,7 @@ public class InventoryProductStockServiceImpl extends ServiceImpl<InventoryProdu
 
     @Override
     public Boolean deductProductStock(DeductProductStockDTO deductProductStock) {
-        log.info("订单：{}，库存扣减：{}", deductProductStock);
+        log.info("订单：{}，库存扣减：{}",deductProductStock.getOrderNo(), deductProductStock);
         checkDeductProductStockDTO(deductProductStock);
         List<DeductProductStockDTO.OrderItemDTO> orderItemList = deductProductStock.getOrderItemList();
         orderItemList = orderItemList.stream().sorted(Comparator.comparing(DeductProductStockDTO.OrderItemDTO::getSkuCode)).collect(Collectors.toList());

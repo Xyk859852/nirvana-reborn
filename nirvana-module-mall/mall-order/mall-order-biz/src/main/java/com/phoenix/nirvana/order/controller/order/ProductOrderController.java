@@ -47,16 +47,16 @@ public class ProductOrderController {
 
     public CreateOrderDTO createOrderRequest() {
         CreateOrderDTO createOrder = new CreateOrderDTO();
-        createOrder.setOrderNo(productOrderService.genOrderId(new GenOrderIdDTO().setUserId("123456").setBusinessIdentifier(10)).getOrderNo());
+        createOrder.setOrderNo(productOrderService.genOrderId(new GenOrderIdDTO().setUserId("34567").setBusinessIdentifier(10)).getOrderNo());
         createOrder.setOrderType(0);
         createOrder.setOrderSourceChannel(0);
         createOrder.setOrderPayType(10);
         createOrder.setShopId(7l);
-        createOrder.setUserId("123456");
-        createOrder.setAddressId(2l);
+        createOrder.setUserId("34567");
+        createOrder.setAddressId(1L);
         List<CreateOrderDTO.OrderItemDTO> orderItemList = new ArrayList<>();
-        orderItemList.add(new CreateOrderDTO.OrderItemDTO().setProductId(6l).setSkuCode("6_7_8").setSaleQuantity(1));
-        orderItemList.add(new CreateOrderDTO.OrderItemDTO().setProductId(6l).setSkuCode("6_7_7").setSaleQuantity(1));
+        orderItemList.add(new CreateOrderDTO.OrderItemDTO().setProductId(8L).setSkuCode("8_9_12").setSaleQuantity(1));
+        orderItemList.add(new CreateOrderDTO.OrderItemDTO().setProductId(8L).setSkuCode("8_9_11").setSaleQuantity(1));
         createOrder.setOrderItemList(orderItemList);
         List<CreateOrderDTO.OrderAmountDTO> orderAmountList = new ArrayList<>();
         orderAmountList.add(new CreateOrderDTO.OrderAmountDTO()

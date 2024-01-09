@@ -7,7 +7,9 @@ import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserCreateDTO
 import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserPageDTO;
 import com.phoenix.nirvana.service.system.rpc.user.domain.dto.AdminUserUpdateDTO;
 import com.phoenix.nirvana.service.system.rpc.user.domain.vo.AdminUserPageItemVO;
+import org.apache.dubbo.common.constants.CommonConstants;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,6 +21,7 @@ public class AdminUserRpcClient {
     AdminUserRpc adminUserRpc;
 
     public PageResult<AdminUserPageItemVO> getUserPageList(AdminUserPageDTO adminUserPageDTO) {
+        RpcContext.getServiceContext().setAttachment(CommonConstants.TAG_KEY,"tag1");
         CommonResult<PageResult<AdminUserPageItemVO>> userPageList = adminUserRpc.getUserPageList(adminUserPageDTO);
         userPageList.checkError();
         return userPageList.getData();

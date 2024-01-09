@@ -28,6 +28,7 @@ public interface InventoryProductStockMapper extends BaseMapper<InventoryProduct
      */
     @Update(" update inventory_product_stock " +
             "        set sale_stock_quantity = sale_stock_quantity - #{saleQuantity} " +
+            "        , update_time = now() " +
             "        where sku_code = #{skuCode} " +
             "          and sale_stock_quantity >= #{saleQuantity}")
     int deductProductStock(@Param("skuCode") String skuCode, @Param("saleQuantity") Integer saleQuantity);

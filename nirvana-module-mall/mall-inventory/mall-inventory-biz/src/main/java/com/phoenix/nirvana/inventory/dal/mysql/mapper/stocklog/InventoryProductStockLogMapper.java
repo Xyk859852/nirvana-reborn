@@ -5,6 +5,10 @@ import com.phoenix.nirvana.inventory.dal.mysql.dataobject.stocklog.InventoryProd
 import com.phoenix.nirvana.mybatis.core.query.LambdaQueryWrapperX;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+
 /**
  * <p>
  * 库存扣减日志表 Mapper 接口
@@ -30,6 +34,12 @@ public interface InventoryProductStockLogMapper extends BaseMapper<InventoryProd
                 .orderByDesc(InventoryProductStockLogDO::getProductStockLogId)
                 .last("limit 1")
         );
+    }
+
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2020,12,31);
+        WeekFields of = WeekFields.of(DayOfWeek.MONDAY, 7);
+        System.out.println(date.get(of.weekOfWeekBasedYear()));
     }
 
 }

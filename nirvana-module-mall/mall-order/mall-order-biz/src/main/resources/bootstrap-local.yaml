@@ -18,7 +18,44 @@ spring:
         name: # 使用的 Nacos 配置集的 dataId，默认为 spring.application.name
         file-extension: yaml # 使用的 Nacos 配置集的 dataId 的文件拓展名，同时也是 Nacos 配置集的配置格式，默认为 properties
         shared-configs: common-bootstrap.yaml
-
+---
+# Spring Cloud Stream 配置项，对应 BindingServiceProperties 类
+spring:
+  cloud:
+    stream:
+      # Binding 配置项，对应 BindingProperties Map
+      function:
+        definition: orderStdChangeEvent;
+      bindings:
+        #订单状态流转
+        orderStdChangeEvent-out-0:
+          destination: order_std_change_event
+          group: order_std_change_event_group
+        orderStdChangeEvent-in-0:
+          destination: order_std_change_event
+          group: order_std_change_event_group
+      # Spring Cloud Stream RocketMQ 配置项
+      rocketmq:
+        bindings:
+          #          user-in-0:
+          #            consumer:
+          #              messageModel: BROADCASTING # 消息类型：广播消息
+          #            group: user_consumer_group
+          #          delayed-out-0: # 发送延时消息
+          #            producer:
+          #              group: delayed-group
+          #              sync: true
+          orderStdChangeEvent-out-0:
+            producer:
+              group: order_std_change_event_group
+              # 定义messageSelector
+              messageQueueSelector: orderStdChangeSelector
+          orderStdChangeEvent-in-0:
+            consumer:
+              # tag: {@code tag1||tag2||tag3 }; sql: {@code 'color'='blue' AND 'price'>100 } .
+              #              subscription: '1 || 2 || 3'
+              push:
+                orderly: true
 ---
 dubbo:
   cloud:

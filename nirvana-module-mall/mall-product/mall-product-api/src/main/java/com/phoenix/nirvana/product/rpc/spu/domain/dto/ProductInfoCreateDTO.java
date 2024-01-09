@@ -99,6 +99,9 @@ public class ProductInfoCreateDTO {
         @ApiModelProperty("属性排序")
         private Integer attrSort;
 
+        @ApiModelProperty("SKU 名称")
+        private String skuName;
+
         @ApiModelProperty("默认图片")
         private String skuDefaultImg;
 

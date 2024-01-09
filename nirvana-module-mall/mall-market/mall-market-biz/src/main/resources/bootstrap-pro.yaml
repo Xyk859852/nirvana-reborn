@@ -2,7 +2,7 @@
 spring:
   cloud:
     nacos:
-      server-addr: 10.66.109.145:8848
+      server-addr: 47.103.99.117:8848
       discovery:
         metadata:
           version: 1.0.0 # 服务实例的版本号，可用于灰度发布
@@ -13,60 +13,18 @@ spring:
     nacos:
       # Nacos Config 配置项，对应 NacosConfigProperties 配置属性类
       config:
-        server-addr: 10.66.109.145:8848 # Nacos 服务器地址
+        server-addr: 47.103.99.117:8848 # Nacos 服务器地址
         group: DEFAULT_GROUP # 使用的 Nacos 配置分组，默认为 DEFAULT_GROUP
         name: # 使用的 Nacos 配置集的 dataId，默认为 spring.application.name
         file-extension: yaml # 使用的 Nacos 配置集的 dataId 的文件拓展名，同时也是 Nacos 配置集的配置格式，默认为 properties
----
-spring:
-  redis:
-    host: 10.66.109.145
-    port: 6379
+        shared-configs: common-bootstrap.yaml
+
 ---
 dubbo:
-  application:
-    name: ${spring.application.name}-dubbo
-  registry:
-    address: nacos://127.0.0.1:8848
-    register-mode: instance
-    timeout: 2000
-    protocol: -1
-    port: -1
-    # 协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受
-  protocol:
-    port: -1
-    name: dubbo
+  cloud:
+    subscribed-services: mall-order-biz-dubbo
+
 
 ---
-
-# Spring Cloud Stream 配置项，对应 BindingServiceProperties 类
-spring:
-  cloud:
-    stream:
-      # Spring Cloud Stream RocketMQ 配置项
-      rocketmq:
-        # RocketMQ Binder 配置项，对应 RocketMQBinderConfigurationProperties 类
-        binder:
-          name-server: 10.66.109.145:9876 # RocketMQ Namesrv 地址
-        default: # 默认 bindings 全局配置
-          producer: # RocketMQ Producer 配置项，对应 RocketMQProducerProperties 类
-            group: mall_market_biz_group # 生产者分组
-            send-type: SYNC # 发送模式，SYNC 同步
-
-    # Spring Cloud Bus 配置项，对应 BusProperties 类
-    bus:
-      enabled: true # 是否开启，默认为 true
-      id: ${spring.application.name}:${server.port} # 编号，Spring Cloud Alibaba 建议使用“应用:端口”的格式
-      destination: springCloudBus # 目标消息队列，默认为 springCloudBus
-
-
-# Actuator 监控端点的配置项
-management:
-  endpoints:
-    web:
-      base-path: /actuator # Actuator 提供的 API 接口的根目录。默认为 /actuator
-      exposure:
-        include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
-
 logging:
-  destination-url: 10.66.109.145:4560
+  destination-url: 127.0.0.1:4560
